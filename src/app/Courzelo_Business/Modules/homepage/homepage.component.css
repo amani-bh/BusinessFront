@@ -1,0 +1,433 @@
+
+/*===========================
+     default css 
+===========================*/
+
+
+
+a:focus,
+input:focus,
+textarea:focus,
+button:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus,
+a:hover{
+	text-decoration: none;
+}
+
+i,
+span,
+a{
+    display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+}
+
+h1 {
+	font-weight: 500;
+}
+h2 {
+	font-size: 36px;
+}
+h3 {
+	font-size: 28px;
+}
+h4 {
+	font-size: 22px;
+}
+h5 {
+	font-size: 18px;
+}
+h6 {
+	font-size: 16px;
+}
+ul,ol {
+	margin: 0px;
+	padding: 0px;
+    list-style-type: none;
+}
+
+p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 28px;
+	color: #505050;
+	margin: 0px;
+}
+.gray-bg{
+    background-color: #edf0f2
+}
+
+/*button*/
+.main-btn {
+	display: inline-block;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid #ffc600;
+	padding: 0 20px;
+	font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+	line-height: 50px;
+	border-radius: 5px;
+    color: #07294d;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    background-color: #ffc600;
+   
+    margin-right: 2%;
+    
+    
+}
+
+.select-btn{
+    line-height: 30px;
+    padding: 3px;
+    font-size: 14px;
+}
+
+.main-btn:hover{
+    color: #ffc600;
+    border-color: #07294d;
+    background-color: #07294d;
+}
+
+
+/*=====================================================
+    3. SLIDER css 
+======================================================*/
+
+.single-slider{
+    padding-bottom: 300px;
+    background-image: url(../../../../assets/CourzeloBusiness/images/banner.jpg)
+}
+
+.slider-cont{
+    position: relative;
+    z-index: 5;
+    margin-top: 25%;
+    margin-left: 0%;
+    display: inline-block;
+    float: center;
+    
+}
+
+
+.slider-cont h1{
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    padding-bottom: 25px;
+    float: center;
+    
+}
+.slider-cont p{
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    padding-bottom: 50px;
+    float: center;
+    margin-left: 20%;
+}
+
+
+
+
+
+
+
+
+/*=========================*/
+/*======Search bar =========*/
+
+
+.search-bar{
+    width:100%;
+    display: inline-flex;
+    margin-left: 55px;
+    margin-bottom: 5%;
+}
+.search-bar mat-form-field {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+    color: #8a8a8a;
+    font-size: 15px;
+    margin-right: 5%;
+    
+    
+    
+    
+  }
+
+ 
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-form-field-hover {
+    display: none;
+}
+
+
+/*=============================*/
+/*==============Description blue part=======*/
+
+.descrip{
+  
+    padding-bottom: 80px;
+    padding-top: 80px;
+    float: center;
+    margin-top: -5%;
+    margin-left: 0%;
+    margin-bottom: 5%;
+    text-align: center;
+    background-color: #07294d;
+    border-radius: 10px;
+    position: relative;
+    z-index: 5;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.descrip p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+
+/*--------progress bar ----------------*/
+.progress-bar{
+    margin-left: 5%;
+    background-color: transparent;  
+
+}
+
+.progress-bar ::ng-deep.mat-stepper-horizontal-line {
+    width: 200px !important;
+    border-top-width: 3px !important;
+    border-top-color: #07294d;
+  }
+
+  .progress-bar ::ng-deep .mat-step-header .mat-step-icon {
+    background-color:#ffc600; 
+    color: #07294d;
+    font-size: 14px;
+    font-weight: 150px;
+ }
+
+ .progress-bar ::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color:#07294d; 
+    color:#ffc600;
+    font-size: 14px;
+    font-weight: 150px;
+ }
+
+ /***Paginator***/
+.mat-paginator{
+    background-color: #edf0f2;
+}
+
+/*=====================================================
+    profiles 
+======================================================*/
+
+.singel-event-list{
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-align-items: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    margin-top: 0%;
+    margin-bottom: 15%;
+}
+
+.singel-event-list .event-thum {
+	width: 38%;
+}
+.singel-event-list .event-thum img{
+    width: 100%;
+    border-radius: 5px;
+}
+.singel-event-list .event-cont {
+	width: 62%;
+    padding-left: 30px;
+}
+
+.singel-event-list .event-cont span {
+	font-size: 14px;
+	color: #8a8a8a;
+	margin-right: 20px;
+}
+.singel-event-list .event-cont span i {
+	color: #ffc600;
+	margin-right: 3px;
+}
+.singel-event-list .event-cont a {
+	display: block;
+}
+.singel-event-list .event-cont a h4 {
+	padding-top: 5px;
+	padding-bottom: 10px;
+	color: #000;
+	font-size: 20px;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+.singel-event-list .event-cont a:hover h4 {
+    color: #ffc600;
+}
+
+
+ /**===================================**/
+/*===========Responsive css **/
+
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+}
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+   
+}
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    
+   
+    button.mat-icon-button mat-icon{
+        margin-left: 250px;
+        margin-top: -65pxx
+    }
+
+    ::ng-deep.mat-stepper-horizontal-line {
+        width: 100px !important;}
+
+    .progress-bar{
+            margin-left: 0%;
+            
+        }
+        
+
+}
+
+
+
+
+/* small mobile :320px. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    button.mat-icon-button mat-icon{
+        margin-left: 90px;
+        margin-top: -65pxx
+    }
+
+    ::ng-deep.mat-stepper-horizontal-line {
+        width: 50px !important;}
+
+    .progress-bar{
+            margin-left: 0%;
+            
+        }
+
+
+        
+    
+}
+
+
+
+/* Large Mobile :480px. */
+@media only screen and  (max-width: 575.98px) {
+
+    
+    button.mat-icon-button mat-icon{
+        margin-left: 70px;
+        margin-top: -65pxx
+    }
+
+
+    .search-bar mat-form-field {
+        width: 80%;
+        height: 50px;
+        
+        
+        
+      }
+
+      .main-btn{
+          margin-bottom: 5%;
+          display:center;
+          margin-left: 20%;
+      }
+
+
+      .descrip{
+  
+        padding-bottom: 50px;
+        padding-top: 50px;
+        width:80%;
+        margin-left: 10%;
+       
+    }
+
+    .descrip p{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: white;
+    }
+
+    .slider-cont p{
+        margin-left: 4%;
+    }
+    
+    .slider-cont h1{
+        margin-left: 4%;
+    }
+
+
+    .progress-bar{
+            margin-left: 0%;
+            
+            
+        }
+
+}
+

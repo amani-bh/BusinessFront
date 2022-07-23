@@ -1,0 +1,51 @@
+<div class="form-group">
+  <form>
+    <label for="search">Search</label>
+    <input  requiredtype="text" [(ngModel)]="search_name" name="search_name" id="" class="form-control"  area-describedby="helpId" placeholder="search ..">
+    <span class="caret"></span>
+  </form>
+</div>
+
+<div class="example-sidenav-content">
+  <section id="course-part" class="pt-50 pb-50">
+    <div class="container">
+      <div class="row" style="margin-bottom: -20px">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+            <h2 style="font-size: 30px">Courses</h2>
+          </div>
+          <!-- section title -->
+        </div>
+      </div>
+      <!-- row -->
+      <br />
+      <div class="container">
+        <div class="row" style="margin-left: -90px; margin-right: -99px">
+          <div class="col-lg-3 col-sm-6" *ngFor="let i of formation | paginate: { itemsPerPage: 8, currentPage: p  }| recherche:search_name ; let index = index">
+            <div class="card hovercard">
+              <div class="cardheader">
+                <div class="sd">
+                  <a routerLink="/myClasses">
+                    <h4 class="titre">{{ i.coursename }}</h4></a
+                  >
+
+                  <h5 class="sousTitre">Amine</h5>
+                </div>
+              </div>
+
+              <div class="avatar">
+                <img
+                  alt=""
+                  src="../../../../../assets/images_courzelo_classroom/instructor/i-1.jpg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course slied -->
+    </div>
+    <!-- container -->
+  </section>
+</div>
+<pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>

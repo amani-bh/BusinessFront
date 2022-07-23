@@ -1,0 +1,711 @@
+<app-header></app-header>
+<!--banner page-->
+<section
+  class="pt-105 pb-40 bg_cover"
+  data-overlay="8"
+  style="
+    background-image: url(../../../../assets/images_courses_per_categorie/page-banner-2.jpg);
+    height: 130px;
+  "
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12" style="margin-top: -50px">
+        <div class="page-banner-cont">
+          <h2>{{ course.title }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--end banner page-->
+<!--Single course-->
+<section id="corses-singel" class="pt-90 pb-120 gray-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="corses-singel-left mt-30">
+          <div class="title">
+            <h3>{{ course.title }}</h3>
+          </div>
+          <div class="course-terms">
+            <ul>
+              <li>
+                <div class="teacher-name">
+                  <div class="thum">
+                    <img
+                      src="../../../../assets/images_courses_per_categorie/teacher/t-1.jpg"
+                      alt="Teacher"
+                    />
+                  </div>
+                  <div class="name">
+                    <span>Teacher</span>
+                    <h6>{{ course.instructorInfo }}</h6>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="course-category">
+                  <span>Category</span>
+                  <h6>Programaming</h6>
+                </div>
+              </li>
+              <li>
+                <div class="review">
+                  <span>Review</span>
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-star"></i></a>
+                    </li>
+                    <li class="rating">(20 Reviws)</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="corses-singel-image pt-50">
+            <img
+              src="../../../../assets/images_courses_per_categorie/cu-1.jpg"
+              alt="Courses"
+            />
+          </div>
+          <div class="corses-tab mt-30">
+            <mat-tab-group animationDuration="0ms">
+              <mat-tab label="Overview">
+                <div class="tab-content" id="myTabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="overview"
+                    role="tabpanel"
+                    aria-labelledby="overview-tab"
+                  >
+                    <div class="overview-description">
+                      <div class="singel-description pt-40">
+                        <h6>Course Summery</h6>
+                        <p>{{ course.description }}</p>
+                      </div>
+                      <div class="singel-description pt-40">
+                        <h6>Requirements</h6>
+                        <div
+                          *ngFor="
+                            let item of course.preRequisites;
+                            let index = index
+                          "
+                        >
+                          <p>- {{ item }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- overview description -->
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="Curriculam">
+                <div class="tab-content" id="myTabContent">
+                  <div>
+                    <div class="overview-description">
+                      <div class="singel-description pt-40">
+                        <ng-container *ngIf="introductionPhasesLength > 0">
+                          <p>Introduction</p>
+                          <div>
+                            <mat-expansion-panel
+                              hideToggle
+                              style="margin-bottom: 2%"
+                            >
+                              <mat-expansion-panel-header
+                                style="background-color: #e5e4df"
+                              >
+                                <mat-panel-title>
+                                  Name : {{ introductionName }}
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                  Numbers of phases:4</mat-panel-description
+                                >
+                              </mat-expansion-panel-header>
+                              <button
+                                mat-stroked-button
+                                class="preview"
+                                routerLink="/singleCourseDetail/{{
+                                  courseID
+                                }}/preview"
+                              >
+                                Preview
+                              </button>
+                              <div
+                                *ngFor="
+                                  let item of introductionPhases;
+                                  let index = index
+                                "
+                              >
+                                <div class="phaseCheck">
+                                  <p>Phase {{ index + 1 }} : {{ item.name }}</p>
+                                </div>
+                              </div>
+                            </mat-expansion-panel>
+                          </div>
+                        </ng-container>
+                        <ng-container *ngIf="sectionsWithModelLength > 0">
+                          <p>Sections</p>
+                          <div
+                            *ngFor="
+                              let item of sectionsWithModel;
+                              let i = index
+                            "
+                          >
+                            <mat-expansion-panel
+                              hideToggle
+                              style="margin-bottom: 2%"
+                            >
+                              <mat-expansion-panel-header
+                                style="background-color: #e5e4df"
+                              >
+                                <mat-panel-title>
+                                  Name : {{ item.name }}
+                                </mat-panel-title>
+                                <mat-panel-description
+                                  >Numbers of phases: {{ item.phases.length }}
+                                </mat-panel-description>
+                              </mat-expansion-panel-header>
+                              <button
+                                mat-stroked-button
+                                class="preview"
+                                routerLink="/singleCourseDetail/{{
+                                  courseID
+                                }}/sectionPreview/{{ i + 1 }}"
+                              >
+                                Preview
+                              </button>
+                              <div
+                                *ngFor="let phase of item.phases; let i = index"
+                              >
+                                <div class="phaseCheck">
+                                  <p style="margin-right: auto">
+                                    Phase {{ i + 1 }} : {{ phase.name }}
+                                  </p>
+                                </div>
+                              </div>
+                            </mat-expansion-panel>
+                          </div>
+                        </ng-container>
+                        <ng-container>
+                          <p>Conclusion</p>
+                          <div>
+                            <mat-expansion-panel
+                              hideToggle
+                              style="margin-bottom: 2%"
+                            >
+                              <mat-expansion-panel-header
+                                style="background-color: #e5e4df"
+                              >
+                                <mat-panel-title>
+                                  Name : {{ conclusionName }}
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                  Numbers of phases:4</mat-panel-description
+                                >
+                              </mat-expansion-panel-header>
+                              <button
+                                mat-stroked-button
+                                class="preview"
+                                routerLink="/singleCourseDetail/{{
+                                  courseID
+                                }}/conclusionPreview"
+                              >
+                                Preview
+                              </button>
+                              <div
+                                *ngFor="
+                                  let item of conclusionPhases;
+                                  let index = index
+                                "
+                              >
+                                <div class="phaseCheck">
+                                  <p style="margin-right: auto">
+                                    Phase {{ index + 1 }} : {{ item.name }}
+                                  </p>
+                                </div>
+                              </div>
+                            </mat-expansion-panel>
+                          </div>
+                        </ng-container>
+                        <ng-container
+                          *ngIf="sectionsWithoutModelLength > 0"
+                          class="boxItem"
+                        >
+                          <p class="boxItem">Sections</p>
+                          <div
+                            *ngFor="
+                              let item of sectionsWithoutModel;
+                              let index = index
+                            "
+                          >
+                            <mat-expansion-panel
+                              hideToggle
+                              style="margin-bottom: 2%"
+                            >
+                              <mat-expansion-panel-header
+                                style="background-color: #38acae"
+                              >
+                                <mat-panel-title>
+                                  {{ item.name }}
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                  Numbers of phases:
+                                  {{
+                                    item.phases.length
+                                  }}</mat-panel-description
+                                >
+                              </mat-expansion-panel-header>
+
+                              <div
+                                *ngFor="let phase of item.phases; let i = index"
+                              >
+                                <div class="phaseCheck">
+                                  <p style="margin-right: auto">
+                                    Phase {{ i + 1 }} : {{ phase.name }}
+                                  </p>
+                                </div>
+                              </div>
+                            </mat-expansion-panel>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                    <!-- overview description -->
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="Instructor">
+                <div class="instructor-cont">
+                  <div class="instructor-author">
+                    <div class="author-thum">
+                      <img
+                        src="../../../../assets/images_courses_per_categorie/instructor/i-1.jpg"
+                        alt="Instructor"
+                      />
+                    </div>
+                  </div>
+                  <div class="instructor-description pt-25">
+                    <h6>
+                      Name : <b>{{ course.instructorInfo }}</b>
+                    </h6>
+                    <br />
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Delectus fuga ratione molestiae unde provident quibusdam
+                      sunt, doloremque. Error omnis mollitia, ex dolor sequi.
+                      Et, quibusdam excepturi. Animi assumenda, consequuntur
+                      dolorum odio sit inventore aliquid, optio fugiat alias.
+                      Veritatis minima, dicta quam repudiandae repellat non sit,
+                      distinctio, impedit, expedita tempora numquam?
+                    </p>
+                  </div>
+                </div>
+                <!-- instructor cont -->
+              </mat-tab>
+              <mat-tab label="Reviews">
+                <div class="reviews-cont">
+                  <div class="title">
+                    <h6>Student Reviews</h6>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="singel-reviews">
+                        <div class="reviews-author">
+                          <div class="author-thum">
+                            <img
+                              src="../../../../assets/images_courses_per_categorie/review/r-1.jpg"
+                              alt="Reviews"
+                            />
+                          </div>
+                          <div class="author-name">
+                            <h6>Bobby Aktar</h6>
+                            <span>April 03, 2019</span>
+                          </div>
+                        </div>
+                        <div class="reviews-description pt-20">
+                          <p>
+                            There are many variations of passages of Lorem Ipsum
+                            available, but the majority have suffered alteration
+                            in some form, by injected humour, or randomised
+                            words which.
+                          </p>
+                          <div class="rating">
+                            <ul>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            <span>/ 5 Star</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- singel reviews -->
+                    </li>
+                    <li>
+                      <div class="singel-reviews">
+                        <div class="reviews-author">
+                          <div class="author-thum">
+                            <img
+                              src="../../../../assets/images_courses_per_categorie/review/r-2.jpg"
+                              alt="Reviews"
+                            />
+                          </div>
+                          <div class="author-name">
+                            <h6>Humayun Ahmed</h6>
+                            <span>April 13, 2019</span>
+                          </div>
+                        </div>
+                        <div class="reviews-description pt-20">
+                          <p>
+                            There are many variations of passages of Lorem Ipsum
+                            available, but the majority have suffered alteration
+                            in some form, by injected humour, or randomised
+                            words which.
+                          </p>
+                          <div class="rating">
+                            <ul>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            <span>/ 5 Star</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- singel reviews -->
+                    </li>
+                    <li>
+                      <div class="singel-reviews">
+                        <div class="reviews-author">
+                          <div class="author-thum">
+                            <img
+                              src="../../../../assets/images_courses_per_categorie/review/r-3.jpg"
+                              alt="Reviews"
+                            />
+                          </div>
+                          <div class="author-name">
+                            <h6>Tania Aktar</h6>
+                            <span>April 20, 2019</span>
+                          </div>
+                        </div>
+                        <div class="reviews-description pt-20">
+                          <p>
+                            There are many variations of passages of Lorem Ipsum
+                            available, but the majority have suffered alteration
+                            in some form, by injected humour, or randomised
+                            words which.
+                          </p>
+                          <div class="rating">
+                            <ul>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            <span>/ 5 Star</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- singel reviews -->
+                    </li>
+                  </ul>
+                  <div class="title pt-15">
+                    <h6>Leave A Comment</h6>
+                  </div>
+                  <div class="reviews-form">
+                    <form action="#">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-singel">
+                            <input type="text" placeholder="Fast name" />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-singel">
+                            <input type="text" placeholder="Last Name" />
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-singel">
+                            <div class="rate-wrapper">
+                              <div class="rate-label">Your Rating:</div>
+                              <div class="rate">
+                                <div class="rate-item">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <div class="rate-item">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <div class="rate-item">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <div class="rate-item">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <div class="rate-item">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-singel">
+                            <textarea placeholder="Comment"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-singel">
+                            <button type="button" class="main-btn">
+                              Post Comment
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- row -->
+                    </form>
+                  </div>
+                </div>
+                <!-- reviews cont -->
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="row">
+          <div class="col-lg-12 col-md-6">
+            <div class="course-features mt-30">
+              <h4>Course Features</h4>
+              <ul>
+                <li>
+                  <i class="fa fa-clock-o"></i>Duration : <span>10 Hours</span>
+                </li>
+                <li><i class="fa fa-clone"></i>Leactures : <span>09</span></li>
+                <li><i class="fa fa-beer"></i>Quizzes : <span>05</span></li>
+                <li><i class="fa fa-user-o"></i>Students : <span>100</span></li>
+              </ul>
+              <form class="price-button pt-10" #addForm="ngForm" (ngSubmit)="onAddCart()">
+                <span
+                  >Price : <b>{{ course.price }}</b></span
+                >
+                <button class="main-btn" type="submit">Add To Cart</button>
+              </form>
+            </div>
+            <!-- course features -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--end Single course-->
+<!--related courses-->
+<section id="course-part" class="pt-50 pb-50">
+  <div class="container">
+    <div class="row" style="margin-bottom: -20px">
+      <div class="col-lg-6">
+        <div class="section-title pb-45">
+          <h2 style="font-size: 30px">Related Courses</h2>
+        </div>
+      </div>
+    </div>
+    <carousel
+      [lightDOM]="true"
+      class="carousel--slider-alignement container"
+      [transitionDuration]="900"
+      [autoplayInterval]="700"
+      [autoplay]="true"
+      [transitionTimingFunction]="'ease-out'"
+      [cellWidth]="300"
+      [arrowsOutside]="false"
+      [pauseOnHover]="true"
+      [margin]="50"
+    >
+      <div class="carousel-cell">
+        <div class="singel-course-2">
+          <div class="thum">
+            <div class="image">
+              <img
+                src="../../../../assets/images_courses_per_categorie/cu-1.jpg"
+                alt="Course"
+              />
+            </div>
+            <div class="course-teacher">
+              <div class="thum">
+                <a href="courses-singel.html"
+                  ><img
+                    src="../../../../assets/images_courses_per_categorie/teacher/t-1.jpg"
+                    alt="teacher"
+                /></a>
+              </div>
+              <div class="name">
+                <a href="#"><h6>Mark anthem</h6></a>
+              </div>
+              <div class="review">
+                <ul>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+              </div>
+              <div style="margin-left: 75%; color: #ffc600">
+                <span><b>99.99DT</b></span>
+              </div>
+            </div>
+          </div>
+          <div class="cont">
+            <a href="courses-singel.html"
+              ><h4>Learn basis javascirpt from start for beginner</h4></a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="singel-course-2">
+          <div class="thum">
+            <div class="image">
+              <img
+                src="../../../../assets/images_courses_per_categorie/cu-1.jpg"
+                alt="Course"
+              />
+            </div>
+            <div class="course-teacher">
+              <div class="thum">
+                <a href="courses-singel.html"
+                  ><img
+                    src="../../../../assets/images_courses_per_categorie/teacher/t-1.jpg"
+                    alt="teacher"
+                /></a>
+              </div>
+              <div class="name">
+                <a href="#"><h6>Mark anthem</h6></a>
+              </div>
+              <div class="review">
+                <ul>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+              </div>
+              <div style="margin-left: 75%; color: #ffc600">
+                <span><b>99.99DT</b></span>
+              </div>
+            </div>
+          </div>
+          <div class="cont">
+            <a href="courses-singel.html"
+              ><h4>Learn basis javascirpt from start for beginner</h4></a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="singel-course-2">
+          <div class="thum">
+            <div class="image">
+              <img
+                src="../../../../assets/images_courses_per_categorie/cu-2.jpg"
+                alt="Course"
+              />
+            </div>
+            <div class="course-teacher">
+              <div class="thum">
+                <a href="courses-singel.html"
+                  ><img
+                    src="../../../../assets/images_courses_per_categorie/teacher/t-2.jpg"
+                    alt="teacher"
+                /></a>
+              </div>
+              <div class="name">
+                <a href="#"><h6>Mark anthem</h6></a>
+              </div>
+              <div class="review">
+                <ul>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+              </div>
+              <div style="margin-left: 75%; color: #ffc600">
+                <span><b>99.99DT</b></span>
+              </div>
+            </div>
+          </div>
+          <div class="cont">
+            <a href="courses-singel.html"
+              ><h4>Learn basis javascirpt from start for beginner</h4></a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="singel-course-2">
+          <div class="thum">
+            <div class="image">
+              <img
+                src="../../../../assets/images_courses_per_categorie/cu-3.jpg"
+                alt="Course"
+              />
+            </div>
+            <div class="course-teacher">
+              <div class="thum">
+                <a href="courses-singel.html"
+                  ><img
+                    src="../../../../assets/images_courses_per_categorie/teacher/t-3.jpg"
+                    alt="teacher"
+                /></a>
+              </div>
+              <div class="name">
+                <a href="#"><h6>Mark anthem</h6></a>
+              </div>
+              <div class="review">
+                <ul>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+              </div>
+              <div style="margin-left: 75%; color: #ffc600">
+                <span><b>99.99DT</b></span>
+              </div>
+            </div>
+          </div>
+          <div class="cont">
+            <a href="courses-singel.html"
+              ><h4>Learn basis javascirpt from start for beginner</h4></a
+            >
+          </div>
+        </div>
+      </div>
+    </carousel>
+  </div>
+</section>
+<!--end related courses-->
+<app-footer></app-footer>

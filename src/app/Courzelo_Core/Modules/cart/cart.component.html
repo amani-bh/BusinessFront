@@ -1,0 +1,107 @@
+
+<app-header></app-header>
+<div>
+
+
+<div class="cart">
+    <div class="section-title mt-50">
+      <h3>Cart</h3>
+    </div>
+    <mat-stepper #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+
+        <ng-template matStepLabel>Cart</ng-template>
+        
+        
+        <div *ngIf="totalprice != 0">
+        <mat-card class="example-card" *ngFor="let cart of carts">
+          <mat-card-title-group>
+            <mat-card-title>{{cart.course.title}}</mat-card-title>
+            <mat-card-subtitle>By {{cart.course.instructorInfo}}</mat-card-subtitle>
+            <mat-card-subtitle style="font-size: bold;">Price : {{cart.course.price}}$</mat-card-subtitle>
+            <img mat-card-md-image src="assets/images/slider/s-1.jpg" >
+          </mat-card-title-group>
+          <div class="example-button-container">
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="onDeleteCart(cart.idCart)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <!-- <mat-card-content>
+            <mat-icon aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+          </mat-card-content> -->
+        </mat-card>
+
+        
+        
+          <div>
+            <h2>Total price is : {{totalprice}}$</h2>
+            <button mat-button matStepperNext class="main-btn">Validation</button>
+          </div>
+        </div>
+
+        <div *ngIf="totalprice == 0">
+          <h2 style="text-align: center;">Your cart is empty</h2>
+          <img src="assets/empty.png" style="display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 50%;">
+        </div>
+        
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+
+        <ng-template matStepLabel>Checkout</ng-template>
+
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Stripe
+              </mat-panel-title>
+              <mat-panel-description>
+                Pay with your credit card
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <button mat-raised-button color="primary" (click)="pay()" class="main-btn">
+              Stripe
+            </button>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                E-Dinar
+              </mat-panel-title>
+              <mat-panel-description>
+                Pay with your E-Dinar card
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <button mat-raised-button color="primary" (click)="pay()" class="main-btn">
+              E-Dinar
+            </button>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        
+        
+          <div>
+            <button mat-button matStepperPrevious class="second-btn">Back</button>
+            <button mat-button matStepperNext class="main-btn">Next</button>
+          </div>
+        
+      </mat-step>
+      <!-- <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button class="main-btn">Home</button>
+        </div>
+      </mat-step> -->
+    </mat-stepper>
+</div>
+
+</div>
+
+<app-footer></app-footer>
+

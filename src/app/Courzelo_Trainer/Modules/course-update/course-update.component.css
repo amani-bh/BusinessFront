@@ -1,0 +1,87 @@
+.example-stepper {
+  width: auto;
+ }
+ .example-chip-list {
+  width: 100%;
+}
+input.mat-chip-input {
+  width: 100%;
+  margin: 5px;
+  flex: 1 0 30px;
+}
+.mat-form-field {
+  margin-top: 1%;
+  border-radius: 5px;
+  margin-bottom: 1%;
+}
+::ng-deep.mat-stepper-horizontal-line {
+    width: 70px ;
+    border-top-width: 3px ;
+    border-top-color: #07294d;
+  }
+::ng-deep .mat-step-header .mat-step-icon {
+    background-color:#ffc600;
+    color: #07294d;
+ }
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color:#07294d;
+    color:#ffc600;
+ }
+ .stepper mat-stepper{
+    margin-top: 8%;
+    background-color: #edf0f2;
+    overflow: hidden;
+}
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+   flex-basis: 0;
+ }
+.example-headers-align .mat-expansion-panel-header-description {
+   justify-content: space-between;
+   align-items: center;
+ }
+.example-headers-align .mat-form-field + .mat-form-field {
+   margin-left: 8px;
+ }
+.imgKolb{
+width: 70%;
+border: solid black 1px;
+margin-left: 20%;
+}
+.nextBtn{
+background-color: rgb(10, 58, 110);
+width: 10em;
+margin: 5%;
+}
+.publishBtn{
+  background-color: rgb(46 41 7);
+  width: 15em;
+  margin:5% 25% ;
+  padding: 2%;
+
+  }
+  .previewBtn{
+    background-color: rgb(11, 25, 112);
+    width: 15em;
+    margin:5% 25% ;
+    padding: 2%;
+
+    }
+.inputFile{
+height: 50px;
+  overflow: hidden ;
+}
+.quizzBtn{
+  margin-top: 6%;
+  margin-left: 44%;
+  background-color: cornsilk;
+  width: 16%;
+  padding: 1%;
+}
+.quizzCourseBtn{
+  margin-top: 6%;
+  margin-left: 44%;
+  background-color: #d6c118f2;
+  width: 16%;
+  padding: 1%;
+}

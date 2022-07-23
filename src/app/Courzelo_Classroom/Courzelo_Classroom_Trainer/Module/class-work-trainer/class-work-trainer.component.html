@@ -1,0 +1,69 @@
+<button mat-raised-button class="main-btn add-btn2" [matMenuTriggerFor]="menu" >
+  <mat-icon class="plus">add</mat-icon> Create
+</button>
+<mat-menu #menu="matMenu">
+  <button    (click)="AddtextDialog()" mat-menu-item>
+    <mat-icon>done_outline</mat-icon>Course section
+  </button>
+ 
+  <button (click)=" AddsectionresourcesDialog()" mat-menu-item>
+    <mat-icon>help_outline</mat-icon>Add resources
+  </button>
+  
+</mat-menu>
+
+
+<br />
+<br />
+<div class="draganddrop" >
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let i of sections" cdkDrag  >
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+
+      <mat-expansion-panel class="matTab" [expanded]="step === 0" (opened)="setStep(0)"    hideToggle>
+        <mat-expansion-panel-header style="height: 122px;">
+        
+          <mat-panel-description>
+         {{i.postContent}}
+            
+            <div>
+              <button mat-button [matMenuTriggerFor]="menu"  >
+                <mat-icon class="peticon">more_vert</mat-icon>
+            </button>
+          <mat-menu #menu="matMenu">
+            
+            <button mat-menu-item (click)="UpdatetextDialog()">Edit title section</button>
+            <button mat-menu-item (click)="deleteSection(i.idSection)" >Delete section</button>
+          </mat-menu>
+      
+            </div>
+          </mat-panel-description>
+          <mat-panel-title> 
+        
+            <div>
+
+              {{i.title}}
+            </div>
+  
+              </mat-panel-title>
+
+          
+        </mat-expansion-panel-header>
+        <button mat-raised-button (click)="AddphaseDialog(i.idSection)" [disabled]="test" class="main-btn add-btn"  >
+           Add resources
+        </button>
+       
+       <br>
+       <br>  
+
+       <app-phase [idSection]="i.idSection"> </app-phase>
+
+        <mat-action-row>
+          <button mat-button color="primary" [disabled]="test" (click)="nextStep()">
+            Close 
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

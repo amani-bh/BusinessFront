@@ -1,0 +1,81 @@
+<div class="stepperquiz">
+  <div class="main-divstep"><mat-stepper   class="progress-bar" [orientation]="(stepperOrientation | async)!">
+    <mat-step  label="Create quiz"></mat-step>
+    <mat-step  label="Add questions" >  </mat-step>
+    <mat-step  label="Post quiz"></mat-step>
+  </mat-stepper>
+  </div>
+  </div>
+  <div class="main-div">
+  <mat-card>
+    <mat-card-title> 
+       <div class="section-title mt-50">
+      <h2>Create quiz</h2>
+    </div></mat-card-title>
+    <br>
+    <div class="row">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-8" >
+        <mat-card-content>
+          <form (ngSubmit)="add()"  [formGroup]="Quizform" >
+            <div class="quizform">
+            <mat-form-field>
+              <mat-label >Title</mat-label>
+              <input matInput  formControlName="title" placeholder="Ex. angular" >
+              <mat-error *ngIf="hasError('title','required')">Title is necessary</mat-error>
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Intoduction</mat-label>
+              <textarea class="des" matInput  formControlName="description"
+                placeholder="Ex. this quiz consists of ..." required></textarea>
+                <mat-error *ngIf="hasError('description','required')">introduction is necessary</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Limit date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="limitdate" >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="hasError('limitdate','required')">limitdate is necessary</mat-error>
+            </mat-form-field>
+            <mat-form-field >
+              <mat-label>Select timer type</mat-label>
+              <mat-select [(value)]="selected" formControlName="typecountdown" >            
+                <mat-option value="perquiz">countdown per quiz</mat-option>
+                <mat-option value="perquestion">countdown per question</mat-option>             
+              </mat-select>
+              <mat-error *ngIf="hasError('typecountdown','required')">countdown is necessary</mat-error>
+            </mat-form-field>
+            <mat-form-field *ngIf="selected=='perquiz'">
+              <mat-label>countdown</mat-label>
+              <input matInput class="des" type="number" [min]="20" formControlName="countperquiz" >
+              <mat-error *ngIf="hasError('countperquiz','required')">countdown is necessary</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Evaluation model</mat-label>
+              <mat-select  formControlName="evaluationmodel" >
+                <mat-option value="ALL_OR_NOTHING">All or nothing</mat-option>
+                <mat-option value="PARTIAL_CREDIT">Partial credit </mat-option>
+                <mat-option value="GUESSING_PENALTY">Guessing penalty</mat-option>
+              </mat-select>
+              <mat-error *ngIf="hasError('evaluationmodel','required')">evaluation_model is necessary</mat-error>
+            </mat-form-field>
+          </div>
+            <div class="row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-4" >   <button   class="cancel" (click)="back()">close</button></div>
+              <div class="col-sm-4">
+            
+        
+          
+              <button  class="cancel" [disabled]="Quizform.invalid">Done </button>
+            </div></div>
+          </form>
+        </mat-card-content>
+       
+      </div>
+    </div>
+  
+  
+  </mat-card>
+  </div>

@@ -1,0 +1,127 @@
+<div class="page-wraper">
+  <div></div>
+  <div class="account-form">
+    <div
+      class="account-head"
+      style="
+        background-image: url(assets/images/bg2.jpg);
+        background-color: #07294d;
+      "
+    >
+      <a href="index-4.html"><img src="" alt="" /></a>
+    </div>
+    <div class="account-form-inner">
+      <div class="account-container">
+        <div class="heading-bx left">
+          <h2 class="title-head">Sign Up <span>Now</span></h2>
+          <p>
+            Login Your Account <a href="#" routerLink="/login">Click here</a>
+          </p>
+        </div>
+        <form
+          class="contact-bx"
+          *ngIf="!isSuccessful"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="row placeani">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="displayName"
+                    [(ngModel)]="form.displayName"
+                    required
+                    minlength="3"
+                    maxlength="20"
+                    #displayName="ngModel"
+                    placeholder="Your userame"
+                  />
+                </div>
+                <div class="alert-danger" *ngIf="f.submitted && displayName.invalid">
+                  <div *ngIf="displayName.errors?.['required']">Username is required</div>
+                  <div *ngIf="displayName.errors?.['minlength']">Username must be at least 3 characters</div>
+                  <div *ngIf="displayName.errors?.['maxlength']">Username must be at most 20 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    [(ngModel)]="form.email"
+                    required
+                    email
+                    #email="ngModel"
+                    placeholder="Your Email Address"
+                  />
+                </div>
+                <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+                  <div *ngIf="email.errors?.['required']">Email is required</div>
+                  <div *ngIf="email.errors?.['email']">Email must be a valid email address</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    [(ngModel)]="form.password"
+                    required
+                    minlength="6"
+                    #password="ngModel"
+                    placeholder="Password"
+                  />
+                </div>
+                <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+                  <div *ngIf="password.errors?.['required']">Password is required</div>
+                  <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="matchingPassword"
+                    [(ngModel)]="form.matchingPassword"
+                    required
+                    minlength="6"
+                    #matchingPassword="ngModel"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+                <div class="alert-danger" *ngIf="f.submitted && matchingPassword.invalid">
+                  <div *ngIf="matchingPassword.errors?.['required']">Confirm Password is required</div>
+                  <div *ngIf="matchingPassword.errors?.['minlength']">Confirm Password must be at least 6 characters</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12 m-b30">
+              <button
+                name="submit"
+                type="submit"
+                value="Submit"
+                class="btn button-md"
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,521 @@
+/*===========================
+     default css 
+===========================*/
+
+
+a:focus,
+input:focus,
+textarea:focus,
+button:focus {
+	text-decoration: none;
+	outline: none;
+}
+a:focus,
+a:hover{
+	text-decoration: none;
+}
+
+i,
+span,
+a{
+    display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+}
+
+h1 {
+	font-weight: 500;
+}
+h2 {
+	font-size: 36px;
+}
+h3 {
+	font-size: 28px;
+}
+h4 {
+	font-size: 22px;
+}
+h5 {
+	font-size: 18px;
+}
+h6 {
+	font-size: 16px;
+}
+ul,ol {
+	margin: 0px;
+	padding: 0px;
+    list-style-type: none;
+}
+
+
+/*===== All Button Style =====*/
+
+.main-btn {
+    width:100px;
+	display: inline-block;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid #ffc600;
+	padding: 0 10px;
+	font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+	line-height: 40px;
+	border-radius: 5px;
+    color: #07294d;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    background-color: #ffc600;
+}
+.main-btn:hover{
+    color: #ffc600;
+    border-color: #07294d;
+    background-color: #07294d;
+}
+
+.invalid-btn{
+    width:100px;
+	display: inline-block;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid gray;
+	padding: 0 10px;
+	font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+	line-height: 40px;
+	border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    background-color: gray;
+}
+
+.action-btn{
+    margin-left: 85%;
+    margin-top: 5%;
+   
+}
+
+
+.scd-action-btn{
+    margin-left: 65%;
+    margin-top: 5%;
+    
+}
+
+.scd-action-btn .second-btn{
+    margin-right: 2%;
+}
+
+
+.second-btn {
+    width:100px;
+	display: inline-block;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid #07294d;
+	padding: 0 10px;
+	font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+	line-height: 40px;
+	border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    background-color: #07294d;
+}
+
+input[type="file"]::-webkit-file-upload-button{
+    width:200px;
+	display: inline-block;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid #ffc600;
+	padding: 0 10px;
+	font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+	line-height: 40px;
+	border-radius: 5px;
+    color: #07294d;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    background-color: #ffc600;
+ }
+
+
+ /*------checkBox----*/
+ ::ng-deep .mat-checkbox-checkmark-path {
+    stroke: #ffc600 !important;
+    
+    }
+
+    ::ng-deep .mat-checkbox-checked .mat-checkbox-background, 
+    .mat-checkbox-indeterminate .mat-checkbox-background {
+      background-color: #07294d !important;
+    }
+    
+/*===== Section Title Style =====*/
+
+
+.section-title h5{
+    color: #07294d;
+    position: relative;
+    padding-bottom: 12px;
+    margin-top: 25px;
+}
+.section-title h5::before{
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 2px;
+    background-color: #ffc600;
+    bottom: 0;
+    left: 0;
+}
+.section-title h2{
+    font-size: 48px;
+    color: #000;
+    padding-top: 10px;
+}
+
+/******Stepper**********/
+ ::ng-deep .mat-step-header .mat-step-icon {
+    background-color:#ffc600; 
+    color: #07294d;
+ }
+
+ ::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color:#07294d; 
+    color:#ffc600;
+    
+ }
+ 
+.stepper mat-stepper{
+    margin-top: 8%;
+
+}
+
+
+.stepper ::ng-deep.mat-stepper-horizontal-line {
+    
+    border-top-width: 3px !important;
+    
+  }
+
+/*=====================================================
+    31. Company form part  css 
+======================================================*/
+.gray-bg{background-color: #edf0f2}
+
+.container{
+    width:80%;
+    overflow: none;
+}
+
+.company-title{
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    margin-left: -160px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+}
+
+.company-title .main-form .singel-form ,.input-bar {
+    margin-top: 45px;
+}
+
+ .singel-form mat-form-field
+
+{
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+    color:#07294d;
+    font-size: 15px;
+}
+
+.input-bar mat-form-field {
+    height: auto;
+    width: 100%;
+    padding: 0 20px;
+    border: 1px solid #a1a1a1;
+    border-radius: 5px;
+    color: #07294d;
+    font-size: 15px;
+    
+  }
+
+  .singel-form  img{
+    height: 10%;width: 15%;
+  }
+
+/*remove mat field design*/
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+.form-group{
+    margin: 0;
+}
+
+.img-banner{
+    background-color:none;
+    border-radius: 5px;
+    
+}
+
+.img-banner  img{
+    height: 650px;
+    width: 650px;
+    margin-top: 11%;
+    padding-right: 0px;
+    margin-left: -3%;
+    
+}
+
+.span-error {
+    margin-top: 20px;
+    color: seagreen;
+    font-size: 12px;
+}
+
+
+.email-error {
+    margin-top: 20px;
+    color: red;
+    font-size: 12px;
+}
+
+  /**===================================**/
+/*===========Responsive css **/
+
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+    .img-banner img{
+        height: 830px;
+        width: 550px;
+        margin-top: 10%;
+        padding-right: 0px;
+        margin-left: 5%;
+        
+    }
+
+    .company-title {
+        
+        margin-left: -80px;
+    }
+
+    #contact-page{
+        margin:0px;
+        padding:0px;
+    }
+
+    .action-btn {
+      
+        margin-left: 80%;
+      
+     }
+
+     .scd-action-btn{
+        margin-left: 60%;
+     }
+}
+
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  
+    .img-banner img{
+        height: 830px;
+        width: 450px;
+        margin-top: 10%;
+        padding-right: 0px;
+        margin-left: 5%;
+        
+    }
+
+    .company-title {
+        
+        margin-left: -80px;
+    }
+
+    #contact-page{
+        margin:0px;
+        padding:0px;
+    }
+
+  
+   .action-btn {
+      
+      margin-left: 80%;
+    
+   }
+
+   .scd-action-btn{
+    margin-left: 50%;
+ }
+}
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .img-banner img{
+        display:none;
+        
+    }
+
+    .company-title {
+        
+        margin-left: -80px;
+    }
+
+    #contact-page{
+        margin:0px;
+        padding:0px;
+    }
+
+    .action-btn {
+      
+        margin-left: 80%;
+      
+     }
+   
+}
+
+
+
+
+/* small mobile :320px. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .img-banner img{
+        display:none;
+        
+    }
+
+    .company-title {
+        
+        margin-left: -20px;
+        
+    }
+
+    
+    #contact-page{
+        margin:0px;
+        padding:0px;
+    }
+
+    
+    .action-btn {
+      
+        margin-left: 70%;
+      
+     }
+
+     .scd-action-btn{
+        margin-left: 30%;
+     }
+   
+}
+
+
+/* Large Mobile :480px. */
+@media only screen and  (max-width: 575.98px) {
+
+    .img-banner img{
+        display:none;
+       
+    }
+
+    .company-title {
+        
+        margin-left: 0px;
+    }
+
+    
+
+    #contact-page{
+        margin:0px;
+        padding:0px;
+        
+        overflow-x: hidden;
+
+    }
+
+
+    .action-btn {
+      
+        margin-left: 60%;
+      
+     }
+    .span-error{
+       
+        width:300px;
+        margin-left: -40px;
+
+    }
+
+    .scd-action-btn{
+        margin-left: 10%;
+     }
+
+    input[type="file"]::-webkit-file-upload-button{
+        width:180px;}
+}

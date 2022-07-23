@@ -1,0 +1,322 @@
+.file-icon {
+    width: 45px;
+  }
+  .file-icon--pdf .file-icon__shadow {
+    fill: #f9e3da;
+  }
+  .file-icon--pdf .file-icon__outline,
+  .file-icon--pdf .file-icon__type {
+    fill: #ed665f;
+  }
+  .file-icon--doc .file-icon__shadow {
+    fill: #e8f0f8;
+  }
+  .file-icon--doc .file-icon__outline,
+  .file-icon--doc .file-icon__type {
+    fill: #4585c7;
+  }
+  .file-icon--xls .file-icon__shadow {
+    fill: #e0f1e6;
+  }
+  .file-icon--xls .file-icon__outline,
+  .file-icon--xls .file-icon__type {
+    fill: #6cc08a;
+  }
+  .file-icon--psd .file-icon__shadow {
+    fill: #e8f0f8;
+  }
+  .file-icon--psd .file-icon__outline,
+  .file-icon--psd .file-icon__type {
+    fill: #4585c7;
+  }
+  .file-icon--ai .file-icon__shadow {
+    fill: #f3e9d8;
+  }
+  .file-icon--ai .file-icon__outline,
+  .file-icon--ai .file-icon__type {
+    fill: #ed9b5f;
+  }
+  .file-icon--png .file-icon__shadow {
+    fill: #fbf3db;
+  }
+  .file-icon--png .file-icon__outline,
+  .file-icon--png .file-icon__type {
+    fill: #edca5f;
+  }
+  .file-icon--jpg .file-icon__shadow {
+    fill: #f1e4f6;
+  }
+  .file-icon--jpg .file-icon__outline,
+  .file-icon--jpg .file-icon__type {
+    fill: #b276c8;
+  }
+  .file-icon--unknown .file-icon__shadow {
+    fill: #e6e8ef;
+  }
+  .file-icon--unknown .file-icon__outline,
+  .file-icon--unknown .file-icon__type {
+    fill: #afb4bc;
+  }
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+      Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+  
+  p {
+    margin: 0;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+
+  
+  
+  
+  svg.material-icons {
+    height: 24px;
+    width: auto;
+  }
+  
+  svg.material-icons:not(:last-child) {
+    margin-right: 8px;
+  }
+  
+  .card svg.material-icons path {
+    fill: #888;
+  }
+  
+
+  
+ 
+  
+  svg#rocket {
+    width: 80px;
+    position: absolute;
+    left: -10px;
+    top: -24px;
+  }
+  
+  svg#rocket-smoke {
+    height: calc(100vh - 95px);
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    z-index: -10;
+  }
+  
+  a,
+  a:visited,
+  a:hover {
+    color: #1976d2;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #125699;
+  }
+  
+ 
+ 
+  .github-star-badge {
+    color: #24292e;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    padding: 3px 10px;
+    border: 1px solid rgba(27, 31, 35, 0.2);
+    border-radius: 3px;
+    background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
+    margin-left: 4px;
+    font-weight: 600;
+  }
+  
+  .github-star-badge:hover {
+    background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+    border-color: rgba(27, 31, 35, 0.35);
+    background-position: -0.5em;
+  }
+  
+  .github-star-badge .material-icons {
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+  
+  svg#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -230px;
+    z-index: -10;
+    width: 1920px;
+  }
+  
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link),
+    .terminal {
+      width: 100%;
+    }
+  
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+  
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+  
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+  
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+  
+  
+  
+ 
+
+  .div-file-type {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .mat-grid-title-content {
+    display: block !important;
+  }
+  .delete-div {
+    color: rgb(170, 10, 10);
+   
+  }
+.requi{
+  border:2px dashed red
+
+}  
+
+
+::ng-deep  .mat-form-field .mat-form-field-label {
+  color: black;
+  left: 1%;
+}
+
+::ng-deep  .mat-form-field .mat-error {
+
+  margin-top: 2%;
+}
+
+::ng-deep .mat-form-field-underline{
+  display: none;
+}
+
+
+::ng-deep .mat-form-field {
+  width: 100%;
+  border: 1px solid #a1a1a1;
+  border-radius: 5px;
+  color: black;
+  margin-bottom: 2%;
+  font-size: 15px;    
+}
+::ng-deep  .mat-form-field .mat-input-element {
+padding-left: 1%;
+
+}
+
+::ng-deep  .mat-form-field .mat-select {
+  padding-left: 1%;
+ 
+   }
+::ng-deep label span.mat-form-field-required-marker{
+  color:red;}
+
+  .main-btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid #ffc600;
+    font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    line-height: 50px;
+    border-radius: 5px;
+      color: #07294d;
+      cursor: pointer;
+    width: 30%;
+    margin-left: 40%;
+      overflow: hidden;
+      z-index: 5;
+      -webkit-transition: 0.4s ease-in-out;
+      transition: 0.4s ease-in-out;
+      background-color: #ffc600; 
+  }
+  .main-btn:hover{
+      color: #ffc600;
+      border-color: #07294d;
+      background-color: #07294d;
+  }
+  button:disabled, button:disabled:hover{
+    background-color:#bca44e;
+    color: #07294d;
+    border-color:#bca44e;;
+}
+.main-div {
+  padding-top: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+mat-card{
+
+  width:70%;
+}
+.section-title{}
+.section-title h2{
+    color: #07294d;
+    position: relative;
+    padding-bottom: 12px;
+}
+.section-title h2::before{
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: #ffc600;
+    bottom: 0;
+    left: 0;
+}
+.mat-card {
+  box-shadow: 0px 0px 10px 0px #9b9b9b,
+      0 1px 1px 0 #9b9b9b,
+      0 1px 3px 0 #9b9b9b;
+}

@@ -1,0 +1,38 @@
+<mat-card class="softskills-card">
+  <mat-card-title>
+    <div class="section-title mt-50">
+      <h5>Macro Soft Skills</h5>
+    </div>
+    <br />
+  </mat-card-title>
+  <div class="row">
+    <div class="col-sm-3">
+      <ul class="list-group list-group-flush">
+        <a
+          routerLink="/skillsSpace/Macrohard"
+          class="list-group-item list-group-item-action"
+        >
+          <p>Hard skills</p>
+        </a>
+        <a
+          routerLink="/skillsSpace/Macrosoft"
+          class="list-group-item list-group-item-action"
+        >
+          <h5 [ngClass]="{ 'text-style': loaded }">Soft skills</h5>
+        </a>
+      </ul>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4">
+      <canvas
+        *ngIf="loaded"
+        baseChart
+        [data]="radarChartData"
+        [options]="radarChartOptions"
+        [type]="radarChartType"
+        (chartClick)="chartClicked($event)"
+      >
+      </canvas>
+    </div>
+  </div>
+</mat-card>

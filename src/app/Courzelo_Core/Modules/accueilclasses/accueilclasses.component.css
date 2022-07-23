@@ -1,0 +1,147 @@
+
+
+
+
+img {
+	max-width: 100%;
+}
+
+a:focus,
+input:focus,
+textarea:focus,
+button:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus,
+a:hover{
+	text-decoration: none;
+}
+
+i,
+span,
+a{
+    display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+}
+
+h1 {
+	font-weight: 500;
+}
+h2 {
+	font-size: 36px;
+}
+h3 {
+	font-size: 28px;
+}
+h4 {
+	font-size: 22px;
+}
+h5 {
+	font-size: 18px;
+}
+h6 {
+	font-size: 16px;
+}
+ul,ol {
+	margin: 0px;
+	padding: 0px;
+    list-style-type: none;
+}
+
+p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 28px;
+	color: #505050;
+	margin: 0px;
+}
+
+.bg_cover{
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+/*=====================================================
+    8. VIDEO FEATURES css 
+======================================================*/
+
+#video-feature{
+    position: relative;
+}
+.feature-bg{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(7, 41, 77, 0.9);
+}
+
+.video{
+    padding-left: 80px;
+}
+.video i{
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    text-align: center;
+    font-size: 24px;
+    background-color: #ffc600;
+    color: #07294d;
+    border-radius: 50%;
+}
+
+.feature{
+    position: relative;
+    z-index: 5;
+}
+.feature .feature-title h3{
+    font-size: 36px;
+    color: #fff;
+    padding-bottom: 15px;
+}
+
+.feature ul li .singel-feature{
+    padding-top: 165px ;
+    overflow: hidden;
+}
+.icon{
+    float: left ;
+    overflow: hidden;
+    display: inline-block;
+    padding-right: 30px;
+}
+.feature ul li .singel-feature .cont {
+	width: 78%;
+	float: left;
+    overflow: hidden;
+}
+.feature ul li .singel-feature .cont h4{
+    font-size: 24px;
+    color: #fff;
+    padding-bottom: 15px;
+}
+.feature ul li .singel-feature .cont p{
+    color: #fff;
+}
+

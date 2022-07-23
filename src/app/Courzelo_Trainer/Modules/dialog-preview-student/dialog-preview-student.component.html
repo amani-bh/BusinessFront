@@ -1,0 +1,20 @@
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div
+    class="example-box"
+    *ngFor="let item of introductionPhases[0]['urlsPhase']"
+    cdkDrag
+  >
+    <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+    <ng-container *ngIf="item[1] == 'image/png'">
+      <img style="width: 200px" src="{{ item[2] }}" />
+    </ng-container>
+    <ng-container>
+      <video
+        src="{{ item[2] }}"
+        preload="auto"
+        controls=""
+        style="width: 50%; margin-bottom: 5%; margin-top: 5%; margin-left: 25%"
+      ></video>
+    </ng-container>
+  </div>
+</div>

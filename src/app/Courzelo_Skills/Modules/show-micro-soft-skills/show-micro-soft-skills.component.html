@@ -1,0 +1,37 @@
+<mat-card class="microsoftskills-card">
+  <mat-card-title>
+    <div class="section-title mt-50">
+      <h5>{{ Macroname }} - Micro skills</h5>
+    </div>
+    <br />
+  </mat-card-title>
+  <div class="row">
+    <div class="col-sm-3">
+      <ul class="list-group list-group-flush">
+        <a
+          routerLink="/skillsSpace/Macrohard"
+          class="list-group-item list-group-item-action"
+        >
+          <p>Hard skills</p>
+        </a>
+        <a
+          routerLink="/skillsSpace/Macrosoft"
+          class="list-group-item list-group-item-action"
+        >
+          <h5 [ngClass]="{ 'text-style': loaded }">Soft skills</h5>
+        </a>
+      </ul>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4">
+      <canvas
+        *ngIf="loaded"
+        baseChart
+        [data]="radarChartData"
+        [options]="radarChartOptions"
+        [type]="radarChartType"
+      >
+      </canvas>
+    </div>
+  </div>
+</mat-card>

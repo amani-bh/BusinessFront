@@ -1,0 +1,1925 @@
+<!-- [linear]="true" -->
+<mat-stepper
+  #stepper
+  labelPosition="bottom"
+  class="example-stepper"
+  [orientation]="(stepperOrientation | async)!"
+>
+  <!--Begin Course-->
+  <mat-step [stepControl]="firstFormGroup" label="Let's begin">
+    <form
+      [formGroup]="firstFormGroup"
+      style="margin-top: 0%"
+      (ngSubmit)="onSubmitBegin()"
+    >
+      <mat-form-field style="width: 80%" appearance="fill">
+        <mat-label>Course title</mat-label>
+        <input
+          formControlName="title"
+          matInput
+          placeholder="Ex. Get started with Javascript or Introduction to project management"
+        />
+        <mat-error *ngIf="f['title'].errors">Title is required</mat-error>
+      </mat-form-field>
+      <div class="row">
+        <div class="col-5">
+          <mat-form-field style="width: 100%" appearance="fill">
+            <mat-label>Course language</mat-label>
+            <mat-select formControlName="language">
+              <mat-option value="English">English</mat-option>
+              <mat-option value="Frensh">Frensh</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f['language'].errors"
+              >Please select a language</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-7">
+          <mat-form-field style="width: 100%" appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option value="Javascript">Javascript</mat-option>
+              <mat-option value="Python">Python</mat-option>
+              <mat-option value="React">React</mat-option>
+              <mat-option value="Angular">Angular</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f['category'].errors"
+              >Please select a category</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Course outcomes</mat-label>
+        <mat-chip-list
+          class="mat-chip-list-stacked"
+          #chipOutcomeList
+          aria-label="Fruit selection"
+          formArrayName="outcomes"
+        >
+          <mat-chip
+            style="color: white; background-color: #2e1616; width: fit-content"
+            *ngFor="let outcome of outcomesControls.value"
+            (removed)="removeOutcome(outcome)"
+          >
+            <mat-icon style="color: white">star</mat-icon>
+            {{ outcome }}
+            <button matChipRemove>
+              <mat-icon style="color: white">cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="Add outcomes of your course"
+            #fruitInput
+            required
+            [formControl]="outcome"
+            [matChipInputFor]="chipOutcomeList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addOutcome($event)"
+          />
+          <mat-error *ngIf="f['outcomes'].errors"
+            >Outcomes are required</mat-error
+          >
+        </mat-chip-list>
+      </mat-form-field>
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Course description</mat-label>
+        <mat-hint>Note: It is a brief overview about your course</mat-hint>
+        <textarea formControlName="description" matInput></textarea>
+        <mat-error *ngIf="f['description'].errors"
+          >Description is required (at most 100 characters)
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%" appearance="fill">
+        <mat-label>Course details</mat-label>
+        <mat-hint
+          >Note: Describe the details of your course explaining the content and
+          purpose</mat-hint
+        >
+        <textarea formControlName="details" matInput required></textarea>
+        <mat-error *ngIf="f['details'].errors"
+          >Details is required (at least 100 characters ,at most 300 characters)
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-chip-list" appearance="fill">
+        <mat-label>Required Skills</mat-label>
+        <mat-chip-list
+          #chipList
+          aria-label="Fruit selection"
+          formArrayName="fruits"
+        >
+          <mat-chip
+            style="color: white; background-color: #043964e8"
+            *ngFor="let skill of fruitControls.value"
+            (removed)="remove(skill)"
+          >
+            {{ skill }}
+            <button matChipRemove>
+              <mat-icon style="color: white">cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input
+            placeholder="Add required skills..."
+            #fruitInput
+            [formControl]="skill"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)"
+          />
+          <mat-error *ngIf="f['fruits'].errors">Skills are required </mat-error>
+        </mat-chip-list>
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option
+            *ngFor="let fruit of filteredFruits | async"
+            [value]="fruit"
+          >
+            {{ fruit }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div>
+        <button
+          [style.cursor]="
+            this.firstFormGroup.invalid ? 'not-allowed' : 'pointer'
+          "
+          type="submit"
+          mat-raised-button
+          matStepperNext
+          [disabled]="this.firstFormGroup.invalid"
+          class="nextBtn"
+        >
+          <span
+            [style.color]="
+              this.firstFormGroup.invalid
+                ? 'rgb(19, 17, 9)'
+                : 'rgb(255, 198, 0)'
+            "
+            style="font-weight: bold"
+            >Continue</span
+          >
+        </button>
+
+        <button
+          routerLink="/trainerSpace/courseHome"
+          mat-raised-button
+          mat-button
+          matTooltip="cancel course's creation"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="outcomesFormGroup" label="Outcomes">
+    <app-bloom-taxonomy-description></app-bloom-taxonomy-description>
+    <h1>Are you ready to start?</h1>
+    <form [formGroup]="outcomesFormGroup">
+      <div formArrayName="learningOutcomes">
+        <div
+          *ngFor="let outcomeForm of learningOutcomes.controls; let i = index"
+        >
+          <div [formGroupName]="i">
+            <label
+              style="background-color: #0e4071; color: white; width: 40%"
+              class="input-group-text"
+              >Learning Outcome {{ i + 1 }}</label
+            >
+            <div>
+              <mat-form-field appearance="fill" style="width: 35%">
+                <mat-label>Choose </mat-label>
+                <mat-select formControlName="comptence">
+                  <mat-option value="A">A</mat-option>
+                  <mat-option value="B">B</mat-option>
+                  <mat-option value="C">C</mat-option>
+                  <mat-option value="D">D</mat-option>
+                  <mat-option value="E">E</mat-option>
+                  <mat-option value="F">F</mat-option>
+                  <mat-option value="G">G</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill" style="width: 35%">
+                <mat-label>Choose a level</mat-label>
+                <mat-select formControlName="targetLevel">
+                  <mat-option style="color: #694598" value="create"
+                    >Level 6 : Create</mat-option
+                  >
+                  <mat-option style="color: #2172b6" value="evaluate">
+                    Level 5 : Evaluate</mat-option
+                  >
+                  <mat-option style="color: #2cb266" value="analyze"
+                    >Level 4 : Analyze</mat-option
+                  >
+                  <mat-option style="color: #f0ed78" value="apply"
+                    >Level 3 : Apply</mat-option
+                  >
+                  <mat-option style="color: #f5963b" value="understand">
+                    Level 2 : Understand</mat-option
+                  >
+                  <mat-option style="color: #be222b" value="remember">
+                    Level 1 : Remember</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill" style="width: 25%">
+                <mat-label>Complexity</mat-label>
+                <mat-select formControlName="targetLevel">
+                  <mat-option value="1">1</mat-option>
+                  <mat-option value="2">2</mat-option>
+                  <mat-option value="3">3</mat-option>
+                  <mat-option value="4">4</mat-option>
+                  <mat-option value="5">5</mat-option>
+                  <mat-option value="6">6</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field style="width: 100%" appearance="fill">
+                <mat-label>
+                  Describe your learning Outcomes using action verbs mentioned
+                  above</mat-label
+                >
+
+                <textarea matInput></textarea>
+              </mat-form-field>
+              <button
+                style="border: solid 2px; margin: 1%"
+                mat-raised-button
+                matTooltip="add learning outcome"
+                (click)="deleteLearningOutcome(i)"
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        style="
+          border: solid 2px;
+          background-color: black;
+          color: white;
+          margin-left: 45%;
+          width: 10%;
+        "
+        mat-raised-button
+        matTooltip="add learning outcome"
+        (click)="addLearningOutcome()"
+      >
+        +
+      </button>
+    </form>
+    <div style="margin-top: 0%">
+      <button
+        routerLink="/trainerSpace/courseHome"
+        mat-raised-button
+        mat-button
+        matTooltip="cancel course's creation"
+      >
+        Cancel
+      </button>
+      <button mat-raised-button class="nextBtn" matStepperPrevious>
+        <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+      </button>
+
+      <button mat-raised-button class="nextBtn" matStepperNext>
+        <span style="color: rgb(255, 198, 0); font-weight: bold">Continue</span>
+      </button>
+    </div>
+  </mat-step>
+  <!--End Begin Course-->
+  <!--Select type of course-->
+  <mat-step label="Select type of course">
+    <app-choose-course-type
+      (modelChoosenEvent)="modelChoosenBtn($event)"
+      (customChoosenEvent)="customChoosenBtn($event)"
+    ></app-choose-course-type>
+    <div style="margin-top: 0%">
+      <button
+        routerLink="/trainerSpace/courseHome"
+        mat-raised-button
+        mat-button
+        matTooltip="cancel course's creation"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        class="nextBtn"
+        matStepperPrevious
+        (click)="reset()"
+      >
+        <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+      </button>
+
+      <ng-container *ngIf="modelChoosen || customChoosen">
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold"
+            >Continue</span
+          >
+        </button>
+      </ng-container>
+    </div>
+  </mat-step>
+  <!--End  select type of course-->
+  <!--ADD COURSE WITH METHODOLOGIE-->
+  <ng-container *ngIf="modelChoosen">
+    <!--Description of the 4 Mat Model-->
+    <mat-step label="What is the 4MAT model ?">
+      <app-four-mat-description></app-four-mat-description>
+      <div style="margin-top: 3%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold"
+            >Get started</span
+          >
+        </button>
+      </div>
+    </mat-step>
+    <!--End Description of the 4 Mat Model-->
+    <!--Introduction -->
+    <mat-step [stepControl]="introductionFormGroup" label="Introduction">
+      <form
+        [formGroup]="introductionFormGroup"
+        (ngSubmit)="onSubmitIntroduction()"
+      >
+        <mat-accordion class="example-headers-align">
+          <mat-form-field
+            appearance="fill"
+            style="margin-left: 10%; width: 80%"
+          >
+            <mat-label>Introduction name</mat-label>
+            <input formControlName="introName" matInput />
+            <mat-error *ngIf="s['introName'].errors"
+              >Name is required</mat-error
+            >
+          </mat-form-field>
+          <div formGroupName="introductionFormGroup1">
+            <mat-expansion-panel
+              [expanded]="step === 0"
+              (opened)="setStep(0)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(212, 57, 63); font-weight: bold"
+                    >Phase 1 : Why?</span
+                  >
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase1.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-error *ngIf="intro['introductionFormGroup1'].errors"
+                        >Phase name is required</mat-error
+                      >
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      We want to understand the meaning and purpose, and the
+                      instructor's role is to make connections between the
+                      material and the learners, to get their attention.
+                    </p>
+                  </div>
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesIntroPhase1"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeIntroP1($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesIntroP1">
+                      <upload-task
+                        (newItemEvent)="secIntroP1(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="primary" (click)="nextStep()">
+                  Next
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+          <div formGroupName="introductionFormGroup2">
+            <mat-expansion-panel
+              [expanded]="step === 1"
+              (opened)="setStep(1)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(67, 84, 138); font-weight: bold"
+                    >Phase 2 : What?</span
+                  >
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase2.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput required />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      Only when we are satisfied with the relevance are we ready
+                      to know "What? At this point, the trainer provides
+                      information and satisfies our desire for facts, structure
+                      and theory.
+                    </p>
+                  </div>
+
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesIntroPhase2"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeIntroP2($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesIntroP2">
+                      <upload-task
+                        (newItemEvent)="secIntroP2(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">
+                  Previous
+                </button>
+                <button mat-button color="primary" (click)="nextStep()">
+                  Next
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+          <div formGroupName="introductionFormGroup3">
+            <mat-expansion-panel
+              [expanded]="step === 2"
+              (opened)="setStep(2)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(59, 141, 77); font-weight: bold"
+                    >Phase 3 : How?</span
+                  >
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase3.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput required />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      Once we have the knowledge, we ask "How?" and we want to
+                      understand how we can apply our new knowledge to the real
+                      world. We focus on problems and how we can use our
+                      learning to solve them.
+                    </p>
+                  </div>
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesIntroPhase3"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeIntroP3($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesIntroP3">
+                      <upload-task
+                        (newItemEvent)="secIntroP3(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">
+                  Previous
+                </button>
+                <button mat-button color="primary" (click)="nextStep()">
+                  Next
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+          <div formGroupName="introductionFormGroup4">
+            <mat-expansion-panel
+              [expanded]="step === 3"
+              (opened)="setStep(3)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(255, 207, 73); font-weight: bold"
+                    >Phase 4 : If?</span
+                  >
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase4.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput required />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      I mean, we want to try it, so we ask questions like "What
+                      if?" 'What else?" or "What next?" This is when we engage
+                      in active experimentation, trial and error, pushing the
+                      boundaries - learning by doing.
+                    </p>
+                  </div>
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesIntroPhase4"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeIntroP4($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesIntroP4">
+                      <upload-task
+                        (newItemEvent)="secIntroP4(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">
+                  Previous
+                </button>
+                <button mat-button color="primary" (click)="nextStep()">
+                  End
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+        </mat-accordion>
+      </form>
+      <div style="margin-top: 10%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" type="submit" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold"
+            >Continue</span
+          >
+        </button>
+
+        <button
+          routerLink="/trainerSpace/courseHome"
+          mat-raised-button
+          mat-button
+          matTooltip="cancel course's creation"
+        >
+          Cancel
+        </button>
+      </div>
+    </mat-step>
+    <!--End Introduction -->
+    <!--Chapters -->
+
+    <mat-step [stepControl]="sectionFormGroup" label="Sections">
+      <form [formGroup]="sectionFormGroup">
+        <div formArrayName="sectionsPhases">
+          <div
+            *ngFor="let lessonForm of sectionsPhases.controls; let i = index"
+          >
+            <div [formGroupName]="i">
+              <div style="margin: 3%">
+                <h1>Section {{ i + 1 }}</h1>
+              </div>
+              <mat-accordion class="example-headers-align">
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-left: 10%; margin-right: 1%; width: 80%"
+                >
+                  <mat-label>Section name</mat-label>
+                  <input formControlName="sectionName" matInput required />
+                </mat-form-field>
+                <button
+                  (click)="deleteLesson(i)"
+                  mat-raised-button
+                  matTooltip="Remove this section"
+                  aria-label="Button that shows a tooltip"
+                  class="example-button"
+                >
+                  <mat-icon class="delete-btn">delete</mat-icon>
+                </button>
+                <div formGroupName="sectionFormGroup1">
+                  <mat-expansion-panel
+                    [expanded]="step === 0"
+                    (opened)="setStep(0)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span style="color: rgb(225, 0, 56); font-weight: bold"
+                          >Phase 1 : Connect</span
+                        >
+                      </mat-panel-title>
+                      <mat-panel-description> </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase1.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            In the first quadrant, the reason why something
+                            should be learned is created, the answer to the
+                            question ‘why?’. This makes use of the ‘right mode’
+                            of the brain. The goal is to have the learner
+                            experience it for themselves by getting them
+                            involved. This can be done, for example, by having
+                            the learner share his or her own experiences. This
+                            way the experience is stimulated by personal
+                            meaning. The teacher or expert who wants to convey
+                            something to others has a motivating role here and
+                            only has to guide the discussion.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange1($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+
+                            <div *ngFor="let f of listFilesSecP1[i]">
+                              <upload-task
+                                (newItemEvent)="secP1(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-action-row>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        Next
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+                <div formGroupName="sectionFormGroup2">
+                  <mat-expansion-panel
+                    [expanded]="step === 1"
+                    (opened)="setStep(1)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span
+                          style="color: rgb(238, 119, 115); font-weight: bold"
+                          >Phase 2 : Attend</span
+                        >
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase2.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            In the left-hand mode of quadrant 1, the students
+                            examine the experience. The method once again
+                            involves a discussion, but this time students are
+                            asked to look past their own experience. The
+                            experience then flows into a meaningful dialogue and
+                            reflection. The goals of the first quadrant are:
+                            giving meaning to the subject, visualising and
+                            allowing the student to integrate aspects of the
+                            subject.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange2($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+                            <div *ngFor="let f of listFilesSecP2[i]">
+                              <upload-task
+                                (newItemEvent)="secP2(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">
+                        Previous
+                      </button>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        Next
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+                <div formGroupName="sectionFormGroup3">
+                  <mat-expansion-panel
+                    [expanded]="step === 2"
+                    (opened)="setStep(2)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span style="color: rgb(0, 143, 209); font-weight: bold"
+                          >Phase 3 : Image</span
+                        >
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase3.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            The question of ‘what?’ needs to be answered in the
+                            second quadrant. In this step, an attempt is made to
+                            make the student reflect more deeply. It is an
+                            integrating step in the right mode of the brain.
+                            Teachers should move the students from the concrete
+                            to the abstract. The subjective experiences will be
+                            mixed with the abstract theory that will be handled
+                            at a later stage. This allows pupils to form a
+                            picture of the subject material, which makes them
+                            reinforce their focus.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange3($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+                            <div *ngFor="let f of listFilesSecP3[i]">
+                              <upload-task
+                                (newItemEvent)="secP3(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">
+                        Previous
+                      </button>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        Next
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+                <div formGroupName="sectionFormGroup4">
+                  <mat-expansion-panel
+                    [expanded]="step === 3"
+                    (opened)="setStep(3)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span
+                          style="color: rgb(73, 180, 224); font-weight: bold"
+                          >Phase 4 : Inform</span
+                        >
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase4.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            In the left-hand mode of quadrant two, the teacher
+                            takes the student to the core of the conceptual
+                            information. This is all about taking in
+                            information. The information that you choose to
+                            share should be based on the concept and shared
+                            experiences, and should lead to further research by
+                            the student. The goals in quadrant two are
+                            conceptualising, defining, shaping and acquiring
+                            knowledge.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange4($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+                            <div *ngFor="let f of listFilesSecP4[i]">
+                              <upload-task
+                                (newItemEvent)="secP4(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">
+                        Previous
+                      </button>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        Next
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+                <div formGroupName="sectionFormGroup5">
+                  <mat-expansion-panel
+                    [expanded]="step === 4"
+                    (opened)="setStep(4)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span style="color: rgb(20, 163, 64); font-weight: bold"
+                          >Phase 5 : Practice</span
+                        >
+                      </mat-panel-title>
+                      <mat-panel-description> </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase5.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            In the third quadrant the ‘how’ question is
+                            answered. In this step, students actively get
+                            started with the knowledge gained from the previous
+                            steps from the left mode. They will use worksheets,
+                            run experiments or use related technology.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange5($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+                            <div *ngFor="let f of listFilesSecP5[i]">
+                              <upload-task
+                                (newItemEvent)="secP5(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">
+                        Previous
+                      </button>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        Next
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+                <div formGroupName="sectionFormGroup6">
+                  <mat-expansion-panel
+                    [expanded]="step === 5"
+                    (opened)="setStep(5)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span
+                          style="color: rgb(139, 195, 132); font-weight: bold"
+                          >Phase 6 : Extend</span
+                        >
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase6.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            In the right mode of the third quadrant, the
+                            students will make their own contribution to the
+                            teaching material. This may be a personal synthesis,
+                            but they should above all be offered the opportunity
+                            to approach the content of the lesson in their own
+                            way. This is a right mode activity. The common sense
+                            students, described in the heading ‘the learning
+                            styles in the 4MAT model’, feel most at ease here.
+                            The teacher can let students create a project
+                            proposal related to the curriculum, which encourages
+                            them to think actively. The objectives from quadrant
+                            three include collecting data, asking questions,
+                            hypothesising, tinkering, experimenting and making
+                            decisions.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange6($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+                            <div *ngFor="let f of listFilesSecP6[i]">
+                              <upload-task
+                                (newItemEvent)="secP6(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">
+                        Previous
+                      </button>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        Next
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+                <div formGroupName="sectionFormGroup7">
+                  <mat-expansion-panel
+                    [expanded]="step === 6"
+                    (opened)="setStep(6)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span style="color: rgb(236, 116, 4); font-weight: bold"
+                          >Phase 7 : Refine</span
+                        >
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase7.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            In the fourth quadrant, the ‘what if’ question will
+                            be answered. In this step, the students are asked to
+                            analyse what they’ve planned as an addition to what
+                            they’ve learned from the previous step. The
+                            analytical aspect to this step makes it an activity
+                            for the left mode. This seventh step requires
+                            students to refine what they’ve learned and applied
+                            in the exercises.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange7($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+                            <div *ngFor="let f of listFilesSecP7[i]">
+                              <upload-task
+                                (newItemEvent)="secP7(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">
+                        Previous
+                      </button>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        Next
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+                <div formGroupName="sectionFormGroup8">
+                  <mat-expansion-panel
+                    [expanded]="step === 7"
+                    (opened)="setStep(7)"
+                    hideToggle
+                  >
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <span
+                          style="color: rgb(245, 166, 99); font-weight: bold"
+                          >Phase 8 : Perform</span
+                        >
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col-4">
+                        <img
+                          class="imgKolb"
+                          src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase8.PNG"
+                        />
+                      </div>
+                      <div class="col-8">
+                        <div>
+                          <mat-form-field
+                            appearance="fill"
+                            style="margin-left: 10%; width: 80%"
+                          >
+                            <mat-label>Phase name</mat-label>
+                            <input formControlName="name" matInput required />
+                          </mat-form-field>
+                          <h2>Goal</h2>
+                          <p>
+                            In the final step of the 4MAT model’s learning
+                            process, the students explain to each other what
+                            they have learned or created. It’s also important in
+                            this step that the students are asked to talk about
+                            what they’ve learned and gained from this entire
+                            cycle. The goals in the fourth quadrant are, among
+                            others: identify limitations, review, close,
+                            summarise and evaluate.
+                          </p>
+                        </div>
+                        <div>
+                          <form>
+                            <ngx-file-drag-drop
+                              formControlName="filesSection"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChange8($event, i)"
+                            >
+                            </ngx-file-drag-drop>
+                            <div *ngFor="let f of listFilesSecP8[i]">
+                              <upload-task
+                                (newItemEvent)="secP8(f, $event, i)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">
+                        Previous
+                      </button>
+                      <button mat-button color="primary" (click)="nextStep()">
+                        End
+                      </button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </div>
+
+                <button
+                  (click)="addQuizzCourse(i)"
+                  mat-stroked-button
+                  matTooltip="add quizz for your section"
+                  class="quizzBtn"
+                  routerLink="addQuizzSection"
+                >
+                  Add Quizz
+                </button>
+
+                <ng-container *ngIf="BtnQuizzClicked">
+                  <router-outlet></router-outlet>
+                </ng-container>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div style="margin-top: 5%">
+        <button
+          mat-raised-button
+          matTooltip="add new section"
+          style="background-color: black; margin-left: 27%; width: 50%"
+          (click)="addLesson()"
+        >
+          <span style="color: white">Add Section</span>
+        </button>
+      </div>
+      <div style="margin-top: 10%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button
+          mat-raised-button
+          class="nextBtn"
+          matStepperNext
+          (click)="addTotalQuizz()"
+          routerLink="addQuizzSection"
+        >
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Next</span>
+        </button>
+
+        <button
+          routerLink="/trainerSpace/courseHome"
+          mat-raised-button
+          mat-button
+          matTooltip="cancel course's creation"
+        >
+          Cancel
+        </button>
+      </div>
+    </mat-step>
+
+    <!--End Chapters -->
+    <!--Conclusion -->
+    <mat-step [stepControl]="conclusionFormGroup" label="Conclusion">
+      <form [formGroup]="conclusionFormGroup">
+        <mat-accordion class="example-headers-align">
+          <mat-form-field
+            appearance="fill"
+            style="margin-left: 10%; width: 80%"
+          >
+            <mat-label>Conclusion name</mat-label>
+            <input formControlName="concluName" matInput required />
+          </mat-form-field>
+          <div formGroupName="conclusionFormGroup1">
+            <mat-expansion-panel
+              [expanded]="step === 0"
+              (opened)="setStep(0)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(212, 57, 63); font-weight: bold"
+                    >Phase 1 : Why?</span
+                  >
+                </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase1.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput required />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      We want to understand the meaning and purpose, and the
+                      instructor's role is to make connections between the
+                      material and the learners, to get their attention.
+                    </p>
+                  </div>
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesConclPhase1"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeConcluP1($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesConcluP1">
+                      <upload-task
+                        (newItemEvent)="secConcluP1(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="primary" (click)="nextStep()">
+                  Next
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+          <div formGroupName="conclusionFormGroup2">
+            <mat-expansion-panel
+              [expanded]="step === 1"
+              (opened)="setStep(1)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(67, 84, 138); font-weight: bold"
+                    >Phase 2 : What?</span
+                  >
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase2.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput required />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      Only when we are satisfied with the relevance are we ready
+                      to know "What? At this point, the trainer provides
+                      information and satisfies our desire for facts, structure
+                      and theory.
+                    </p>
+                  </div>
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesConclPhase2"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeConcluP2($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesConcluP2">
+                      <upload-task
+                        (newItemEvent)="secConcluP2(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">
+                  Previous
+                </button>
+                <button mat-button color="primary" (click)="nextStep()">
+                  Next
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+          <div formGroupName="conclusionFormGroup3">
+            <mat-expansion-panel
+              [expanded]="step === 2"
+              (opened)="setStep(2)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(59, 141, 77); font-weight: bold"
+                    >Phase 3 : How?</span
+                  >
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase3.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput required />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      Once we have the knowledge, we ask "How?" and we want to
+                      understand how we can apply our new knowledge to the real
+                      world. We focus on problems and how we can use our
+                      learning to solve them.
+                    </p>
+                  </div>
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesConclPhase3"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeConcluP3($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesConcluP3">
+                      <upload-task
+                        (newItemEvent)="secConcluP3(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">
+                  Previous
+                </button>
+                <button mat-button color="primary" (click)="nextStep()">
+                  Next
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+          <div formGroupName="conclusionFormGroup4">
+            <mat-expansion-panel
+              [expanded]="step === 3"
+              (opened)="setStep(3)"
+              hideToggle
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span style="color: rgb(255, 207, 73); font-weight: bold"
+                    >Phase 4 : If?</span
+                  >
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-4">
+                  <img
+                    class="imgKolb"
+                    src="../../../../assets/images_trainer/Kolb_Phases/phase4.PNG"
+                  />
+                </div>
+                <div class="col-8">
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Phase name</mat-label>
+                      <input formControlName="name" matInput required />
+                    </mat-form-field>
+                    <h2>Goal</h2>
+                    <p>
+                      I mean, we want to try it, so we ask questions like "What
+                      if?" 'What else?" or "What next?" This is when we engage
+                      in active experimentation, trial and error, pushing the
+                      boundaries - learning by doing.
+                    </p>
+                  </div>
+                  <div>
+                    <ngx-file-drag-drop
+                      formControlName="filesConclPhase4"
+                      activeBorderColor="#3F51B5"
+                      [multiple]="true"
+                      (valueChanged)="onValueChangeConcluP4($event)"
+                    >
+                    </ngx-file-drag-drop>
+
+                    <div *ngFor="let f of listFilesConcluP4">
+                      <upload-task
+                        (newItemEvent)="secConcluP4(f, $event)"
+                        [file]="f"
+                      ></upload-task>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <mat-action-row>
+                <button mat-button color="warn" (click)="prevStep()">
+                  Previous
+                </button>
+                <button mat-button color="primary" (click)="nextStep()">
+                  End
+                </button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </div>
+        </mat-accordion>
+      </form>
+
+      <div>
+        <form [formGroup]="quizzTotalFromGroup">
+          <!--  <button
+            (click)="addTotalQuizz()"
+            mat-stroked-button
+            matTooltip="add quizz for evaluation "
+            class="quizzCourseBtn"
+          >
+            Course Quizz
+          </button> -->
+          <ng-container *ngIf="BtnTotalQuizzClicked">
+            <router-outlet></router-outlet>
+          </ng-container>
+          <mat-form-field
+            style="width: 50%; margin-left: 25%"
+            appearance="fill"
+          >
+            <mat-label>Required Score</mat-label>
+            <input formControlName="requiredScore" matInput type="number" />
+          </mat-form-field>
+        </form>
+      </div>
+      <div style="margin-top: 10%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold"
+            >Continue</span
+          >
+        </button>
+
+        <button
+          routerLink="/trainerSpace/courseHome"
+          mat-raised-button
+          mat-button
+          matTooltip="cancel course's creation"
+        >
+          Cancel
+        </button>
+      </div>
+    </mat-step>
+    <!--End Conclusion -->
+  </ng-container>
+  <!--END COURSE WITH METHODOLOGIE-->
+  <!--ADD CUSTOM COURSE-->
+
+  <ng-container *ngIf="customChoosen">
+    <mat-step label="Description">
+      <app-custom-description></app-custom-description>
+      <div style="margin-top: 3%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold"
+            >Get started</span
+          >
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="customFormGroup" label="Curriculum">
+      <form [formGroup]="customFormGroup">
+        <div formArrayName="customPhases">
+          <div *ngFor="let l of customPhases.controls; let i = index">
+            <div [formGroupName]="i" style="margin-top: 3%">
+              <h1>Section {{ i + 1 }}</h1>
+              <mat-accordion class="example-headers-align">
+                <mat-form-field
+                  appearance="fill"
+                  style="margin-left: 10%; margin-right: 1%; width: 80%"
+                >
+                  <mat-label>Section name</mat-label>
+                  <input formControlName="sectionName" matInput required />
+                </mat-form-field>
+
+                <button
+                  (click)="deleteCustomSection(i)"
+                  mat-raised-button
+                  matTooltip="Remove this section"
+                  aria-label="Button that shows a tooltip"
+                  class="example-button"
+                >
+                  <mat-icon class="delete-btn">delete</mat-icon>
+                </button>
+                <div formArrayName="subphases">
+                  <div *ngFor="let p of listPhases(i).controls; let j = index">
+                    <div [formGroupName]="j">
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            <span>Phase {{ j + 1 }}</span>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="fill">
+                              <mat-label>Phase name</mat-label>
+                              <input formControlName="name" matInput required />
+                            </mat-form-field>
+                          </div>
+                          <div class="col-6">
+                            <button
+                              mat-raised-button
+                              matTooltip="remove this phase"
+                              style="
+                                background-color: #878178;
+                                margin-left: 39%;
+                              "
+                              (click)="removePhase(i, j)"
+                            >
+                              <span style="color: white">Remove Phase</span>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div>
+                            <ngx-file-drag-drop
+                              formControlName="filesCustomPhase"
+                              activeBorderColor="#3F51B5"
+                              [multiple]="true"
+                              (valueChanged)="onValueChangeCutom($event, i, j)"
+                            >
+                            </ngx-file-drag-drop>
+
+                            <div *ngFor="let f of listFilesCustomP[j]">
+                              <upload-task
+                                (newItemEvent)="secCustomP(f, $event, i, j)"
+                                [file]="f"
+                              ></upload-task>
+                            </div>
+                          </div>
+                        </div>
+                      </mat-expansion-panel>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  mat-raised-button
+                  matTooltip="add new phase"
+                  style="
+                    background-color: #0a3e53;
+                    margin-top: 2%;
+                    margin-left: 29%;
+                    width: 40%;
+                  "
+                  (click)="addPhase(i)"
+                >
+                  <span style="color: white">Add Phase</span>
+                </button>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div style="margin-top: 5%">
+        <button
+          mat-raised-button
+          matTooltip="add new section"
+          style="background-color: black; width: 50%; margin-left: 25%"
+          (click)="addCustomSection()"
+        >
+          <span style="color: white">New Section</span>
+        </button>
+      </div>
+
+      <div style="margin-top: 10%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Next</span>
+        </button>
+
+        <button
+          routerLink="/trainerSpace/courseHome"
+          mat-raised-button
+          mat-button
+          matTooltip="cancel course's creation"
+        >
+          Cancel
+        </button>
+      </div>
+    </mat-step>
+  </ng-container>
+  <!--END CUSTOM COURSE-->
+
+  <mat-step [stepControl]="publishFromGroup" label="Publish Course">
+    <div style="margin-left: 15%">
+      <form [formGroup]="publishFromGroup">
+        <mat-form-field style="width: 80%" appearance="fill">
+          <mat-label>Course audience</mat-label>
+          <input formControlName="audience" matInput />
+          <mat-error *ngIf="pub['audience'].hasError('required')"
+            >Please put your course's audience</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field
+          style="width: 80%"
+          class="example-chip-list"
+          appearance="fill"
+        >
+          <mat-label>Course Pre-requist</mat-label>
+          <mat-chip-list
+            class="mat-chip-list-stacked"
+            #chipPrerequistList
+            aria-label="Fruit selection"
+            formArrayName="prerequisites"
+          >
+            <mat-chip
+              style="
+                color: black;
+                background-color: #ffc600;
+                width: fit-content;
+              "
+              *ngFor="let prerequist of preRequistControls.value"
+              (removed)="removePrerequist(prerequist)"
+            >
+              <mat-icon style="color: white">done</mat-icon>
+              {{ prerequist }}
+              <button matChipRemove>
+                <mat-icon style="color: white">cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              placeholder="Add a pre-requist of your course"
+              #fruitInput
+              [formControl]="prerequist"
+              [matChipInputFor]="chipPrerequistList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="addPrerequist($event)"
+            />
+          </mat-chip-list>
+          <mat-error *ngIf="pub['prerequisites'].hasError('required')"
+            >Prerequisites are required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field style="width: 80%" appearance="fill">
+          <mat-label>Instructor information</mat-label>
+          <input formControlName="information" matInput />
+          <mat-error *ngIf="pub['information'].hasError('required')"
+            >Please put your information</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field style="width: 80%" appearance="fill">
+          <mat-label>Course price </mat-label>
+          <input formControlName="price" type="number" matInput />
+          <mat-hint>(USD)</mat-hint>
+          <mat-error *ngIf="pub['price'].hasError('required')"
+            >Price is required</mat-error
+          >
+        </mat-form-field>
+        <div style="margin-top: 3%; margin-bottom: 3%">
+          <div class="d-flex justify-content-start">
+            <mat-label><span style="color: #6d7076">Logo</span></mat-label
+            ><mat-icon style="margin-left: 3%" ngxMatFileInputIcon
+              >image</mat-icon
+            >
+          </div>
+          <ngx-file-drag-drop
+            accept="image/*"
+            class="courseImage"
+            formControlName="image"
+            activeBorderColor="#hsla(53, 80%, 47%, 0.949);"
+            [multiple]="false"
+            (valueChanged)="onValueChangeCourseImage($event)"
+          >
+          </ngx-file-drag-drop>
+          <mat-error
+            *ngIf="pub['image'].touched && pub['image'].hasError('required')"
+            >Image is required</mat-error
+          >
+          <div *ngFor="let f of courseImageFile">
+            <upload-task
+              (newItemEvent)="secCourseImage($event)"
+              [file]="f"
+            ></upload-task>
+          </div>
+        </div>
+        <mat-divider style="width: 80%"></mat-divider>
+        <div style="margin-top: 3%; margin-bottom: 3%">
+          <div class="d-flex justify-content-start">
+            <mat-label
+              ><span style="color: #6d7076"
+                >Course's Video Preview</span
+              ></mat-label
+            ><mat-icon style="margin-left: 3%" ngxMatFileInputIcon
+              >play_lesson</mat-icon
+            >
+          </div>
+          <ngx-file-drag-drop
+            accept="video/*"
+            class="courseImage"
+            formControlName="video"
+            activeBorderColor="#d6c118f2"
+            [multiple]="false"
+            (valueChanged)="onValueChangeCourseVideo($event)"
+          >
+          </ngx-file-drag-drop>
+          <mat-error
+            *ngIf="pub['video'].touched && pub['video'].hasError('required')"
+            >Video is required</mat-error
+          >
+          <div *ngFor="let f of courseVideoFile">
+            <upload-task
+              (newItemEvent)="secCourseVideo($event)"
+              [file]="f"
+            ></upload-task>
+          </div>
+        </div>
+
+        <div style="margin-top: 13%">
+          <div style="display: flex; margin-left: -2%">
+            <button
+              mat-raised-button
+              mat-button
+              class="previewBtn"
+              matTooltip="View your global course"
+              (click)="openDialog()"
+            >
+              <span style="color: rgb(255, 198, 0); font-weight: bold"
+                >Preview</span
+              >
+            </button>
+            <button
+              mat-raised-button
+              mat-button
+              class="previewBtn"
+              matTooltip="How does the student see your course?"
+              (click)="openDialogPreviewStudent()"
+            >
+              <span style="color: rgb(255, 198, 0); font-weight: bold"
+                >Preview as Student</span
+              >
+            </button>
+          </div>
+
+          <button
+            style="margin-top: 8%"
+            mat-raised-button
+            class="publishBtn"
+            matTooltip="add your course "
+            (click)="publishCourse()"
+          >
+            <span style="color: rgb(255, 198, 0); font-weight: bold"
+              >Publish</span
+            >
+          </button>
+        </div>
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+
+        <button
+          routerLink="/trainerSpace/courseHome"
+          mat-raised-button
+          mat-button
+          matTooltip="cancel course's creation"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  </mat-step>
+</mat-stepper>
+<!-- <button (click)="test()">test</button> -->

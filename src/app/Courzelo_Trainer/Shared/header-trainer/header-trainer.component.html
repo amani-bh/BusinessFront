@@ -1,0 +1,36 @@
+<mat-toolbar>
+  <div style="margin-right: 1.5em">
+    <mat-icon (click)="addNewItem(isShow)">menu</mat-icon>
+  </div>
+  <div style="margin-right: 1.5em" routerLink="/">
+    <mat-icon
+      matListIcon
+      style="color: rgba(245, 232, 54, 0.685); font-size: 2em"
+      >school</mat-icon
+    >
+  </div>
+  <div routerLink="/" style="margin-right: auto">
+    <h1 matLine id="logoTrainer">CourzeloTrainer</h1>
+  </div>
+  <div>
+    <a class="nav-link" href="#" data-bs-toggle="dropdown"
+      ><span class="material-icons md-48" style="color: #212529"
+        >account_circle</span
+      ></a
+    >
+    <ul class="dropdown-menu" style="background-color: #e9c72a">
+      <li>
+        <a class="dropdown-item" routerLink="/"> Core </a>
+      </li>
+      <li><a class="dropdown-item" routerLink="/profile"> My profile </a></li>
+      <li>
+        <a class="dropdown-item" routerLink="mylearning"> My learning </a>
+      </li>
+      <li><a class="dropdown-item" routerLink="skillsSpace"> Progress </a></li>
+      <li>
+        <a class="dropdown-item" routerLink="accueil"> Courzelo Classroom </a>
+      </li>
+      <li><a class="dropdown-item">Logout</a></li>
+    </ul>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,156 @@
+<div class="section-title mt-50">
+  <h3>Update a course</h3>
+</div>
+<!-- section title -->
+
+<div class="close-btn">
+  <button mat-icon-button mat-dialog-close><mat-icon>cancel</mat-icon></button>
+</div>
+<br>
+<form
+  id="add-form"
+  #f="ngForm"
+  [formGroup]="Form"
+  autocomplete="off"
+  novalidate
+>
+  
+
+<table class="example-full-width" cellspacing="0"><tr><td>
+
+  <mat-form-field class="example-full-width" appearance="fill" >
+    <mat-label>Course name</mat-label>
+    <input type="coursename" matInput formControlName ="coursename" >
+    <mat-error *ngIf=" !coursenameFormControl.hasError('required')">
+      
+    </mat-error>
+    <mat-error *ngIf="coursenameFormControl.hasError('required')">
+      course name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</td>
+
+<td>
+<mat-form-field  class="example-full-width" appearance="fill">
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker" formControlName ="date">
+
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+</td>
+</tr></table>
+
+
+<table class="example-full-width" cellspacing="0"><tr>
+<td><mat-form-field class="example-full-width" appearance="fill" > 
+<mat-label>Category</mat-label>
+<mat-select formControlName="category" required >
+  <mat-option>--</mat-option>
+  <mat-option value="web development">web development</mat-option>
+  <mat-option value="web design">web design</mat-option>
+  
+  <mat-option *ngFor="let category of Category" [value]="category">
+    {{Categorylevel}}
+  </mat-option>
+</mat-select>
+ <mat-error *ngIf="Categorylevel.hasError('required')">Please choose </mat-error>
+<mat-hint>{{Categorylevel.value?.sound}}</mat-hint>
+</mat-form-field>
+</td>
+<!-- singel form -->
+
+<td>
+<mat-form-field class="example-full-width" appearance="fill" > 
+  <mat-label>Difficulty level</mat-label>
+  <mat-select formControlName="difficultylevel" required >
+    <mat-option>--</mat-option>
+    <mat-option value="Beginner">Beginner</mat-option>
+  <mat-option value="Intermediate">Intermediate</mat-option>
+  <mat-option value="Advanced">Advanced</mat-option>
+    <mat-option *ngFor="let difficulty of Difficulty" [value]="difficulty">
+      {{Difficultylevel}}
+    </mat-option>
+  </mat-select>
+<mat-error *ngIf="Difficultylevel.hasError('required')">Please choose </mat-error>
+  <mat-hint>{{Difficultylevel.value?.sound}}</mat-hint>
+</mat-form-field>
+</td>
+</tr></table>
+<!-- singel form -->
+
+<table class="example-full-width" cellspacing="0"><tr>
+<td>
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Course summary</mat-label>
+  <input type="coursesummary" matInput formControlName="coursesummary" >
+  <mat-error *ngIf=" !coursesummaryFormControl.hasError('required')">
+    
+  </mat-error>
+  <mat-error *ngIf="coursesummaryFormControl.hasError('required')">
+    course summary is <strong>required</strong>
+  </mat-error>
+</mat-form-field>
+
+</td>
+<td>
+
+<mat-form-field class="example-full-width" appearance="fill" >
+  <mat-label>Instructor name</mat-label>
+  <input type="instructorname" matInput formControlName="instructorname" >
+  <mat-error *ngIf="  !instructornameFormControl.hasError('required')">
+    
+  </mat-error>
+  <mat-error *ngIf="instructornameFormControl.hasError('required')">
+    Instructor name is <strong>required</strong>
+  </mat-error>
+</mat-form-field>
+
+</td>
+</tr></table>
+
+
+<table class="example-full-width" cellspacing="0"><tr>
+
+<td>
+<mat-form-field class="example-full-width" appearance="fill">
+<mat-label>What student will learn</mat-label>
+<textarea matInput formControlName ="descriptioncourse"></textarea>
+</mat-form-field>
+</td>
+
+<td>
+<mat-form-field class="example-full-width" appearance="fill">
+<mat-label>About the instructor</mat-label>
+<textarea matInput formControlName ="descriptiontrainer"></textarea>
+</mat-form-field>
+</td>
+</tr></table>
+
+
+
+  <mat-form-field class="example-full-width" appearance="fill" style="width: 50%;">
+    <mat-label >Price</mat-label> <div style="margin-left: 330px;margin-top: -12px;"> USD &nbsp;</div>
+    <input type="price" matInput  formControlName ="price" >
+    
+  </mat-form-field>
+
+
+
+
+<div class="col-lg-12">
+  <div class="Date-input-bar"></div>
+  
+</div>
+ 
+  
+</form>
+
+<div mat-dialog-actions style="float: right">
+  <button class="second-btn" mat-dialog-close>Close</button>
+
+  <button class="main-btn" (click)="updateFormation()" [disabled]="!Form.valid">
+    Confirm changes
+  </button>
+</div>

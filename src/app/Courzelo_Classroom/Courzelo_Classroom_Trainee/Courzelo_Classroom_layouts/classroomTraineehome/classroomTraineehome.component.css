@@ -1,0 +1,55 @@
+
+ 
+  mat-toolbar {
+    background-color:  rgb(251, 251, 252);
+  }
+
+   
+  .logo_trainer {
+    margin-top: 2em;
+    margin-left: -1475px;
+    margin-bottom: 2em;
+    width: 8em;
+  }
+  mat-sidenav-content {
+    align-items: center;
+    justify-content: flex-start;
+    
+  }
+  
+  mat-sidenav-container {
+    height: calc(100vh - 65px);
+    background-color: white;
+  
+  }
+  
+  mat-icon {
+    margin-right: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+   
+  
+    
+  }
+  
+  mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  mat-sidenav{
+    background: #07294d;
+  }
+
+  h4 {
+    color: aliceblue;
+  }
+  .icon-logo{
+   color: aliceblue;
+  }
+
+
+  

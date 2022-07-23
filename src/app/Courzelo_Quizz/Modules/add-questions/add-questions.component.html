@@ -1,0 +1,515 @@
+<div class="stepperquiz">
+  <div class="main-divstep">
+    <mat-stepper #stepper class="progress-bar" [selectedIndex]="1" [orientation]="(stepperOrientation | async)!">
+      <mat-step label="Create quiz"></mat-step>
+      <mat-step label="Add questions"></mat-step>
+      <mat-step label="Post quiz"></mat-step>
+    </mat-stepper>
+    </div>
+  </div>
+    <div class="main-div">
+      <mat-card class="questiontype">
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-card-title>
+              <div class="section-title mt-50">
+                <h4> Choose one Type</h4>
+              </div>
+            </mat-card-title>
+          </div>
+          <div class="col-sm-8">
+            <button class="types" *ngFor="let type of types" (click)="get(type)" [disabled]="selectable">
+              {{type}}
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12">
+            <h4 *ngIf="selectable==true"> Chosen type : {{selected}}</h4>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <!--open questions-->
+    <div class="quizform">
+    <div *ngIf="selected=='Open_questions'">
+      <mat-card>
+        <div class="row">
+          <div class="col-sm-6">
+            <img mat-card-image style="padding-left: 0.5%;margin-top: 1%"
+              src="../../../../assets/images_quiz/open_questiosns.jpg" />
+          </div>
+          <div class="col-sm-6">
+            <p>Open questions allow to collect qualitative answers from trainees that are, for the
+              most part, full of information.<br> By asking this type of question, you are giving your customers the
+              opportunity to answer whatever they like, without limiting or influencing them with predefined answers.</p>
+            <button class="buttoninformation" [disabled]="questionformO_Q.invalid " mat-button
+              matTooltip="please add at least 5 questions to post a quiz" *ngIf="state==0" (click)="addOpen_Questions()">Add
+              question</button>
+          </div>
+        </div>
+      </mat-card>
+      <form [formGroup]="questionformO_Q">
+        <div formArrayName="Open_Questions">
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let openquestions of Open_Questions().controls; let openquestionIndex=index" cdkDrag>
+              <div [formGroupName]="openquestionIndex">
+                <mat-card>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <mat-form-field>
+                        <mat-label>Question</mat-label>
+                        <input matInput type="text " formControlName="question" placeholder="ask your question">
+    
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field>
+                        <mat-label>points</mat-label>
+                        <input class="num" matInput type="number" formControlName="points" min="1" max="100">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field *ngIf="quiz.typecountdown=='perquestion'">
+                       
+                        <mat-label>timer</mat-label>
+                        
+                        <input class="timerq" matInput type="number" formControlName="timerperquestion" min="0" >
+                        
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-sm-8">
+                      
+                     
+                        <mat-form-field>
+                          <mat-label class="keywordsrequire">key words</mat-label>
+                          <mat-chip-list
+                            #chipList
+                            formArrayName="keywords"
+                          >
+                            <mat-chip
+                              *ngFor="let keyword of Open_Questions().value[openquestionIndex].keywords"
+                              [selectable]="selectable"
+                              [removable]="removable"
+                              (removed)="remove(keyword,openquestionIndex)"
+                           
+                            >
+                              {{keyword}}
+                              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input 
+                              placeholder="type your key words..." 
+                              [matChipInputFor]="chipList"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                              [matChipInputAddOnBlur]="addOnBlur"
+                              (matChipInputTokenEnd)="add($event,openquestionIndex)"
+                            />
+                          </mat-chip-list>
+                        </mat-form-field>
+                  
+                      
+                      
+                    </div>
+                  </div>
+                  <button class="del-btn" mat-icon-button (click)="removeOpen_Questions(openquestionIndex)">
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+                </mat-card>
+              </div>
+            </div>
+         
+            <div class="main-div">
+              <mat-card class="buttonaction" *ngIf="state>0">
+                <div class="row">
+                  <div class="col-sm-1">
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="d-flex flex-column">
+                      <div class="p-2"> <button class="addquestion"  mat-button
+                          matTooltip="please add at least 2 questions to post a quiz" [disabled]="questionformO_Q.invalid || state1==0 " (click)="addOpen_Questions()">Add
+                          question</button></div>
+                      <div class="p-2"> <button class="post" 
+                          [disabled]="questionformO_Q.invalid || state1==0 || state<2 " (click)="post()">post</button></div>
+                        
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      
+      </form>
+    </div>
+    <!-- fin open questions-->
+    
+    
+    <!-- debut yes/no questions-->
+    <div *ngIf="selected=='Y/N'">
+      <mat-card>
+        <div class="row">
+          <div class="col-sm-6">
+            <img mat-card-image style="padding-left: 0.5%;margin-top: 1%" src="../../../../assets/images_quiz/Y_N.jpg" />
+          </div>
+          <div class="col-sm-6">
+            <p>Yes / No questions are called closed questions because there are only two possible
+              responses: Yes or No. <br>When your are asking theses questions you are expecting the answer, yes or no.</p>
+            <button class="buttoninformation" [disabled]="questionformY_N.invalid " mat-button
+              matTooltip="please add at least 5 questions to post a quiz" *ngIf="state==0" (click)="addyes_no()">Add
+              question</button>
+          </div>
+        </div>
+      </mat-card>
+      <form [formGroup]="questionformY_N">
+        <div formArrayName="yn">
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let qcu of yes_no().controls; let y_nindex=index" cdkDrag>
+              <div [formGroupName]="y_nindex">
+                <mat-card>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <mat-form-field>
+                        <mat-label>Question</mat-label>
+                        <input matInput type="text " formControlName="question" placeholder="ask your question">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field>
+                        <mat-label>points</mat-label>
+                        <input class="num" matInput type="number" formControlName="points" min="1" max="100">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field *ngIf="quiz.typecountdown=='perquestion'">
+                       
+                        <mat-label>timer</mat-label>
+                        
+                        <input class="timerq" matInput type="number" formControlName="timerperquestion" min="0" >
+                        
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <mat-radio-group aria-label="Select an option" formControlName="correctanswer">
+                    <mat-radio-button value="Yes">Yes</mat-radio-button><br>
+                    <mat-radio-button value="No">No</mat-radio-button>
+                  </mat-radio-group>
+                  <br>
+                  <button class="del-btn" mat-icon-button (click)="removeyes_no(y_nindex)">
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+                </mat-card>
+              </div>
+            </div>
+            <div class="main-div">
+              <mat-card class="buttonaction" *ngIf="state>0">
+                <div class="row">
+                  <div class="col-sm-1">
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="d-flex flex-column">
+                      <div class="p-2"> <button class="addquestion" [disabled]="questionformY_N.invalid  " mat-button
+                        matTooltip="please add at least 2 questions to post a quiz" (click)="addyes_no()">Add
+                          question</button></div>
+                      <div class="p-2"> <button class="post"   [disabled]="questionformY_N.invalid || state<2"
+                           (click)="post()">post</button></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    
+    <!--fin Y/N Questions-->
+    
+    
+    
+    <!-- debut qcu-->
+    <div *ngIf="selected=='SCQ'">
+      <mat-card>
+        <div class="row">
+          <div class="col-sm-6">
+            <img mat-card-image style="padding-left: 0.5%;margin-top: 1%" src="../../../../assets/images_quiz/qcu.jpeg" />
+          </div>
+          <div class="col-sm-6">
+            <p>In a single-choice question, there is only a single correct answer and the rest of
+              the options are distractors. <br>Trainers must completely understand the content before they pick the only
+              correct answer form the list of options.<br> They are closed-ended questions where the answer options are
+              already provided.</p>
+            <button class="buttoninformation" mat-button
+              matTooltip="please add at least 2 questions to post a quiz" *ngIf="state==0" (click)="addqcu()">Add
+              question</button>
+          </div>
+        </div>
+      </mat-card>
+      <form [formGroup]="questionformQCU">
+        <div formArrayName="qcus">
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let qcu of qcu().controls; let qcuindex=index" cdkDrag>
+              <div [formGroupName]="qcuindex">
+                <mat-card class="buttonaction">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <mat-form-field>
+                        <mat-label>Question</mat-label>
+                        <input matInput type="text " formControlName="question" placeholder="ask your question">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field>
+                        <mat-label>points</mat-label>
+                        <input class="num" matInput type="number" formControlName="points" min="1" max="100">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field *ngIf="quiz.typecountdown=='perquestion'">
+                       
+                        <mat-label>timer</mat-label>
+                        
+                        <input class="timerq" matInput type="number" formControlName="timerperquestion" min="0" >
+                        
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <mat-form-field>
+                        <mat-label>Correct answer</mat-label>
+                        <input matInput type="text " formControlName="correct" placeholder="type your answer" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <mat-form-field>
+                        <mat-label>wrong answer</mat-label>
+                        <input matInput type="text " formControlName="wrong" placeholder="type your answer" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div formArrayName="wrongsanwers">
+                    <div *ngFor="let qcuwrong of wrongqcu(qcuindex).controls; let qcuwrongindex=index">
+                      <div [formGroupName]="qcuwrongindex">
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <mat-form-field>
+                              <mat-label>wrong answer</mat-label>
+                              <input matInput type="text " formControlName="wrong" placeholder="type your answer" required>
+                            </mat-form-field>
+                          </div>
+                          <button class="del-btn" mat-icon-button (click)="removeqcuwrong(qcuindex,qcuwrongindex)">
+                            <mat-icon>delete_forever</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-10"></div>
+                    <div class="col-sm-2">
+                      <div class="button text-right">
+                        <button class="addquestion" (click)="addqcuwrong(qcuindex)" mat-button
+                          matTooltip="please add at least 3 wrong answers to add another question">
+                          Add wrong
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="del-btn" mat-icon-button (click)="removeqcu(qcuindex)">
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+                </mat-card>
+              </div>
+            </div>
+            
+            <div class="main-div">
+              <mat-card class="buttonaction" *ngIf="state>=2">
+                <div class="row">
+                  <div class="col-sm-1">
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="d-flex flex-column">
+                      <div class="p-2"> <button class="addquestion" [disabled]="questionformQCU.invalid && state<3 " mat-button
+                          matTooltip="please add at least 2 questions to post a quiz" 
+                          (click)="addqcu()">Add question</button></div>
+                      <div class="p-2"> <button class="post" [disabled]="questionformQCU.invalid || state1==1" 
+                          (click)="post()">post</button></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- fin qcu-->
+    
+    <!--debut qcm-->
+    <div *ngIf="selected=='MCQ'">
+      <mat-card>
+        <div class="row">
+          <div class="col-sm-6">
+            <img mat-card-image style="padding-left: 0.5%;margin-bottom:0.5%;margin-top: 1%;" src="../../../../assets/images_quiz/QCM2.jpg" />
+          </div>
+          <div class="col-sm-6">
+            <p>Multiple Choice Questions (MCQs) are generally recognized as the most widely
+              applicable and useful type of objective test items.<br> They could be used to measure the most important
+              educational outcomes - knowledge, understanding, judgment and problem solving.<br>You must at least add two
+              correct answers and three false answers</p>
+            <button class="buttoninformation" [disabled]="questionformQCM.invalid " mat-button
+              matTooltip="please add at least 2 questions to post a quiz" *ngIf="state3==0" (click)="addqcm()">Add
+              question</button>
+          </div>
+        </div>
+      </mat-card>
+      <form [formGroup]="questionformQCM">
+        <div formArrayName="qcms">
+          <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let qcm of qcms().controls; let qcmindex=index" cdkDrag>
+              <div [formGroupName]="qcmindex">
+                <mat-card class="buttonaction">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <mat-form-field>
+                        <mat-label>Question</mat-label>
+                        <input matInput type="text " formControlName="question" placeholder="ask your question">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field>
+                        <mat-label>points</mat-label>
+                        <input class="num" matInput type="number" formControlName="points" min="0" max="100">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                      <mat-form-field *ngIf="quiz.typecountdown=='perquestion'">
+                       
+                        <mat-label>timer</mat-label>
+                        
+                        <input class="timerq" matInput type="number" formControlName="timerperquestion" min="0" >
+                        
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8">
+                  <mat-form-field >
+                    <mat-label>correct answer</mat-label>
+                    <input matInput type="text " formControlName="correct" placeholder="ask your question"
+                      >
+                  </mat-form-field>
+                    </div>
+                  </div>
+                  <div formArrayName="corrects">
+                    <div *ngFor="let qcmcorrect of correctqcm(qcmindex).controls; let qcmcorrectindex=index">
+                      <div [formGroupName]="qcmcorrectindex">
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <mat-form-field >
+                              <mat-label>correct answer</mat-label>
+                              <input matInput type="text " formControlName="correct" placeholder="ask your question"
+                                required>
+                            </mat-form-field>
+                          </div>
+                          <button class="del-btn" mat-icon-button (click)="removeqcmcorrect(qcmindex,qcmcorrectindex)">
+                            <mat-icon>delete_forever</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-10">
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="button text-right">
+                          <button class="addquestion" mat-button
+                            matTooltip="please add at least 2 correct answers to add another question"
+                            (click)="addqcmcorrect(qcmindex)">Add correct</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8">
+                  <mat-form-field >
+                    <mat-label>wrong answer</mat-label>
+                    <input matInput type="text " formControlName="wrong" placeholder="ask your question"
+                      >
+                  </mat-form-field>
+                    </div>
+                  </div>
+                  <div formArrayName="wrongsanwers">
+                    <div *ngFor="let qcmwrong of wrongqcm(qcmindex).controls; let qcmwrongindex=index">
+                      <div [formGroupName]="qcmwrongindex">
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <mat-form-field>
+                              <mat-label>wrong answer</mat-label>
+                              <input matInput type="text " formControlName="wrong" placeholder="ask your question" required>
+                            </mat-form-field>
+                          </div>
+                          <button class="del-btn" mat-icon-button (click)="removeqcmwrong(qcmindex,qcmwrongindex)">
+                            <mat-icon>delete_forever</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-10">
+                    </div>
+                    <div class="col-sm-2">
+                      <br>
+                      <div class="button text-right">
+                        <button class="addquestion" mat-button
+                          matTooltip="please add at least 2 wrong answers to add another question"
+                          (click)="addqcmwrong(qcmindex)">Add wrong</button>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="del-btn" mat-icon-button (click)="removeqcm(qcmindex)">
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+                </mat-card>
+              </div>
+            </div>
+           
+            <div class="main-div">
+              <mat-card class="buttonaction" *ngIf="state>=2 && state1>=2">
+                <div class="row">
+                  <div class="col-sm-1">
+                  </div>
+                  <div class="col-sm-10">
+                    <div class="d-flex flex-column">
+                      <div class="p-2"> <button class="addquestion" [disabled]="questionformQCM.invalid " mat-button
+                          matTooltip="please add at least 5 questions to post a quiz" *ngIf="state>=2 && state1>=2"
+                          (click)="addqcm()">Add question</button></div>
+                      <div class="p-2"> <button class="post" [disabled]="questionformQCM.invalid || state3<2"
+                           (click)="post()">post</button></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1">
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+    <!-- fin qcm-->

@@ -1,0 +1,162 @@
+<div class="section-title mt-50">
+    <h3>Candidate applications</h3>
+   </div> <!-- section title -->  
+
+
+<div class="row">
+  <div class="col-lg-3 left-side">
+    <div class="search-bar col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <mat-form-field >
+         <input matInput   (input)="doFilter(search.value)" type="text" [formControl]="search" type="text" placeholder="Search">
+         <button matSuffix  mat-icon-button><mat-icon>search</mat-icon></button>
+      </mat-form-field>
+    </div>
+
+   <mat-selection-list class="app-list" [multiple]="false" *ngIf="candidateApps">
+     <span class="top-title"><b>Result  : {{candidateApps.length}} applications</b> </span>
+     <mat-divider></mat-divider>
+     <mat-card *ngFor="let app of dataSource.data " (click)="onSelectionChange(app)" class="item" tabindex="1">
+        <mat-card-title><h6>{{app.user.displayName}}</h6></mat-card-title>
+        <mat-card-subtitle>#id | {{app.idCandidateApp}}</mat-card-subtitle>
+        <span *ngIf='app.currentState' ><b>Status :</b> {{app.currentState.label}}</span>
+        <br>
+        <span><b>Submitted on  :</b> {{app.applicationDate | date:'yyyy-MM-dd' }}</span>
+        <br>
+        <span *ngIf='app.job'><b>Job offer :</b> {{app.job.title}}</span>
+    </mat-card>
+  </mat-selection-list>
+</div>
+
+
+<span class="msg" *ngIf="!currentApp">Please select the candidate application you want to view</span>
+  <div class="center-side col-lg-8" *ngIf="currentApp">
+    <div class="row">
+      <div class="col-lg-1 avatar">
+        <img src="../../../../assets/CourzeloBusiness/images/avatar.png" width="80" height="90">
+      </div>
+      <div class="col-lg-4 col-md-12 info-personel">
+        <h6>{{currentApp.user.displayName}}</h6>
+        #id | {{currentApp.idCandidateApp}}
+        <span *ngIf='currentApp.currentState' ><b>Status :</b> {{currentApp.currentState.label}}</span>
+        <br>
+        <span><b>Submitted on  :</b> {{currentApp.applicationDate | date:'yyyy-MM-dd' }}</span>
+        <span *ngIf='currentApp.job'><b>Job Offer  :</b> {{currentApp.job.title }}</span>
+
+      </div>
+
+      <div class="col-lg-5 col-12 info-personel" *ngIf='currentApp.currentState'>
+        
+        <mat-card><b>Status</b></mat-card>
+       <span *ngIf='currentApp.currentState' ><b>Status :</b> {{currentApp.currentState.label}}</span>
+        <br>
+        <span *ngIf='currentApp.currentState' ><b>Date :</b> {{currentApp.currentState.stateDate | date:'yyyy-MM-dd' }}</span>
+        <br>
+        <span *ngIf='currentApp.currentState.label=="pending" && currentApp.job.idPrehiringTest!=""' ><b>Prehiring test score:</b> {{currentApp.currentState.score}} %</span>
+        <span *ngIf='currentApp.currentState.label=="interview"' ><b>Link meet :</b> <a (click)='OpenMeet(currentApp.currentState.linkMeet)' class="link" >{{currentApp.currentState.linkMeet}}</a></span>
+
+        <span *ngIf='currentApp.currentState.label=="interview"' ><b>Date  :</b> {{currentApp.currentState.interviewDate | date:'yyyy-MM-dd'}}</span>
+        <br>
+        <span *ngIf='currentApp.currentState.label=="interview"' ><b>Time  :</b> {{currentApp.currentState.interviewDate | date:'mediumTime'}}</span>
+
+        <span *ngIf='currentApp.currentState.label=="test"' ><b> <a class="link" (click)="viewTest(currentApp.currentState.idTest)">View test</a></b></span>
+     
+        <span class="msg" *ngIf="currentApp.currentState.label=='pre-selected'"> Waiting for candidate to receive you job request</span>
+        <div class="row actions" *ngIf="currentApp.currentState.label!='hired' && currentApp.currentState.label!='rejected' && currentApp.currentState.label!='pre-selected'" >
+          <span><b>How would you like to proceed with this application ?</b></span>
+           <button *ngIf="currentApp.currentState.label=='pending'" (click)="updState(currentApp)" class="main-btn col-lg-4"> Screening </button>
+           <button  matTooltip="Screening has been done" *ngIf="currentApp.currentState.label!='pending'"  mat-button class="done-btn col-lg-4"> <mat-icon>done_outline</mat-icon> <span>Screening</span> </button>
+
+           <form id="add-form" class="col-lg-5" #f="ngForm" [formGroup]="Form" >
+           <mat-form-field matTooltip="Please screen the application first">
+             <mat-label>Move to</mat-label>
+             <mat-select formControlName="state" (selectionChange)="moveTo($event,currentApp)">
+                <mat-option value="Interview">Interview </mat-option>
+                <mat-option value="Send offer">Send offer </mat-option>
+                <mat-option value="Send test">Send test </mat-option>
+                <mat-option value="Hired">Hired</mat-option>
+             </mat-select>
+           </mat-form-field>
+          </form>
+
+          <button (click)="Reject(currentApp)" class="rej-btn col-lg-3 col-md-4" > Reject </button>
+        </div>
+        
+      </div>
+
+      <div class="tabs">
+        <mat-tab-group>
+          <mat-tab label="Profile overview"> 
+            <div class="profile-info">
+            <span><b>First Name : </b></span> {{currentApp.user.displayName}}
+            <br>
+            <span><b>Last Name : </b></span> 
+            <br>
+            <span><b>Email address : </b></span>{{currentApp.user.email}}
+            <br>
+            <span><b>Residential address : </b></span> 
+            <br>
+            <span><b>Zip code : </b></span> 
+          </div>
+  
+
+            <div class="radar">
+              <canvas baseChart
+                    [datasets]="radarChartData"
+                    [options]="radarChartOptions"
+                    [labels]="radarChartLabels"
+                    [type]="radarChartType">
+              </canvas>
+            </div>
+
+          </mat-tab>
+          <mat-tab label="Resume">
+            <div *ngIf=" currentApp.cv">
+              <ngx-doc-viewer [url]="currentApp.cv" viewer="url" style="width: full; height: 800px;overflow-x: hidden;">
+              </ngx-doc-viewer>
+          </div> 
+          
+
+          
+
+          <div class="not-found" *ngIf="!currentApp.cv">
+            <span>No cv is found for this candidate</span>
+            
+          </div>
+          </mat-tab>
+          <mat-tab label="Application History"> 
+        
+            <mat-stepper orientation="vertical"  #stepper class="steps">
+              <div *ngFor="let state of currentApp.candidateState" >
+              <mat-step label="Step{{state.step}}"  >
+                  <span  ><b>Status :</b> {{state.label}}</span>
+                  <br>
+                  <span ><b>Date :</b> {{state.stateDate | date:'yyyy-MM-dd' }}</span>
+                  <br>
+                  <span *ngIf="state.label=='interview'" ><b>interview date :</b> {{state.interviewDate| date:'yyyy-MM-dd' }}</span>
+                  <br>
+              </mat-step>
+
+
+          
+
+
+            </div>
+            </mat-stepper>
+
+
+
+
+
+          </mat-tab>
+        </mat-tab-group>
+
+      </div>
+
+ 
+    </div>
+    
+  </div>
+
+</div>
+
+

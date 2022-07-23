@@ -1,0 +1,58 @@
+
+   
+   
+   <!--====== CONTACT PART START ======-->
+    
+   <section id="contact-page" class="pt-90 pb-120 gray-bg">
+	<div class="container">
+		<div class="row">
+		     <div class="col-lg-5 overlay">
+				 <h5>Enter your personal details and start journey with us!</h5>
+				 <!-- left blue panel-->
+			 </div>
+			 <div class="col-lg-7">
+				 <div class="company-login mt-30">
+					<div class="section-title">
+						<h3>Login</h3>
+					</div> <!-- section title -->
+					<div class="main-form pt-45">
+						<form id="company-form" #f="ngForm" [formGroup]="Form" autocomplete="off" novalidate>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="singel-form">
+										 <mat-form-field class="full-width" >
+										  <input matInput  formControlName="email" type="email" placeholder="Email"   >
+										 <!-- <mat-error *ngIf="Form.hasError('companyName', 'required')">Company name field is obligatory</mat-error> 
+										 --> </mat-form-field>
+									</div> <!-- singel form -->
+								</div>
+								<div class="col-md-12">
+									<div class="singel-form ">
+										<mat-form-field class="full-width">
+											<input matInput formControlName="password" [type]="hide ? 'password' : 'text'"  placeholder="password" >
+											<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+										  <!--  <mat-error *ngIf="Form.hasError('email', 'required')">email field is obligatory</mat-error> 
+										  --></mat-form-field>
+									 
+									</div> <!-- singel form -->
+								</div>
+								<p class="form-message"></p>
+								<div class="col-md-12">
+									<div class="forgotpass">
+									<span class="link" routerLink="/BusinessForgotPass"> **Forgot password ? </span>
+								    </div>
+									<div class="singel-form">
+										<button mat-button class="main-btn"  (click)="onSubmit()" >Send</button>
+									</div> <!-- singel form -->
+								</div> 
+							</div> <!-- row -->
+						</form>
+					</div> <!-- main form -->
+				</div> <!--  contact from -->
+			</div>
+			
+		</div> <!-- row -->
+	</div> <!-- container -->
+</section>
+
+<!--====== CONTACT PART ENDS ======-->

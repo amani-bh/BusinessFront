@@ -1,0 +1,28 @@
+mat-sidenav {
+  background-color: rgb(7, 41, 77);
+}
+mat-sidenav-content {
+  align-items: center;
+  justify-content: flex-start;
+
+}
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+.iconSidnav {
+  margin-right: 8px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color: white;
+}
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: white;
+}
+.textSidnav {
+  color: white;
+}

@@ -1,0 +1,45 @@
+
+  <div class="draganddrop" >
+    <div cdkDropList class="example-list1" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let j of phases" cdkDrag  >
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+  
+        <mat-expansion-panel class="matTab" [expanded]="step === 0" (opened)="setStep(0)"    hideToggle>
+          <mat-expansion-panel-header style="height: 122px;">
+            <mat-panel-title> 
+
+            <div>
+              {{j.title}}
+            </div>
+              </mat-panel-title>
+ <div>
+              <button mat-button [matMenuTriggerFor]="menu"  >
+                <mat-icon class="peticon">more_vert</mat-icon>
+            </button>
+          <mat-menu #menu="matMenu">
+            
+            <button mat-menu-item (click)="AddphaseDialog(j.idPhase)">Edit phase content</button>
+            <button mat-menu-item  (click)="deletePhase(j.idPhase)">Delete phase</button>
+          </mat-menu>
+      
+            </div>
+          </mat-expansion-panel-header>
+          
+          <mat-panel-description>
+            {{j.postContent}}
+             </mat-panel-description>
+             
+             <div *ngIf="j.typefile">
+              <img class="profile-pic imagepost" [src]="'data:image/jpeg;base64,'+j.typefile"  alt=".">
+             </div>
+
+             
+  
+          <mat-action-row>
+           
+          </mat-action-row>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>
+

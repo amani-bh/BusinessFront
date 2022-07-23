@@ -1,0 +1,73 @@
+<div class="section-title mt-50">
+    <h3>Add resources</h3>
+  </div>
+  
+  <br>
+  
+  <div class="close-btn">
+    <button mat-icon-button mat-dialog-close><mat-icon>cancel</mat-icon></button>
+  </div>
+ 
+  <form >
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="title" [(ngModel)]="phase.title" name="title">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width"  appearance="fill" >
+      <mat-label>text</mat-label>
+      <textarea matInput placeholder="text"  [(ngModel)]="phase.postContent" name="text"></textarea>
+    </mat-form-field>
+
+    
+      
+    <label>
+      <input
+        type="file"
+        class="text-nowrap text-truncate"
+        (change)="selectFile($event)"
+      />
+    </label>
+    <button
+      class="btn btn-success btn-sm"
+      [disabled]="!selectedFiles"
+      (click)="upload()"
+    >
+      Upload
+    </button>
+    <div *ngIf="currentFileUpload" class="progress mt-2">
+      <div
+        class="progress-bar progress-bar-info"
+        role="progressbar"
+        attr.aria-valuenow="{{ percentage }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: percentage + '%' }"
+      >
+        {{ percentage }}%
+      </div>
+    </div>
+<br>
+<br>
+   
+     
+    <mat-form-field appearance="fill" class="mat-form">
+        <mat-label>Sections</mat-label>
+        <mat-select  multiple  [(ngModel)]="idSection"  name ="idSection">
+          <mat-option *ngFor="let i of sections" [value]="i.idSection"   >{{i.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+
+
+  </form>
+  
+ 
+  
+  <div mat-dialog-actions style="float: right">
+    <button class="second-btn" mat-dialog-close>Close</button>
+    <button class="second-btn" (click)="addPhase()" >Add</button>
+    
+  </div>
+  

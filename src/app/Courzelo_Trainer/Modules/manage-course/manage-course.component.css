@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+td, th {
+  width: 25%;
+}
+.mat-header-cell {
+  background: #07294d;
+  color:#ffc600;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif ;
+  font-weight: 500;
+  }

@@ -1,0 +1,180 @@
+
+  mat-toolbar {
+    background-color:  rgb(251, 251, 252);
+  }
+  mat-sidenav-content {
+    align-items: center;
+    justify-content: flex-start;
+    
+  }
+ mat-sidenav-container {
+    height: calc(100vh - 65px);
+    background-color: white;
+  
+  }  
+   .logoprofile{
+    width: 40px;
+    height: 40px;
+  
+   }
+
+   
+  .logo_trainer {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 8em;
+    margin-left: -1470px;
+  }
+
+ 
+  
+  mat-icon {
+    margin-right: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+   
+ 
+    
+  }
+   .bg-light{
+    margin-left: 230px;
+  }
+  mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  mat-sidenav{
+    background: #07294d;
+  }
+.navbarstyle{
+ 
+  letter-spacing: .01785714em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: #3c4043;
+  text-transform: none;
+ 
+  -webkit-border-radius: 0.25rem 0.25rem 0 0;
+  border-radius: 0.25rem 0.25rem 0 0;
+  bottom: -0.125rem;
+  content: "";
+  height: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+   border-bottom: solid 0.125rem transparent; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+    height: 100%;
+    padding: 0.125rem 1.5rem 0 1.5rem;
+    position: relative;
+    text-decoration: none;
+    height: 4rem;
+}
+.navbarstyle1{
+-webkit-align-items: center;
+align-items: center;
+display: -webkit-box;
+display: -webkit-flex;
+display: flex;
+border-bottom: solid 0.125rem transparent;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+height: 100%;
+padding: 0.125rem 1.5rem 0 1.5rem;
+position: relative;
+text-decoration: none;
+
+}
+
+
+.pluss{
+  display: flex;
+  margin-left: 1338px;
+  position: fixed;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+h4 {
+  color: aliceblue;
+}
+.icon-logo{
+ color: aliceblue;
+}
+ .plus{
+  justify-content: center;
+  font-size: 2rem;
+} 
+ 
+
+
+
+
+  /* Normal desktop :1200px. */
+  @media (min-width: 1200px) and (max-width: 1500px) {
+
+  }
+  
+  /* Normal desktop :992px. */
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+  
+    section {
+      display: table;
+    }
+  
+  }
+  
+  /* Tablet desktop :768px. */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+ 
+  
+  }
+  
+  
+  /* small mobile :320px. */
+  @media (min-width: 576px) and (max-width: 767.98px) {
+
+  
+  
+  }
+  /* Large Mobile :480px. */
+  @media only screen and  (max-width: 575.98px) {
+ 
+}

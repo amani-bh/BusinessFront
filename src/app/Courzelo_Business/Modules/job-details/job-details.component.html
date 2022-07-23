@@ -1,0 +1,37 @@
+
+<div class="close-btn">
+    <button mat-icon-button mat-dialog-close  ><mat-icon>cancel</mat-icon></button>   
+</div>
+
+
+<div class="section-title mt-50">
+    <h3>Job Details : {{data.message.title}}</h3>
+    <span><b>Job created on : </b>{{data.message.creationDate | date:'yyyy-MM-dd'}}</span>
+    <span><b>Post you application before :</b>{{data.message.deadlineDate | date:'yyyy-MM-dd'}}</span>
+</div> <!-- section title -->  
+
+<div class="card-items">
+    <mat-card>
+        <span> <b>Description  </b> </span>
+        <br>{{data.message.description}}
+    </mat-card>
+    <mat-card>
+        <span> <b>Requirement </b> </span>
+        <br>{{data.message.requirement}}
+    </mat-card>
+    <mat-card>
+        <span><b>Job type  </b> </span>
+        {{data.message.jobType}}
+    </mat-card>
+    <mat-card>
+        <span><b>hiring number  </b> </span>
+        {{data.message.hireNumber}}
+    </mat-card>
+</div>
+
+<div class="btn">
+    <button class="main-btn" (click)="AddJobApp(data.message)">Apply</button>
+    <button  class="second-btn" mat-dialog-close  >Close</button>
+</div>
+
+

@@ -1,0 +1,158 @@
+
+ 
+  
+  mat-sidenav{
+    background-color:#07294d10;
+    margin-left: 0%;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: auto;
+    border: 2px solid #07294d;
+    border-radius: 5px;
+    position: absolute;
+    
+    
+  
+  }
+ 
+
+
+
+
+  .mat-nav-list .mat-list-item{
+    height: 50px;
+    
+    
+    
+  }
+
+  .mat-nav-list .mat-list-item .textSidnav{
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+
+  .mat-nav-list .mat-list-item:not(.active-link) mat-icon{
+    
+    color:#07294d;
+  }
+
+
+  
+  .mat-nav-list .mat-list-item.active-link,
+  .mat-action-list .mat-list-item.active-link,.mat-action-list .mat-list-item.active-link mat-icon,
+  .mat-list-option.active-link {
+    background:#07294d !important;
+    color:white;
+    width: 100%;
+    
+  }
+
+  .mat-nav-list {
+    padding-top: 0px;
+  }
+
+  mat-sidenav-content {
+    margin-top: 2%;
+    padding-left: 5%;
+    width: auto;
+    height:100%;
+    overflow:inherit;
+    margin-bottom: 5%;
+    overflow-x: hidden;
+  
+  
+  }
+  
+  mat-sidenav-container {
+    height: fit-content;
+    background-color: white;
+    
+  }
+
+  
+  
+  mat-divider {
+    height: 3px;
+    background-color: #07294d;
+  }
+
+
+
+  
+/**===================================**/
+/*===========Responsive css **/
+
+
+/* Normal desktop :1200px. */
+@media (min-width: 1550px) and (max-width: 2500px) {
+  
+  mat-sidenav-content {
+    margin-top: 2%;}
+  
+
+
+}
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+  mat-sidenav-content {
+    margin-top: 2%;}
+ 
+}
+
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    
+
+
+
+.section-title{margin-left: 5%;}
+ 
+   
+}
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    
+
+}
+
+
+
+
+/* small mobile :320px. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    
+    
+        
+    
+}
+
+
+
+/* Large Mobile :480px. */
+@media only screen and  (max-width: 575.98px) {
+
+
+}
+
+
+@media only screen and  (max-width: 475.98px) {
+
+    
+    
+
+}
+
+@media only screen and  (max-width: 390.98px) {
+
+   
+
+}
+

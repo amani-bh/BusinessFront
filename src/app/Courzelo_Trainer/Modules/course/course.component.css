@@ -1,0 +1,47 @@
+.example-stepper {
+  margin-top:2em;
+ }
+.mat-form-field {
+  margin-top: 1%;
+  border-radius: 5px;
+  margin-bottom: 2%;
+}
+::ng-deep.mat-stepper-horizontal-line {
+    width: 70px ;
+    border-top-width: 3px ;
+    border-top-color: #07294d;
+  }
+::ng-deep .mat-step-header .mat-step-icon {
+    background-color:#ffc600;
+    color: #07294d;
+ }
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color:#07294d;
+    color:#ffc600;
+ }
+ .stepper mat-stepper{
+    margin-top: 8%;
+    background-color: #edf0f2;
+    overflow: hidden;
+}
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+   flex-basis: 0;
+ }
+.example-headers-align .mat-expansion-panel-header-description {
+   justify-content: space-between;
+   align-items: center;
+ }
+.example-headers-align .mat-form-field + .mat-form-field {
+   margin-left: 8px;
+ }
+.imgKolb{
+width: 70%;
+border: solid black 1px;
+margin-left: 20%;
+}
+.nextBtn{
+background-color: rgb(10, 58, 110);
+width: 10em;
+margin-right: 5%;
+}

@@ -1,0 +1,85 @@
+
+  <mat-toolbar class="mat-elevation-z8">
+    <mat-toolbar-row>
+      <mat-icon (click)="isExpanded = !isExpanded">
+        menu
+      </mat-icon>
+      <img  src="../../../../../../assets/images_courzelo_classroom/logoclass.jpg" class="img-fluid logo_trainer rounded"
+      alt="courzelo_logo" />
+
+
+      <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+      
+            <li class="nav-item active" >
+              <a class="navbar-brand navbarstyle" *ngIf="navShow"(click)="navigateTo('classworktrainee')"> Class content</a>
+              </li>
+      
+            <li class="nav-item active" >
+              <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('fluxtrainee')">Feed</a>
+            </li>
+            <li class="nav-item active" >
+              <a class=" navbarstyle" *ngIf="navShow"(click)="navigateTo('Quizmanagementtrainee')" >Assessments</a>
+            </li>
+      
+            <li class="nav-item" >
+              <a class=" navbarstyle"*ngIf="navShow" (click)="navigateTo('attendeestrainee')" >Students</a>
+            </li>
+      
+            <li class="nav-item active" >
+              <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('gradestrainee')" >Grades Center</a>
+            </li>
+      
+          </ul>
+      
+        </div>
+      </nav>
+   
+      
+       
+      
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-container mat-typography" autosize>
+
+    <mat-sidenav #sidenav="matSidenav">
+      <mat-nav-list>
+        <mat-list-item routerLink="">
+
+
+        </mat-list-item>
+        <mat-list-item routerLink="/sidebar/espaceformation">
+          <mat-icon matListIcon class="icon-logo">business</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+
+
+        <mat-list-item routerLink="/sidebar/archivedcourses">
+          <mat-icon matListIcon class="icon-logo">import_contacts</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Archived Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+
+        <mat-list-item routerLink="">
+          <mat-icon matListIcon class="icon-logo">calendar_today</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Calendar</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+    <br>
+       <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>

@@ -1,0 +1,115 @@
+
+  <mat-toolbar class="mat-elevation-z8">
+    <mat-toolbar-row>
+      <mat-icon (click)="isExpanded = !isExpanded">
+        menu
+      </mat-icon>
+      <img src="../../../../../../assets/images_courzelo_classroom/logoclass.jpg" class="img-fluid logo_trainer rounded"
+      alt="courzelo_logo" />
+    <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item active" >
+        <a class="navbar-brand navbarstyle" *ngIf="navShow"(click)="navigateTo('classworktrainer')"> Class content</a>
+        </li>
+
+      <li class="nav-item active" >
+        <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('fluxtrainer')">Feed</a>
+      </li>
+      <li class="nav-item active" >
+        <a class=" navbarstyle" *ngIf="navShow"(click)="navigateTo('Quizmanagement')" >Assessments</a>
+      </li>
+
+      <li class="nav-item" >
+        <a class=" navbarstyle"*ngIf="navShow" (click)="navigateTo('attendeestrainer')" >Students</a>
+      </li>
+
+      <li class="nav-item active" >
+        <a class=" navbarstyle" *ngIf="navShow" (click)="navigateTo('gradestrainer')" >Grades Center</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+<div class="pluss">
+<div   class="example-button-container">
+  <button
+            mat-mini-fab  *ngIf="addShow && !paramShow"
+            color="basic"
+            class="plus"
+           
+            aria-label="Example icon button with a plus one icon"
+          >
+            <a (click)="AddcoursesDialog()"><mat-icon class="plus">add</mat-icon></a
+            >
+          </button>
+  <button *ngIf="!addShow && paramShow" mat-mini-fab color="basic" class="plus settingcss" aria-label="Example icon button with a plus one icon" mat-button [matMenuTriggerFor]="menu"><a ><mat-icon class="plus">settings</mat-icon></a></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item   (click)="AddJobDialog()">Edit course information</button>
+    <button mat-menu-item  (click)="deleteFormation()" >Delete course</button>
+    
+  </mat-menu>
+
+
+  </div>
+
+
+
+<div><img src="../../../../../../assets/images_courzelo_classroom/all-icon/profil.png" class="logoprofile" alt="News"></div>
+
+
+</div>
+
+
+
+
+
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-container mat-typography" autosize>
+
+    <mat-sidenav #sidenav="matSidenav">
+      <mat-nav-list>
+        <mat-list-item routerLink="">
+
+
+        </mat-list-item>
+        <mat-list-item  routerLink="coursestrainer">
+          <mat-icon matListIcon class="icon-logo">business</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <div >
+       
+
+        
+      </div>
+      
+        <mat-list-item  routerLink="archivedcoursestrainer">
+          <mat-icon matListIcon class="icon-logo">import_contacts</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Archived Courses</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="cal">
+          <mat-icon matListIcon class="icon-logo">calendar_today</mat-icon>
+          <h4 matLine *ngIf="isExpanded">Calendar</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+     
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+    <br>
+       <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+

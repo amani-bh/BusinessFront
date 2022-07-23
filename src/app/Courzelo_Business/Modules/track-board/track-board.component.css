@@ -1,0 +1,13 @@
+iframe{
+    margin-left: 3%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 3px solid grey;
+}
+
+
+.visual{
+    height:1000px;
+    width: 1000px;
+}
+

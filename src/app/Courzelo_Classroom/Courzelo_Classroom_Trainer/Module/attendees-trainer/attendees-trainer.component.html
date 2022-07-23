@@ -1,0 +1,24 @@
+<div class="participants">
+  <mat-list>
+    <div mat-subheader class="style-div">Teacher</div>
+    <mat-list-item >
+      <mat-icon mat-list-icon>person</mat-icon>
+      <div mat-line>{{ teacher.displayName }}</div>
+      <div style="margin-right: 350px">
+        <mat-icon mat-list-icon>email</mat-icon>
+      </div>
+    </mat-list-item>
+
+    <mat-divider style="width: 560px"></mat-divider>
+    <br />
+
+    <div mat-subheader class="style-div">Students</div>
+    <mat-list-item *ngFor="let note of users">
+      <mat-icon mat-list-icon>person</mat-icon>
+      <div mat-line>{{ note.displayName }}</div>
+      <div style="margin-right: 350px">
+        <mat-icon mat-list-icon>email</mat-icon>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>

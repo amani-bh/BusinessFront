@@ -1,0 +1,191 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white" >
+  <a class="navbar-brand mb-3" href="#">
+    <img src="assets/images/logo.png" width="100px" routerLink="/" />
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto container-fluid">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <i class="fas fa-list-ul"></i> Categories
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="#"> Development &raquo; </a>
+            <ul class="submenu dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">Web Development &raquo; </a>
+                <ul class="submenu dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="coursesPerCategory"
+                      >Javascript</a
+                    >
+                  </li>
+                  <li><a class="dropdown-item" href="#">React</a></li>
+                  <li><a class="dropdown-item" href="#">Python</a></li>
+                  <li><a class="dropdown-item" href="#">Spring</a></li>
+                  <li><a class="dropdown-item" href="#">.NET</a></li>
+                  <li><a class="dropdown-item" href="#">Django</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Data Science &raquo; </a>
+                <ul class="submenu dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#">Machine Learning</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Deep Learning</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  >Mobile Development &raquo;
+                </a>
+                <ul class="submenu dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Google Flutter</a></li>
+                  <li><a class="dropdown-item" href="#">React Native</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"> Business &raquo; </a>
+            <ul class="submenu dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">Entrepreneurship &raquo; </a>
+                <ul class="submenu dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Startup</a></li>
+                  <li><a class="dropdown-item" href="#">Business plan</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Management &raquo; </a>
+                <ul class="submenu dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#">Product management</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Leadership</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  >Project management &raquo;
+                </a>
+                <ul class="submenu dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Scrum</a></li>
+                  <li><a class="dropdown-item" href="#">Agile</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"> Design &raquo; </a>
+            <ul class="submenu dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#">Web Design &raquo; </a>
+                <ul class="submenu dropdown-menu">
+                  <li><a class="dropdown-item" href="#">CSS</a></li>
+                  <li><a class="dropdown-item" href="#">WordPress</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">3D and Animation &raquo; </a>
+                <ul class="submenu dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Blender</a></li>
+                  <li><a class="dropdown-item" href="#">After Effects</a></li>
+                </ul>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"
+                  >Architectural Design &raquo;
+                </a>
+                <ul class="submenu dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Blender</a></li>
+                  <li><a class="dropdown-item" href="#">LEED</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item col-8">
+        <form class="form-inline my-2 my-lg-0 inbutton">
+          <input
+            class="form-control form-control-lg mr-sm-0 col-8 bg-light border-0"
+            style="border-radius: 5px 0px 0px 5px"
+            type="search"
+            placeholder="Search for Courses"
+            aria-label="Search"
+          />
+
+          <button
+            class="btn btn-light btn-lg my-2 my-sm-0 ml-0 col-2"
+            style="border-radius: 0px 5px 5px 0px"
+            type="submit"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav mr-auto container-fluid">
+      <a class="nav-link btn btn-light mx-2" routerLink="/">stackzelo</a>
+      <a
+        class="nav-link btn btn-light mx-2"
+        href="#"
+        routerLink="/trainerSpace/courseHome"
+        >Instructor</a
+      >
+      <a class="nav-link btn btn-light mx-2" routerLink="/">blog</a>
+      <a
+        class="nav-link btn btn-light mx-2"
+        href="#"
+        routerLink="/businessSpace"
+        data-toggle="popover"
+        title="Try Courzelo for Business"
+        data-placement="bottom"
+        data-trigger="focus"
+        data-content="Get your team access to Courzelo’s top 2,500 courses anytime,
+           anywhere."
+        >Courzelo Business</a
+      >
+
+      <a class="nav-link btn btn-light mx-2 rounded-circle" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" data-bs-toggle="dropdown"
+          ><span class="material-icons md-48">account_circle</span></a
+        >
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/profile"> My profile </a></li>
+          <li><a class="dropdown-item"> Settings </a></li>
+          <li><a class="dropdown-item" href="skillsSpace"> Progress </a></li>
+          <li>
+            <a class="dropdown-item" href="accueil"> Courzelo Classroom </a>
+          </li>
+          <li><a class="dropdown-item" href (click)="logout()">Logout</a></li>
+        </ul>
+      </li>
+
+      <a class="nav-link btn btn-light mx-2 rounded-circle" href="#"
+        ><span class="material-icons md-48">notifications</span></a
+      >
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,73 @@
+
+<div *ngIf="!currentJob" class="empty"> </div>
+
+<div  *ngIf="currentJob">
+    <button class="back-btn" routerLink="/JobDashboard/{{currentJob.idJob}}">Done  </button>
+</div>
+
+
+<div *ngIf="currentJob" class="row" >
+  <div class="col-lg-7">
+    <div class="job-singel-left mt-30">
+        <div class="title">
+            <h3>{{currentJob.title}}</h3>
+        </div> <!-- title -->
+        <div class="job-terms">
+            <ul>
+                <li>
+                    <div class="company-name">
+                        <div class="thum">
+                            <img src="../../../../assets/CourzeloBusiness/images/a.jpg" alt="logo">
+                        </div>
+                        <div class="name">
+                            <span>Business</span>
+                            <h6>{{currentJob.business.companyName}}</h6>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="details-section">
+                        <span>Responsable</span>
+                        <h6>{{currentJob.business.firstName}} {{currentJob.business.lastName}} </h6>
+                    </div>
+                </li>
+                <li>
+                    <div class="details-section">
+                        <span>Posted on</span>
+                        <h6>{{currentJob.creationDate | date:'yyyy-MM-dd'}} </h6>
+                    </div>
+                </li>
+            </ul>
+        </div> <!-- course terms -->
+        <div class="descrip-title">
+            <h4>Description </h4> {{currentJob.description}}
+        </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5 ">
+    <div class="row job-singel-right">
+        <div class="col-lg-12 col-md-6">
+            <div class="job-features mt-30">
+               <h4>Job offer Features </h4>
+                <ul>
+                    <li><i class="fa fa-industry"></i>Industry : <span>{{currentJob.industry}}</span></li>
+                    <li><i class="fa fa-clone"></i>Job Type : <span>{{currentJob.jobType}}</span></li>
+                    <li><i class="fa fa-calendar-o"></i>Schedule type :  <span>{{currentJob.ScheduleType}}</span></li>
+                    <li ><i class="fa fa-compass"></i>LocationType :  <span>{{currentJob.locationType}}</span></li>
+                    <li *ngIf="currentJob.locationType!='remote'"><i class="fa fa-map-marker"></i>Location :  <span>{{currentJob.location}}</span></li>
+                </ul>
+            </div> <!-- course features -->
+        </div>
+        <div class="apply-btn">
+            <button class="main-btn" >Apply</button>
+            <div class="details-section">
+               <b>** Apply before <span>{{currentJob.deadlineDate | date:'yyyy-MM-dd'}}</span></b> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+

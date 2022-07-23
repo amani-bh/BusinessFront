@@ -1,0 +1,26 @@
+.icon{
+  margin-right: 2%;
+}
+.stepDescription{
+  display: flex;
+  margin: 2%;
+}
+.title{
+  font-family: Brush Script MT;
+  font-size: xxx-large;
+  margin-left: 28%;
+  font-weight: revert;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+@media only screen and (max-width: 940px) {
+
+.title{
+  font-family: Brush Script MT;
+  font-size: x-large;
+  margin-left: 28%;
+  font-weight: revert;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+}

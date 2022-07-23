@@ -1,0 +1,72 @@
+h3
+ {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+  font-size: 28px;
+}
+h4 {
+	font-size: 15px;
+color: #1d2025;
+margin: 0px;
+
+}
+p{
+  text-align: justify;
+  color: #1d2025;
+}
+
+
+.section-title{}
+.section-title h2{
+    color: #07294d;
+    position: relative;
+    padding-bottom: 12px;
+}
+.section-title h2::before{
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: #ffc600;
+    bottom: 0;
+    left: 0;
+}
+.main-div{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+mat-card{
+    margin: 0px 100px 5px 100px;
+    height: 55%;
+    width: 60%;
+  }
+
+  ::ng-deep.mat-checkbox-checked.mat-accent.mat-checkbox-disabled .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #ffc600 !important;
+    
+    
+
+  }
+
+ ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color:#ffc600; 
+}
+::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle{
+  color:#ffc600;
+  background-color:#ffc600 ;
+}
+
+::ng-deep.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:#ffc600;
+}
+
+.questioncard{
+  height: 10%;
+  background-color: #07294d;
+ 
+}

@@ -1,0 +1,307 @@
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="class content">
+
+  
+    <br />
+    <div class="draganddrop" >
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let i of sections" cdkDrag  >
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+    
+          <mat-expansion-panel class="matTab" [expanded]="step === 0" (opened)="setStep(0)"    hideToggle>
+            <mat-expansion-panel-header style="height: 122px;">
+            
+              <mat-panel-description>
+             {{i.postContent}}
+                
+              
+              </mat-panel-description>
+              <mat-panel-title> 
+            
+                <div>
+    
+                  {{i.title}}
+                </div>
+      
+                  </mat-panel-title>
+    
+              
+            </mat-expansion-panel-header>
+           
+           <br>  
+    
+           <app-phase [idSection]="i.idSection"></app-phase>
+    
+    
+    
+    
+    
+    
+    
+            <mat-action-row>
+              <button mat-button color="primary" [disabled]="test" (click)="nextStep()">
+                Close 
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </div>
+
+  </mat-tab>
+
+
+  <mat-tab label="feed">
+    <div class="container-fluid gedf-wrapper">
+  <div class="row">
+    <img class="img-style"
+      src="https://lh3.googleusercontent.com/hr_crs_themes/AGvgesT-byTjzcCRkRRHgOJX02-RpD29DkM6yJwlVsVm6eAUrDEL82M8cc3BP5yhFc1thclFRusBDIrn4tkSILvKDl5XcWfLXFOYPIQd3RitkxI2dFhKuygfAVU=s1280" />
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="h5">Future</div>
+          <div class="h7 text-muted">
+            no homework to submit in the coming days!
+          </div>
+          <div class="h7">Show all</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 gedf-main">
+      <!--- \\\\\\\Post-->
+      <div class="card gedf-card">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts"
+                aria-selected="true">Make a publication</a>
+            </li>
+          
+           
+
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+              <div class="form-group">
+                <textarea class="form-control" id="message" rows="3" placeholder="Make a publication"[(ngModel)]="post.postContent"></textarea>
+              </div>
+              <div class="form-group" *ngIf="test">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" (change)="onFileChanged($event)"/>
+                  <label class="custom-file-label" for="customFile">Upload file</label>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="test11">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" (change)="onFileChanged2($event)"/>
+                  <label class="custom-file-label" for="customFile">Upload video</label>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+             
+              <div class="py-4"></div>
+            </div>
+          </div>
+          <div class="btn-toolbar justify-content-between">
+            
+            <div class="btn-group">
+              
+              
+                <p>Options :</p>
+
+                  <mat-slide-toggle class="toggstyle" ngModel name="enableWifi" 
+                  [color]="v"(change)="onValChange($event)" > Private</mat-slide-toggle>
+                  <mat-slide-toggle ngModel name="acceptTerms"class="toggstyle"  [color]="v"  (change)="onValChange1($event)" >Comment</mat-slide-toggle>
+                  <mat-slide-toggle ngModel name="acceptTerms" class="toggstyle" [color]="v" (change)="onValChange3($event)" >important</mat-slide-toggle>
+                  
+                 
+              
+            </div> 
+<br>
+<br>
+
+            <div >
+            <button mat-mini-fab color="basic" class="plus" style="margin-left: 15px;;" mat-button ><a ><mat-icon class="plus" (click)="uploadFile()">file_copy</mat-icon></a></button>
+            
+            <button mat-mini-fab color="basic" class="plus" style="margin-left: 15px;;" mat-button ><a ><mat-icon class="plus" (click)="uploadFile1()">queue_play_next</mat-icon></a></button>
+            <div class="btn-group">
+              <button class="main-btn2" style="margin-left: 300px;;" (click)="addPost()">Post</button>
+            </div></div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Post /////-->
+
+      <!--- \\\\\\\Post-->
+     
+<!-- Post Begins -->
+<section class="card mt-4" *ngFor="let i of posts">
+  <div class="border p-2">
+    <!-- post header -->
+    <div class="row m-0">
+      <div class="">
+        <a class="text-decoration-none" href="#">
+          <img class="" src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png" width="50" height="50" alt="...">
+        </a>
+      </div>
+      <div class="flex-grow-1 pl-2">
+        <a class="text-decoration-none" href="#">
+          <h2 class="text-capitalize h5 mb-0">amine mohsni</h2>
+        </a> 
+        <p class="small text-secondary m-0 mt-1">{{i.date }}</p>
+      </div>
+      
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu" class="btn btn-link dropdown-toggle"
+       >
+        <i class="fa fa-ellipsis-h"></i>
+      </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="AddPostDialog(i.idPost)">Edit post</button>
+      <button mat-menu-item (click)="deletePost(i.idPost)">Delete post</button>
+    </mat-menu>
+
+      </div>
+    </div>
+    <!-- post body -->
+    <div class="">
+      <p class="my-2">
+        {{i.postContent}}
+      </p>
+      <!-- <div *ngIf="i.test">
+ <img class="profile-pic" [src]="'data:image/jpeg;base64,'+i.file" width="500" height="300" alt=".">
+</div>
+<div *ngIf="!i.test">
+ <video controls width="500">
+
+  <source [src]="'data:video/mp4;base64,'+i.file">
+
+</video></div> -->
+
+    </div >
+    <hr class="my-1">
+    <!-- post footer begins -->
+    <footer class="">
+      <!-- post actions -->
+      <div class="">
+        <ul class="list-group list-group-horizontal">
+          
+          <li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-right-0 border-top-0 border-bottom-0">
+            <a class="small text-decoration-none" data-toggle="collapse" href="#collapseExample{{i.idPost}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <i class="fa fa-comment-alt" (click)="getComment(i.idPost)"> Comment</i> 
+            </a> 
+          </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- collapsed comments begins -->
+      <div class="collapse" id="collapseExample{{i.idPost}}" >
+        <div class="card border border-right-0 border-left-0 border-bottom-0 mt-1">
+          <!-- new comment form -->
+          <section class="mt-3" >
+            <form action="">
+              <div class="input-group input-group">
+                <input type="text" class="form-control" name="comment"[(ngModel)]="commentA.commentContent" [disabled]="i.comment" placeholder="Write Comment" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <a class="main-btn2" role="button" (click)="addComment(i.idPost)">Comment</a>
+                </div>
+              </div>
+            </form>
+          </section>
+          <!-- comment card bgins -->
+         
+          <section  *ngFor="let j of comments" >
+            <div class="card p-2 mt-3">
+              <!-- comment header -->
+              <div class="d-flex" >
+                <div class="">
+                  <a class="text-decoration-none" href="#">
+                    <img class="profile-pic" src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png" width="40" height="40" alt="...">
+                  </a>
+                </div>
+                <div class="flex-grow-1 pl-2">
+                  <a class="text-decoration-none text-capitalize h6 m-0" href="#">{{user.name}}</a>
+                  <p class="small m-0 text-muted">{{j.date}}</p>
+                </div>
+                <div >
+                  <div>
+                    <button mat-button [matMenuTriggerFor]="menu" class="btn btn-link dropdown-toggle"
+                   >
+                    <i class="fa fa-ellipsis-h"></i>
+                  </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item >Edit comment</button>
+                  <button mat-menu-item >Delete comment</button>
+                </mat-menu>
+      
+                  </div>
+                </div>
+              </div>
+              <!-- comment header -->
+              <!-- comment body -->
+              <div class="card-body p-0" >
+                <p class="card-text h7 mb-1"> {{j.commentContent}}</p>
+                <a class="card-link small" href="#">
+                  
+                </a>
+              </div>
+            </div>
+          </section>
+         
+          <!-- comment card ends -->
+
+        </div>
+      </div>
+      <!-- collapsed comments ends -->
+    </footer>
+    <!-- post footer ends -->
+  </div>
+</section>
+<!-- Post Ends -->
+    </div>
+  </div>
+</div>
+  </mat-tab>
+ 
+
+  <mat-tab label="Assessments">
+   
+  </mat-tab>
+
+  <mat-tab label="Attendees">
+    <div class="participants">
+      <mat-list>
+        <div mat-subheader class="style-div">Teacher</div>
+        <mat-list-item>
+          <mat-icon mat-list-icon>person</mat-icon>
+          <div mat-line>{{ teacher.displayName }}</div>
+          <div style="margin-right: 350px">
+            <mat-icon mat-list-icon>email</mat-icon>
+          </div>
+        </mat-list-item>
+    
+        <mat-divider style="width: 560px"></mat-divider>
+        <br />
+    
+        <div mat-subheader class="style-div">Students</div>
+        <mat-list-item *ngFor="let note of users">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <div mat-line>{{ note.displayName }}</div>
+          <div style="margin-right: 350px">
+            <mat-icon mat-list-icon>email</mat-icon>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    
+  </mat-tab> 
+  <mat-tab label="Grades"></mat-tab>
+</mat-tab-group>

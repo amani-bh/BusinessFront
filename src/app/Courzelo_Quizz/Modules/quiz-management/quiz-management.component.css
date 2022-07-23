@@ -1,0 +1,327 @@
+
+h3
+ {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+}
+h3 {
+	font-size: 28px;
+}
+
+/*===== All Button Style =====*/
+
+.main-btn {
+	display: inline-block;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid #ffc600;
+	padding: 0 35px;
+	font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+	line-height: 50px;
+	border-radius: 5px;
+    color: #07294d;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    background-color: #ffc600;
+}
+.main-btn:hover{
+    color: #ffc600;
+    border-color: #07294d;
+    background-color: #07294d;
+}
+
+
+
+/*===== Title Style =====*/
+
+.section-title{}
+.section-title h3{
+    color: #07294d;
+    position: relative;
+    padding-bottom: 12px;
+    margin-top: 5%;
+    margin-left: 8%;
+    
+    
+}
+.section-title h3::before{
+    content: '';
+    position: absolute;
+    width: 65px;
+    height: 3px;
+    background-color: #ffc600;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+/*--------------------------------*/
+/*--------Job offers table page-------------*/
+
+table{
+    margin-left: 5%;
+   
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width:90%;
+}
+
+
+.table-responsive {
+    overflow-x:auto;
+}
+ 
+
+.mat-row .mat-cell {
+    width: 30px;
+    text-align: center !important;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif ;
+    font-weight: 500;
+  }
+
+  mat-header-cell {
+    display:flex;
+    justify-content:flex-end;
+   }
+
+   ::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content:center;
+  }
+ 
+
+  .add-btn{
+    color:#07294d;
+    margin-left: 91%;
+    margin-top: -3%;
+    
+    
+  }
+
+  .add-btn mat-icon{
+    
+    font-size: 30px;
+  }
+
+  .upd-btn{
+      color:#07294d;
+  }
+
+  .del-btn{
+      color:red;
+      margin-left: 15%;
+  }
+
+  .mat-header-cell {
+    background: #07294d;
+    color:#ffc600;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif ;
+    font-weight: 500;
+  }
+
+  
+
+
+  /*======Search bar =========*/
+
+
+.search-bar{
+    margin-top: 3%;
+}
+.search-bar button.mat-icon-button mat-icon{
+    margin-left: 500px ;
+    margin-top: -40px;
+    background-color: transparent;  
+    color: #07294d;  
+    position: absolute;
+}
+.search-bar mat-form-field {
+    width: 70%;
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #07294d;
+    border-radius: 5px;
+    color: #07294d;
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-left: 450px;
+    
+    
+  }
+
+ 
+
+ 
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-form-field-hover {
+    display: none;
+}
+
+
+
+/**===================================**/
+/*===========Responsive css **/
+
+
+/* Normal desktop :1200px. */
+@media (min-width: 1550px) and (max-width: 2500px) {
+
+  
+
+
+}
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+    .search-bar button.mat-icon-button mat-icon{
+        margin-left: 500px;
+        
+        
+    }
+    .search-bar mat-form-field {
+        margin-left: 450px;
+    }
+  
+
+    
+  .add-btn{
+    
+    margin-left: 85%;
+    
+    
+    
+  }
+
+}
+
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .search-bar button.mat-icon-button mat-icon{
+        margin-left: 410px;
+        
+    }
+    .search-bar mat-form-field {
+        margin-left: 300px;
+    }
+  
+
+    
+  .add-btn{
+    
+    margin-left: 85%;
+    
+    
+    
+  }
+   
+}
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    
+    .search-bar button.mat-icon-button mat-icon{
+        margin-left: 200px;
+        
+    }
+    .search-bar mat-form-field {
+        margin-left: 200px;
+        width:300px;
+    }
+  
+
+    
+  .add-btn{
+    
+    margin-left: 80%;
+    
+    margin-top: -5%;
+    
+  }
+   
+        
+
+}
+
+
+
+
+/* small mobile :320px. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .search-bar button.mat-icon-button mat-icon{
+        margin-left: 250px;
+        
+    }
+    .search-bar mat-form-field {
+        margin-left: 150px;
+        width:300px;
+    }
+  
+
+    
+  .add-btn{
+    
+    margin-left: 80%;
+    
+    margin-top: -8%;
+    
+  }
+   
+      
+
+
+        
+    
+}
+
+
+
+/* Large Mobile :480px. */
+@media only screen and  (max-width: 575.98px) {
+
+ 
+    .search-bar button.mat-icon-button mat-icon{
+        margin-left: 200px;
+        
+        
+    }
+    .search-bar mat-form-field {
+        margin-left: 50px;
+    }
+
+
+      
+  .add-btn{
+    
+    margin-left: 85%;
+    
+    margin-top: -10%;
+    
+  }
+   
+    
+
+}
+
+

@@ -1,0 +1,382 @@
+/*===========================
+    1. Theme default css 
+===========================*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Roboto:300,400,500,700');
+
+ body {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+	max-width: 100%;
+}
+
+a:focus,
+input:focus,
+textarea:focus,
+button:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus,
+a:hover{
+	text-decoration: none;
+}
+
+i,
+span,
+a{
+    display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+}
+
+h1 {
+	font-weight: 500;
+}
+h2 {
+	font-size: 36px;
+}
+h3 {
+	font-size: 28px;
+}
+h4 {
+	font-size: 22px;
+}
+h5 {
+	font-size: 18px;
+}
+h6 {
+	font-size: 16px;
+}
+ul,ol {
+	margin: 0px;
+	padding: 0px;
+    list-style-type: none;
+}
+
+p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 28px;
+	color: #505050;
+	margin: 0px;
+}
+
+.bg_cover{
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+/*===== All Button Style =====*/
+
+.main-btn {
+	display: inline-block;
+	font-weight: 500;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	border: 1px solid #ffc600;
+	padding: 0 35px;
+	font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+	line-height: 50px;
+	border-radius: 5px;
+    color: #07294d;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    -webkit-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+    background-color: #ffc600;
+}
+.main-btn:hover{
+    color: #ffc600;
+    border-color: #07294d;
+    background-color: #07294d;
+}
+
+
+
+/*===== All Section Title Style =====*/
+
+.section-title{}
+.section-title h5{
+    color: #07294d;
+    position: relative;
+    padding-bottom: 12px;
+}
+.section-title h5::before{
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 2px;
+    background-color: #ffc600;
+    bottom: 0;
+    left: 0;
+}
+.section-title h2{
+    font-size: 48px;
+    color: #000;
+    padding-top: 10px;
+}
+/*=====================================================
+    13. FOOTER css 
+======================================================*/
+
+.footer-top{
+    background-color: #07294d;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.footer-about {
+	padding-right: 50px;
+    margin-top: -25px;
+}
+.footer-about p{
+    color: #fff;
+    padding-top: 5px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+}
+
+.footer-about ul {
+
+    margin-left: 38px;
+}
+
+.footer-about ul li{
+    display: inline-block;
+    margin-right: 25px;
+}
+.footer-about ul li:last-child{
+    margin-right: 0;
+}
+
+.footer-about ul li a{
+    width: 35px;
+    line-height: 35px;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #021d3a;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+    
+    
+}
+.footer-about ul li a:hover{
+    background-color: #ffc600;
+    color: #021d3a;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+    
+}
+
+
+.footer-title h6{
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.footer-link{
+    overflow: hidden;
+    margin-left: 25%;
+}
+.footer-link ul{
+    width: 50%;
+    float: left;
+    overflow: hidden;
+}
+.footer-link ul li{
+    line-height: 35px;
+}
+.footer-link ul li a{
+    color: #fff;
+    font-size: 15px;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+.footer-link ul li a i{
+    margin-right: 8px;
+    color: #ffc600;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+}
+.footer-link ul li a:hover {
+    color: #ffc600;
+}
+.footer-link ul li a:hover i{
+    margin-right: 15px;
+}
+
+.support ul{
+    float: none;
+    width: 100%;
+}
+
+
+.footer-address{
+    margin-left: 15%;
+}
+
+.footer-address .footer-title{
+    margin-bottom: 25px;
+}
+.footer-address ul li{
+    position: relative;
+    margin-bottom: 10px;
+}
+.footer-address ul li:last-child{
+    margin-bottom: 0;
+}
+
+.footer-address ul li .icon i{
+    font-size: 18px;
+    color: #ffc600;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.footer-address ul li .cont{
+    padding-left: 35px;
+}
+.footer-address ul li .cont p{
+    color: #fff;
+}
+
+.footer-copyright{
+    background-color: #021d3a;
+}
+.footer-copyright .copyright p{
+    color: #fff;
+}
+.footer-copyright .copyright p span{
+    font-weight: 600;
+}
+
+.back-to-top{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 35px;
+    background-color: #ffc600;
+    color: #fff;
+    font-size: 28px;
+    border-radius: 5px;
+    z-index: 99;
+    text-align: center;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+    display: none;
+}
+.back-to-top:hover{
+    color: #fff;
+    background-color: #021d3a;
+}
+
+
+/**===================================**/
+/*===========Responsive css **/
+
+/* Normal desktop :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+
+}
+
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    .footer-link{
+        margin-left: 10px;
+    }
+    .footer-address{
+        margin-left: -140px;
+    }
+
+}
+
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .footer-link{
+        margin-left: 10px;
+    }
+    .footer-address{
+        margin-left: -140px;
+    }
+}
+
+
+
+
+/* small mobile :320px. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .footer-about{
+        margin-left: -60px;
+    }
+    .footer-link{
+        margin-left: -30px;
+    }
+    .footer-address{
+        margin-left: -90px;
+    }
+}
+
+
+
+/* Large Mobile :480px. */
+@media only screen and  (max-width: 575.98px) {
+
+    .footer-about{
+        margin-left: 5px;
+    }
+    .footer-link{
+        margin-top: 20px;
+        margin-left:5px
+    }
+    .footer-address{
+        margin-left: 170px;
+        margin-top:-190px;
+    }
+
+    .footer-address p{
+       
+        white-space:normal;
+    }
+
+}

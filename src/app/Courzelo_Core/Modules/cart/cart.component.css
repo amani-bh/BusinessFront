@@ -1,0 +1,115 @@
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+  .main-btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #ffc600;
+    font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    line-height: 30px;
+    border-radius: 5px;
+      color: #07294d;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 5;
+      -webkit-transition: 0.4s ease-in-out;
+      transition: 0.4s ease-in-out;
+      background-color: #ffc600;
+      padding: 0px 10px;
+      margin:5px;
+  }
+  .main-btn:hover{
+      color: #ffc600;
+      border-color: #07294d;
+      background-color: #07294d;
+  }
+  
+  .invalid-btn{
+      display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid gray;
+    font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    line-height: 30px;
+    border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 5;
+      -webkit-transition: 0.4s ease-in-out;
+      transition: 0.4s ease-in-out;
+      background-color: gray;
+      padding: 0px 10px;
+      margin:5px;
+  }
+  
+  
+  .second-btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #07294d;
+    font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    line-height: 30px;
+    border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 5;
+      -webkit-transition: 0.4s ease-in-out;
+      transition: 0.4s ease-in-out;
+      background-color: #07294d;
+      padding: 0px 10px;
+      margin:5px;
+  }
+  .second-btn:hover{
+      color: #07294d;
+      border-color: white;
+      background-color: white;
+  }
+  
+  
+  button.mat-dialog-close{
+      background-color:#eeeee4;
+      color:black;
+  }
+  
+  .close-btn{
+      margin-left: 95%;
+      margin-top: -10%;
+      margin-bottom: 5%;
+      color:#07294d;
+      
+  }
+  
+  .close-btn:hover{
+      color:#ffc600;
+  }
+
+  .example-card {
+    margin-bottom: 8px;
+  }
+
+  .cart {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }

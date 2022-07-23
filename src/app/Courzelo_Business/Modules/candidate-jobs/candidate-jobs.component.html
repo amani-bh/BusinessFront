@@ -1,0 +1,163 @@
+
+    
+    <!--====== PAGE BANNER PART START ======-->
+    <div class="gray-bg">
+    <section id="page-banner " class="pt-105 pb-110 bg_cover  " data-overlay="8" >
+        <div class="layer"></div>
+        <div class="container">
+                    <div class="page-banner-cont">
+                        <h2>Job Offers</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="register">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Job Offers</li>
+                            </ol>
+                        </nav>
+                    </div>  <!-- page banner cont -->
+        </div> <!-- container -->
+    </section>
+
+    
+
+    
+    <div id="event-page" class="pt-90 pb-120 gray-bg">
+        <div class="container descrip">
+            <div class=" pt-40">
+                <p>Check out this interesting job offers and post for the company the ones you want to work with  </p>
+            </div>
+        </div>        
+    
+       <div class="row">
+            <div class="search-bar col-lg-6 col-md-6 col-sm-4 col-xs-1">
+               <mat-form-field >
+                  <input matInput  (input)="doFilter()" [formControl]="search" type="text" placeholder="Search">
+                  <mat-icon matSuffix>search</mat-icon>
+               </mat-form-field>
+            </div>
+
+            <div class="Job-search col-lg-6 col-md-6 col-sm-4 col-xs-1">
+               <mat-form-field >
+                <input matInput  (input)="doFilter()" [formControl]="searchLocation" type="text" placeholder="Search by Location">
+                <mat-icon matSuffix>search</mat-icon>
+             </mat-form-field>
+
+          </div>
+        </div>
+       
+
+    <app-slide [activePane]="isLeftVisible ? 'left' : 'right'">
+        <div leftPane>
+
+            <section id="event-page" class="pt-90 pb-120 gray-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6" *ngFor="let job of dataSource.data | slice:((paginator.pageIndex)*paginator.pageSize):((paginator.pageIndex+1)*paginator.pageSize)">
+                             <mat-card class="card-item singel-event-list mt-30" >
+                                      <mat-card-header>
+                                         <mat-card-title class="section-title mt-50" ><h4>{{job.title}}</h4></mat-card-title>
+                                         <mat-card-subtitle>Post you application before : {{job.deadlineDate | date:'yyyy-MM-dd'}}</mat-card-subtitle>
+                                      </mat-card-header>
+                                      <mat-card-content>
+                                          <div class="row">
+                                             <div class="details col-lg-5 col-md-5 col-sm-5">
+                                                  <span> <b>Requirement : </b> {{job.requirement}}</span>
+                                                  <span><b>Job type : </b> {{job.jobType}}</span>
+                                                  <span><b>hiring number : </b> {{job.hireNumber}}</span>
+                                             </div>
+                                             <div class="btn col-lg-6 col-md-6 col-sm-6">
+                                                <button class="details-btn" (click)="Details(job); isLeftVisible = !isLeftVisible">Details</button>
+                                                <button class="main-btn" (click)="AddJobApp(job)">Apply</button>
+                                             </div>
+                                         </div> 
+                                     </mat-card-content>
+                             </mat-card>
+                        </div>
+                       
+                    </div>
+                </div>
+                <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[2,5, 10, 25, 100]" (page)="pageEvent = $event">
+                </mat-paginator>
+
+            </section>  
+
+        </div>
+        <div rightPane> 
+            <div>
+                <button class="details-btn" (click)="isLeftVisible = !isLeftVisible">back  </button>
+            </div>
+            <div *ngIf="currentJob" class="row" >
+              <div class="col-lg-7 col-md-6 col-sm-12">
+                <div class="job-singel-left mt-30">
+                    <div class="title">
+                        <h3>{{currentJob.title}}</h3>
+                    </div> <!-- title -->
+                    <div class="job-terms">
+                        <ul>
+                            <li>
+                                <div class="company-name">
+                                    <div class="thum">
+                                        <img src="../../../../assets/CourzeloBusiness/images/a.jpg" alt="logo">
+                                    </div>
+                                    <div *ngIf="currentJob.business" class="name">
+                                        <span>Business</span>
+                                        <h6>{{currentJob.business.companyName}}</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div *ngIf="currentJob.business" class="details-section">
+                                    <span>Responsable</span>
+                                    <h6>{{currentJob.business.firstName}} {{currentJob.business.lastName}} </h6>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="details-section">
+                                    <span>Posted on</span>
+                                    <h6>{{currentJob.creationDate | date:'yyyy-MM-dd'}} </h6>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> <!-- course terms -->
+                    <div class="descrip-title">
+                        <h4>Description </h4> {{currentJob.description}}
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-lg-5  col-md-6  col-sm-12 ">
+                <div class="row job-singel-right">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                        <div class="job-features mt-30">
+                           <h4>Job offer Features </h4>
+                            <ul>
+                                <li><i class="fa fa-industry"></i>Industry : <span>{{currentJob.industry}}</span></li>
+                                <li><i class="fa fa-clone"></i>Job Type : <span>{{currentJob.jobType}}</span></li>
+                                <li><i class="fa fa-calendar-o"></i>Schedule type :  <span>{{currentJob.ScheduleType}}</span></li>
+                                <li ><i class="fa fa-compass"></i>LocationType :  <span>{{currentJob.locationType}}</span></li>
+                                <li *ngIf="currentJob.locationType!='remote'"><i class="fa fa-map-marker"></i>Location :  <span>{{currentJob.location}}</span></li>
+                            </ul>
+                        </div> <!-- course features -->
+                    </div>
+                    <div class="apply-btn">
+                        <button class="main-btn" (click)="AddJobApp(currentJob)">Apply</button>
+                        <div class="details-section">
+                           <b>** Apply before <span>{{currentJob.deadlineDate | date:'yyyy-MM-dd'}}</span></b> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+           </div>
+            
+        </div>
+      </app-slide>
+      
+
+    </div>
+    
+</div>
+
+
+
+

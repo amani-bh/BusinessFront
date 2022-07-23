@@ -1,0 +1,47 @@
+
+  
+  <mat-sidenav-container >
+  
+    <mat-sidenav #sidenav="matSidenav" mode="side"  [@openClose]="isExpanded? 'open' : 'closed'" autosize >
+     
+      <mat-nav-list>
+        <mat-list-item (click)="isExpanded = !isExpanded"  >
+          <mat-icon>menu</mat-icon> 
+          <h4 matLine *ngIf="isExpanded" class="textSidnav"> Menu </h4> </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="jobOverview" routerLinkActive="active-link"  >
+          <mat-icon>visibility</mat-icon>
+          <h4 matLine *ngIf="isExpanded" class="textSidnav"> Job overview </h4> </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="candidateApp"   routerLinkActive="active-link"> 
+          <mat-icon> list_alt</mat-icon>
+          <h4 matLine *ngIf="isExpanded" class="textSidnav">Candidate Applications</h4> </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="CompareCandidate"  routerLinkActive="active-link" >
+          <mat-icon>compare</mat-icon>
+          <h4 matLine *ngIf="isExpanded" class="textSidnav">  Compare candidate </h4> </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="Quizmanagement"  routerLinkActive="active-link" > 
+          <mat-icon>library_books</mat-icon>
+          <h4 matLine *ngIf="isExpanded" class="textSidnav"> Technical tests </h4></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="PrehiringTest"  routerLinkActive="active-link" > 
+          <mat-icon>library_books</mat-icon>
+          <h4 matLine *ngIf="isExpanded" class="textSidnav">Prehiring tests </h4></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="History"  routerLinkActive="active-link" >  
+          <mat-icon>history</mat-icon>
+          <h4 matLine *ngIf="isExpanded" class="textSidnav"> History </h4> </mat-list-item>
+      </mat-nav-list>
+    
+    </mat-sidenav>
+
+    <mat-sidenav-content autosize>
+      
+      <router-outlet></router-outlet>
+  
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>
+
+

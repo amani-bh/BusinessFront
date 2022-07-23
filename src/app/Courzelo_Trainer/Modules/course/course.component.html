@@ -1,0 +1,1500 @@
+<div class="container">
+  <mat-stepper
+    class="example-stepper"
+    [orientation]="(stepperOrientation | async)!"
+  >
+    <!--Begin Course-->
+    <mat-step [stepControl]="firstFormGroup" label="Begin your course">
+      <form [formGroup]="firstFormGroup" style="margin-top: 3%">
+        <mat-form-field style="width: 80%" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input formControlName="firstCtrl" matInput required />
+        </mat-form-field>
+        <div class="row">
+          <div class="col-5">
+            <mat-form-field style="width: 100%" appearance="fill">
+              <mat-label>Price</mat-label>
+              <input formControlName="firstCtrl" matInput required />
+            </mat-form-field>
+          </div>
+          <div class="col-7">
+            <mat-form-field style="width: 100%" appearance="fill">
+              <mat-label>Select your Category</mat-label>
+              <mat-select formControlName="firstCtrl">
+                <mat-option value="one">Web Development</mat-option>
+                <mat-option value="two">Python</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-form-field style="width: 70%" appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="firstCtrl"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button matStepperNext class="nextBtn">
+            <span style="color: rgb(255, 198, 0); font-weight: bold">Next</span>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <!--End Begin Course-->
+    <!--Introduction -->
+    <mat-step [stepControl]="secondFormGroup" label="Introduction">
+      <div>
+        <div class="col-9" style="margin-top: 5%; margin-left: 10%">
+          <p class="text-justify" style="font-size: large">
+            The <span style="font-weight: bold">4MAT</span> model involves the
+            use of right and left mode strategies in four distinct phases of the
+            learning cycle.<br />
+            <span style="font-weight: bold"
+              ><br />1 - Living<br />
+              2 - Conceptualization<br />
+              3 - Application<br />
+              4 - Refining<br /></span
+            ><br />
+            - As an instructional design tool, 4MAT offers teachers and trainers
+            a systematic way to train all learners to think and learn well.<br />
+            - As a professional development tool, it provides a framework for
+            assessing the quality of any learning experience. <br />
+            - As an organizational model, it provides a method for creating an
+            environment of continuous learning and development.<br />
+          </p>
+        </div>
+        <div class="row" style="margin-top: 5%">
+          <div class="col-6" style="width: 80%">
+            <img
+              style="width: 70%; margin-left: 25%"
+              src="../../../../assets/images_trainer/Kolb_Phases/introductionKolb1.PNG"
+            />
+          </div>
+          <div class="col-6">
+            <img
+              style="width: 58%; margin-left: 10%"
+              src="../../../../assets/images_trainer/Kolb_Phases/introductionKolb2.PNG"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <video
+            src="../../../../assets/images_trainer/What-is-4MAT.m4v"
+            preload="auto"
+            controls=""
+            style="
+              width: 50%;
+              margin-bottom: 5%;
+              margin-top: 5%;
+              margin-left: 25%;
+            "
+          ></video>
+        </div>
+        <div class="col-9" style="margin-left: 10%; margin-bottom: 5%">
+          <p style="font-size: large" class="text-justify">
+            - The complete model is an integration of learning styles and
+            hemisphericity in a sequence that follows the natural cycle of
+            learning.<br />For true learning to occur, all parts of the learning
+            cycle must be addressed, starting with one and moving to four,
+            answering the key question for each style.<br /><br /><span
+              style="font-weight: bold"
+              >Follow these steps to create your introduction:</span
+            >
+          </p>
+        </div>
+      </div>
+      <mat-accordion class="example-headers-align">
+        <h1
+          style="
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+          "
+        >
+          Begin your Introduction
+        </h1>
+        <mat-expansion-panel
+          [expanded]="step === 0"
+          (opened)="setStep(0)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(212, 57, 63); font-weight: bold"
+                >Phase 1 : Why?</span
+              >
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/phase1.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  We want to understand the meaning and purpose, and the
+                  instructor's role is to make connections between the material
+                  and the learners, to get their attention.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 1"
+          (opened)="setStep(1)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(67, 84, 138); font-weight: bold"
+                >Phase 2 : What?</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/phase2.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  Only when we are satisfied with the relevance are we ready to
+                  know "What? At this point, the trainer provides information
+                  and satisfies our desire for facts, structure and theory.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 2"
+          (opened)="setStep(2)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(59, 141, 77); font-weight: bold"
+                >Phase 3 : How?</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/phase3.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  Once we have the knowledge, we ask "How?" and we want to
+                  understand how we can apply our new knowledge to the real
+                  world. We focus on problems and how we can use our learning to
+                  solve them.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 3"
+          (opened)="setStep(3)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(255, 207, 73); font-weight: bold"
+                >Phase 4 : If?</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/phase4.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  I mean, we want to try it, so we ask questions like "What if?"
+                  'What else?" or "What next?" This is when we engage in active
+                  experimentation, trial and error, pushing the boundaries -
+                  learning by doing.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">End</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div style="margin-top: 10%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Next</span>
+        </button>
+      </div>
+    </mat-step>
+    <!--End Introduction -->
+    <!--Chapters -->
+    <mat-step [stepControl]="thirdFormGroup" label="Chapters">
+      <div class="row" style="margin-top: 5%; margin-bottom: 5%">
+        <div class="col-7" style="width: 80%">
+          <p class="text-justify" style="font-size: large">
+            - The
+            <span style="font-weight: bold">4MAT Learning Styles Model</span> is
+            a framework for creating a dynamic and more involved style of
+            teaching by accurately visualising the learning process that each
+            learner goes through.<br />4MAT provides a common framework for
+            understanding the way in which individuals and groups go through the
+            process of interpreting, assimilating, acting on and integrating
+            knowledge. <br />- The
+            <span style="font-weight: bold">4MAT Learning Styles Model</span> is
+            based on the four different styles of learning developed by David
+            Kolb. The theories that she used for this were Kolb’s model of
+            learning styles and the concept of the two brain halves that process
+            information in a different way. In short, there are four learning
+            styles outlined in the 4MAT model in relation to the dynamics that
+            arise through interactions between the observation mode and
+            information processing model.<br />
+            - The result is an
+            <span style="font-weight: bold">8-step</span> sequential instruction
+            model that is made up of four quadrants.
+          </p>
+        </div>
+        <div class="col-5">
+          <img
+            style="width: 80%"
+            src="../../../../assets/images_trainer/Kolb_Phases/chapterKolb.jpeg"
+          />
+        </div>
+      </div>
+      <mat-accordion class="example-headers-align">
+        <h1
+          style="
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+          "
+        >
+          Begin your first chapter
+        </h1>
+        <mat-expansion-panel
+          [expanded]="step === 0"
+          (opened)="setStep(0)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(225, 0, 56); font-weight: bold"
+                >Phase 1 : Connect</span
+              >
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase1.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  In the first quadrant, the reason why something should be
+                  learned is created, the answer to the question ‘why?’. This
+                  makes use of the ‘right mode’ of the brain. The goal is to
+                  have the learner experience it for themselves by getting them
+                  involved. This can be done, for example, by having the learner
+                  share his or her own experiences. This way the experience is
+                  stimulated by personal meaning. The teacher or expert who
+                  wants to convey something to others has a motivating role here
+                  and only has to guide the discussion.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 1"
+          (opened)="setStep(1)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(238, 119, 115); font-weight: bold"
+                >Phase 2 : Attend</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase2.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  In the left-hand mode of quadrant 1, the students examine the
+                  experience. The method once again involves a discussion, but
+                  this time students are asked to look past their own
+                  experience. The experience then flows into a meaningful
+                  dialogue and reflection. The goals of the first quadrant are:
+                  giving meaning to the subject, visualising and allowing the
+                  student to integrate aspects of the subject.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 2"
+          (opened)="setStep(2)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(0, 143, 209); font-weight: bold"
+                >Phase 3 : Image</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase3.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  The question of ‘what?’ needs to be answered in the second
+                  quadrant. In this step, an attempt is made to make the student
+                  reflect more deeply. It is an integrating step in the right
+                  mode of the brain. Teachers should move the students from the
+                  concrete to the abstract. The subjective experiences will be
+                  mixed with the abstract theory that will be handled at a later
+                  stage. This allows pupils to form a picture of the subject
+                  material, which makes them reinforce their focus.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 3"
+          (opened)="setStep(3)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(73, 180, 224); font-weight: bold"
+                >Phase 4 : Inform</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase4.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  In the left-hand mode of quadrant two, the teacher takes the
+                  student to the core of the conceptual information. This is all
+                  about taking in information. The information that you choose
+                  to share should be based on the concept and shared
+                  experiences, and should lead to further research by the
+                  student. The goals in quadrant two are conceptualising,
+                  defining, shaping and acquiring knowledge.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 4"
+          (opened)="setStep(4)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(20, 163, 64); font-weight: bold"
+                >Phase 5 : Practice</span
+              >
+            </mat-panel-title>
+            <mat-panel-description> </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase5.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  In the third quadrant the ‘how’ question is answered. In this
+                  step, students actively get started with the knowledge gained
+                  from the previous steps from the left mode. They will use
+                  worksheets, run experiments or use related technology.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondOneCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 5"
+          (opened)="setStep(5)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(139, 195, 132); font-weight: bold"
+                >Phase 6 : Extend</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase6.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  In the right mode of the third quadrant, the students will
+                  make their own contribution to the teaching material. This may
+                  be a personal synthesis, but they should above all be offered
+                  the opportunity to approach the content of the lesson in their
+                  own way. This is a right mode activity. The common sense
+                  students, described in the heading ‘the learning styles in the
+                  4MAT model’, feel most at ease here. The teacher can let
+                  students create a project proposal related to the curriculum,
+                  which encourages them to think actively. The objectives from
+                  quadrant three include collecting data, asking questions,
+                  hypothesising, tinkering, experimenting and making decisions.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondTwoCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 6"
+          (opened)="setStep(6)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(236, 116, 4); font-weight: bold"
+                >Phase 7 : Refine</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase7.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  In the fourth quadrant, the ‘what if’ question will be
+                  answered. In this step, the students are asked to analyse what
+                  they’ve planned as an addition to what they’ve learned from
+                  the previous step. The analytical aspect to this step makes it
+                  an activity for the left mode. This seventh step requires
+                  students to refine what they’ve learned and applied in the
+                  exercises.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondThreeCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">
+              Next
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          [expanded]="step === 7"
+          (opened)="setStep(7)"
+          hideToggle
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span style="color: rgb(245, 166, 99); font-weight: bold"
+                >Phase 8 : Perform</span
+              >
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-4">
+              <img
+                class="imgKolb"
+                src="../../../../assets/images_trainer/Kolb_Phases/chapterPhase8.PNG"
+              />
+            </div>
+            <div class="col-8">
+              <div>
+                <h2>Goal</h2>
+                <p>
+                  In the final step of the 4MAT model’s learning process, the
+                  students explain to each other what they have learned or
+                  created. It’s also important in this step that the students
+                  are asked to talk about what they’ve learned and gained from
+                  this entire cycle. The goals in the fourth quadrant are, among
+                  others: identify limitations, review, close, summarise and
+                  evaluate.
+                </p>
+              </div>
+              <div>
+                <form [formGroup]="secondFormGroup">
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="secondFourCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </form>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">
+              Previous
+            </button>
+            <button mat-button color="primary" (click)="nextStep()">End</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div style="margin-top: 5%">
+        <button
+          mat-raised-button
+          style="background-color: black"
+          matStepperPrevious
+        >
+          <span style="color: white">Add Chapter</span>
+        </button>
+      </div>
+      <div style="margin-top: 10%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Next</span>
+        </button>
+      </div>
+    </mat-step>
+    <!--End Chapters -->
+    <!--Conclusion -->
+    <mat-step [stepControl]="forthFormGroup" label="Conclusion">
+      <div>
+        <div class="col-9" style="margin-top: 5%; margin-left: 10%">
+          <p class="text-justify" style="font-size: large">
+            The <span style="font-weight: bold">4MAT</span> model involves the
+            use of right and left mode strategies in four distinct phases of the
+            learning cycle.<br />
+            <span style="font-weight: bold"
+              ><br />1 - Living<br />
+              2 - Conceptualization<br />
+              3 - Application<br />
+              4 - Refining<br /></span
+            ><br />
+            - As an instructional design tool, 4MAT offers teachers and trainers
+            a systematic way to train all learners to think and learn well.<br />
+            - As a professional development tool, it provides a framework for
+            assessing the quality of any learning experience. <br />
+            - As an organizational model, it provides a method for creating an
+            environment of continuous learning and development.<br />
+          </p>
+        </div>
+        <div class="row" style="margin-top: 5%">
+          <div class="col-6" style="width: 80%">
+            <img
+              style="width: 70%; margin-left: 25%"
+              src="../../../../assets/images_trainer/Kolb_Phases/introductionKolb1.PNG"
+            />
+          </div>
+          <div class="col-6">
+            <img
+              style="width: 58%; margin-left: 10%"
+              src="../../../../assets/images_trainer/Kolb_Phases/introductionKolb2.PNG"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <video
+            src="../../../../assets/images_trainer/What-is-4MAT.m4v"
+            preload="auto"
+            controls=""
+            style="
+              width: 50%;
+              margin-bottom: 5%;
+              margin-top: 5%;
+              margin-left: 25%;
+            "
+          ></video>
+        </div>
+        <div class="col-9" style="margin-left: 10%; margin-bottom: 5%">
+          <p style="font-size: large" class="text-justify">
+            - The complete model is an integration of learning styles and
+            hemisphericity in a sequence that follows the natural cycle of
+            learning.<br />For true learning to occur, all parts of the learning
+            cycle must be addressed, starting with one and moving to four,
+            answering the key question for each style.<br /><br /><span
+              style="font-weight: bold"
+              >Follow these steps to create your conclusion:</span
+            >
+          </p>
+        </div>
+      </div>
+      <mat-accordion class="example-headers-align">
+        <form [formGroup]="forthFormGroup">
+          <mat-expansion-panel
+            [expanded]="step === 0"
+            (opened)="setStep(0)"
+            hideToggle
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span style="color: red; font-weight: bold"
+                  >Phase 1 : Why?</span
+                >
+              </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-4">
+                <img
+                  class="imgKolb"
+                  src="../../../../assets/images_trainer/Kolb_Phases/phase1.PNG"
+                />
+              </div>
+              <div class="col-8">
+                <div>
+                  <h2>Goal</h2>
+                  <p>
+                    We want to understand the meaning and purpose, and the
+                    instructor's role is to make connections between the
+                    material and the learners, to get their attention.
+                  </p>
+                </div>
+                <div>
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthOneCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthOneCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthOneCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="forthOneCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </div>
+              </div>
+            </div>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="nextStep()">
+                Next
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel
+            [expanded]="step === 1"
+            (opened)="setStep(1)"
+            hideToggle
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span style="color: rgb(36, 0, 128); font-weight: bold"
+                  >Phase 2 : What?</span
+                >
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="row">
+              <div class="col-4">
+                <img
+                  class="imgKolb"
+                  src="../../../../assets/images_trainer/Kolb_Phases/phase2.PNG"
+                />
+              </div>
+              <div class="col-8">
+                <div>
+                  <h2>Goal</h2>
+                  <p>
+                    Only when we are satisfied with the relevance are we ready
+                    to know "What? At this point, the trainer provides
+                    information and satisfies our desire for facts, structure
+                    and theory.
+                  </p>
+                </div>
+                <div>
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthTwoCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthTwoCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthTwoCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="forthTwoCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </div>
+              </div>
+            </div>
+
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">
+                Previous
+              </button>
+              <button mat-button color="primary" (click)="nextStep()">
+                Next
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel
+            [expanded]="step === 2"
+            (opened)="setStep(2)"
+            hideToggle
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span style="color: green; font-weight: bold"
+                  >Phase 3 : How?</span
+                >
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-4">
+                <img
+                  class="imgKolb"
+                  src="../../../../assets/images_trainer/Kolb_Phases/phase3.PNG"
+                />
+              </div>
+              <div class="col-8">
+                <div>
+                  <h2>Goal</h2>
+                  <p>
+                    Once we have the knowledge, we ask "How?" and we want to
+                    understand how we can apply our new knowledge to the real
+                    world. We focus on problems and how we can use our learning
+                    to solve them.
+                  </p>
+                </div>
+                <div>
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthThreeCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthThreeCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthThreeCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="forthThreeCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </div>
+              </div>
+            </div>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">
+                Previous
+              </button>
+              <button mat-button color="primary" (click)="nextStep()">
+                Next
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel
+            [expanded]="step === 3"
+            (opened)="setStep(3)"
+            hideToggle
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span style="color: rgb(225, 225, 34); font-weight: bold"
+                  >Phase 4 : If?</span
+                >
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-4">
+                <img
+                  class="imgKolb"
+                  src="../../../../assets/images_trainer/Kolb_Phases/phase4.PNG"
+                />
+              </div>
+              <div class="col-8">
+                <div>
+                  <h2>Goal</h2>
+                  <p>
+                    I mean, we want to try it, so we ask questions like "What
+                    if?" 'What else?" or "What next?" This is when we engage in
+                    active experimentation, trial and error, pushing the
+                    boundaries - learning by doing.
+                  </p>
+                </div>
+                <div>
+                  <mat-tab-group>
+                    <mat-tab label="Image"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthFourCtrl"
+                        type="file"
+                        accept="image/*"
+                    /></mat-tab>
+                    <mat-tab label="Video"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthFourCtrl"
+                        type="file"
+                        accept="video/*"
+                      />
+                    </mat-tab>
+                    <mat-tab label="PDF"
+                      ><input
+                        style="margin-top: 5%"
+                        formControlName="forthFourCtrl"
+                        type="file"
+                        accept="application/pdf"
+                    /></mat-tab>
+                    <mat-tab label="Text">
+                      <input
+                        style="margin-top: 5%"
+                        formControlName="forthFourCtrl"
+                        type="file"
+                        accept=".txt, text/plain, .doc, .docx, application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    /></mat-tab>
+                  </mat-tab-group>
+                </div>
+              </div>
+            </div>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">
+                Previous
+              </button>
+              <button mat-button color="primary" (click)="nextStep()">
+                End
+              </button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </form>
+      </mat-accordion>
+      <div style="margin-top: 10%">
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+        <button mat-raised-button class="nextBtn" matStepperNext>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Next</span>
+        </button>
+      </div>
+    </mat-step>
+    <!--End Conclusion -->
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-raised-button class="nextBtn" matStepperPrevious>
+          <span style="color: rgb(255, 198, 0); font-weight: bold">Back</span>
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

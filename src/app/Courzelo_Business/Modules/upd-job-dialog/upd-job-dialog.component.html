@@ -1,0 +1,244 @@
+
+ <div class="section-title mt-50">
+    <h3>Update Job offer</h3>
+   </div> <!-- section title -->  
+
+
+<div class="close-btn">
+    <button mat-icon-button mat-dialog-close  ><mat-icon>cancel</mat-icon></button>   
+</div>
+
+
+<div class="diag-content">
+    <form id="add-form" #f="ngForm" [formGroup]="Form" autocomplete="off" novalidate>
+        <div class="row">
+            
+            <mat-card class="card-title">
+            <h5>General Details</h5>
+            </mat-card>
+            <div class="col-lg-12">
+                <div class="sm-input-bar">
+                    <mat-form-field class="col-lg-6"> 
+                        <input matInput placeholder="Title" formControlName="title"  required  >
+                        <mat-error *ngIf="hasError('title', 'required')">title is necessary</mat-error>
+                    </mat-form-field>   
+                    
+                    <mat-form-field class="col-lg-6"> 
+                        <mat-select placeholder="State" formControlName="state"  required >
+                            <mat-option value="Active"> Active </mat-option>
+                            <mat-option value="Inactive"> Inactive </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('state', 'required')">State  is necessary</mat-error>
+                    </mat-form-field>  
+                </div> <!-- singel form -->
+            </div>
+            
+    
+            <div class="col-lg-12">
+                <div class="input-bar">
+                    <mat-form-field class="example-full-width" >
+                        <textarea matInput placeholder="Description" formControlName="description"  required  ></textarea>
+                        <mat-error *ngIf="hasError('description', 'required')">Description is necessary</mat-error>
+                    </mat-form-field>     
+                </div> <!-- singel form -->
+            </div>
+    
+    
+            <div class="col-lg-12">
+                <div class="Date-input-bar">
+                    <mat-form-field class="col-lg-6"  >
+                        <input matInput [matDatepicker]="picker1" placeholder="Start date"  formControlName="startDate" required >
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error *ngIf="hasError('startDate', 'required')">Start Date is necessary</mat-error>
+                      </mat-form-field> 
+        
+                      <mat-form-field class="col-lg-6">
+                        <input matInput [matDatepicker]="picker2"  placeholder="End date" formControlName="deadlineDate"  required >
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                        <mat-error *ngIf="hasError('deadlineDate', 'required')">Deadline Date is necessary</mat-error>
+                    </mat-form-field>
+                </div> 
+            </div>
+            
+            <div class="col-lg-12">
+                <div class="sm-input-bar">   
+                    <mat-form-field class="col-lg-6"> 
+                        <mat-select placeholder="Industry" formControlName="industry" required   (selectionChange)="onChange($event.value)">
+                            <mat-option  *ngFor="let industry of theData.industries" value="{{industry.industry.industryName}}"> {{industry.industry.industryName}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('industry', 'required')">industry is necessary</mat-error>
+                    </mat-form-field> 
+                
+                    <mat-form-field class="col-lg-6"> 
+                        <mat-select placeholder="Sub Industry" formControlName="subIndustry"  required (selectionChange)="onChangeSub($event.value)" >
+                            <mat-option  *ngFor="let subIndustry of subIndustries" value="{{subIndustry.industryName}}"> {{subIndustry.industryName}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('subIndustry', 'required')">Sub Industry  is necessary</mat-error>
+                    </mat-form-field> 
+    
+                    </div>
+                </div>
+    
+                <div class="col-lg-12">
+                    <div class="sm-input-bar">
+    
+                    <mat-form-field class="col-lg-6"> 
+                        <mat-select placeholder="Job Type" formControlName="jobType" required>
+                            <mat-option value="intership"> intership </mat-option>
+                            <mat-option value="CDI"> CDI </mat-option>
+                            <mat-option value="Full time"> Full time </mat-option>
+                            <mat-option value="Part time"> Part time </mat-option>
+                            <mat-option value="Freelance"> Freelance </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('jobType', 'required')">Job Type  is necessary</mat-error>
+                    </mat-form-field>        
+                    <mat-form-field class="col-lg-6">
+    
+                        <mat-select placeholder="Schedules type" formControlName="schedulesType" required>
+                            <mat-option value="flexible"> flexible </mat-option>
+                            <mat-option value="8-hour shift"> 8-hour shift  </mat-option>
+                            <mat-option value="weekend availability"> weekend availability </mat-option>
+                            <mat-option value="On call availability"> On call availability </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('schedulesType', 'required')">schedulesType  is necessary</mat-error>
+                    </mat-form-field>        
+                </div> <!-- singel form -->
+            </div>
+    
+    
+            <div class="col-lg-12">
+                <div class="sm-input-bar">
+                    <mat-form-field class="col-lg-6"> 
+                        <input matInput placeholder="Hiring Number" formControlName="hireNumber"   >
+                        <mat-error *ngIf="hasError('hireNumber', 'required')">Hiring Number  is necessary</mat-error>
+                    </mat-form-field>  
+    
+                    <mat-form-field class="col-lg-6"> 
+                        <mat-select placeholder="Country " formControlName="country"    >
+                            <mat-option  *ngFor="let country of countries" value="{{country.name}}"> {{country.name}} </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('country', 'required')">location  is necessary</mat-error>
+                    </mat-form-field>  
+                </div>
+                <div class="sm-input-bar">
+                    <mat-form-field class="col-lg-6"> 
+                        <mat-select placeholder="Location Type" formControlName="locationType"   >
+                            <mat-option value="remote"> remote </mat-option>
+                            <mat-option value="on site"> on site </mat-option>
+                            <mat-option value="mixed"> mixed </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError('locationType', 'required')">Location Type  is necessary</mat-error>
+                    </mat-form-field>        
+            
+                    <mat-form-field class="col-lg-6" *ngIf="checkJobLocation()" > 
+                        <input matInput placeholder="Location" formControlName="location"   >
+                        <mat-error *ngIf="hasError('location', 'required')">location  is necessary</mat-error>
+                    </mat-form-field>     
+                </div> <!-- singel form -->
+            </div>
+    
+            <div class="col-lg-12">
+                <div class="input-bar">
+                    <mat-form-field class="example-full-width"> <input matInput placeholder="Requirement" formControlName="requirement"  required  >
+                        <mat-error *ngIf="hasError('requirement', 'required')">requirement  is necessary</mat-error>
+                    </mat-form-field>     
+                </div> <!-- singel form -->
+            </div>
+       
+        
+           <mat-card class="card-title">
+            <h5>Payement Details</h5>
+            </mat-card>
+    
+            <div class="col-lg-12">
+                <div class="three-input-bar">
+                    <mat-form-field class="col-lg-3"> 
+                        <mat-select placeholder="Select a currency" formControlName="salaryCurrency"  >
+                            <div *ngFor="let country of countries">
+                              <mat-option  *ngFor="let currency of country.currencies"  value="{{currency.code}}"> {{currency.code}} </mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="col-lg-4"> 
+                        <mat-select placeholder="Select an option" formControlName="salaryOption" >
+                            <mat-option value="Exact amount"> Exact amount </mat-option>
+                            <mat-option value="Range"> Range </mat-option>
+                            <mat-option value="Starting amount"> Starting amount </mat-option>
+                        </mat-select>
+                    </mat-form-field>  
+             
+                    <mat-form-field class="col-lg-4" *ngIf="Form.get('salaryOption')?.value=='Exact amount'"> 
+                        <input matInput placeholder="Salary" formControlName="salary" >
+                    </mat-form-field>  
+    
+                    <mat-form-field class="col-lg-4" *ngIf="Form.get('salaryOption')?.value=='Starting amount'"> 
+                        <input matInput placeholder="Starting amount" formControlName="salaryStartAmout" >
+                    </mat-form-field>  
+    
+                </div> <!-- singel form -->
+            </div>
+    
+            
+            <div class="col-lg-12" *ngIf="Form.get('salaryOption')?.value=='Range'">
+                <h6 class="sub-title">Range</h6>
+                <div class="sm-input-bar"> 
+                   
+                    <mat-form-field class="col-lg-6"> 
+                        <input matInput placeholder="from" formControlName="salaryRangeMin" >
+                    </mat-form-field>    
+    
+                    <mat-form-field class="col-lg-6"> 
+                        <input matInput placeholder="to" formControlName="salaryRangeMax" >
+                    </mat-form-field>     
+                </div> <!-- singel form -->
+            </div>
+    
+            <mat-card class="card-title">
+                <h5>Communication</h5>
+                </mat-card>
+    
+                <div class="col-lg-12">
+                    <div class="check-box">   
+                       <mat-checkbox formControlName="communication" class="example-margin">Send application notifications to my email</mat-checkbox>
+                    </div> <!-- singel form -->
+                </div>
+        
+                <div class="col-lg-12">
+                    <div class="input-bar" *ngIf="Form.get('communication')?.value==true">   
+                        <mat-form-field class="col-lg-12"> 
+                            <input matInput placeholder="Email" formControlName="communicationMails" >
+                        </mat-form-field> 
+                    </div> <!-- singel form -->
+                </div>
+                 
+                <mat-card class="card-title">
+                    <h5>Job benefits</h5>
+                    </mat-card>
+    
+                    <div class="col-lg-12">
+                        <div class="input-bar">   
+                            <mat-form-field class="col-lg-12"> 
+                                <input matInput placeholder="Job benefits:Bonus, commission, paid time off, health insurance,.." formControlName="jobBenefits" >
+                            </mat-form-field> 
+                        </div> <!-- singel form -->
+                    </div>
+       
+        </div> <!-- row -->
+    </form>
+    </div>
+    
+
+
+<div mat-dialog-actions style="float:right;">
+    <button  class="second-btn" mat-dialog-close >Close</button>
+    <button  class="second-btn" (click)="Reset()">Reset</button>
+    <button  *ngIf="Form.valid" class="main-btn"  (click)="updatejob()"  >Done</button>
+    <button  *ngIf="!Form.valid" class="invalid-btn"  (click)="validateAllFormFields(Form)" >Done</button>
+  </div>
+
+
+  
+
+

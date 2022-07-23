@@ -1,0 +1,80 @@
+
+ <div class="section-title mt-50">
+    <h3>Apply For Job</h3>
+   </div> <!-- section title -->  
+
+
+<div class="close-btn">
+    <button mat-icon-button mat-dialog-close  ><mat-icon>cancel</mat-icon></button>   
+</div>
+
+<div class="diag-content">
+
+<app-slide [activePane]="isLeftVisible ? 'left' : 'right'">
+    <div leftPane>
+         <form id="add-form" #f="ngForm" [formGroup]="Form" autocomplete="off" novalidate>
+              <div class="row">
+                  <div class="col-md-6 col-md-4 col-sm-4 check-btn"><mat-checkbox  formControlName="option">upload Cv </mat-checkbox></div>
+                      <div class="col-md-6 col-md-4 col-sm-4 upload-btn" *ngIf="Form.get('option')?.value==true">
+                          <div class="singel-form ">
+                              <input  type="file" formControlName="cv" (change)="onFileChanged($event)" accept=".pdf,.doc,.xdoc">
+                              <div *ngIf="currentFileUpload" class="progress mt-2">
+                                <div
+                                  class="progress-bar progress-bar-info"
+                                  role="progressbar"
+                                  attr.aria-valuenow="{{ percentage }}"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                  [ngStyle]="{ width: percentage + '%' }"
+                                >
+                                  {{ percentage }}%
+                                </div>
+                              </div>
+                          </div> <!-- singel form -->
+                      </div>
+
+                      <div  *ngIf="data.message.idPrehiringTest" class="msg-span">
+                       <span>This job is attached to a prehiring test to facilite the pre-selection .<br>
+                        <b>Time limit :</b> on each question <br>
+                        <b>**If you quite the page , the test will be exited !</b>
+                    
+                    
+                      </span>
+                      </div>
+              </div> <!-- row -->
+              <div  class="action-btn" [ngClass]="data.message.idPrehiringTest!=null ? 'action-btn' : 'action-btn2'" >
+                <button  class="second-btn" mat-dialog-close  >Close</button>
+                <button  class="second-btn"  *ngIf="data.message.idPrehiringTest" (click)="isLeftVisible = !isLeftVisible;GetPrehiringTestByid(data.message.idPrehiringTest)" >Next</button>
+                <button  *ngIf="Form.valid && !data.message.idPrehiringTest && check() "  class="main-btn"  (click)="AddApp()" >Done</button>
+                <button  matTooltip="please complete the needed fields" *ngIf="!Form.valid && !data.message.idPrehiringTest && !check()" class="invalid-btn" (click)="validateAllFormFields(Form)" matTooltip="please complete the needed fields">Done</button>
+            </div>
+         </form>
+     </div>
+   <div rightPane>
+    <div *ngIf="prehiringTest">
+          <div *ngFor="let q of Questions().controls;let i=index;">
+             <mat-card class="question-card row">
+                 <div class="row">
+                     <div class="col-lg-11 col-md-10 col-sm-9">
+                          <label id="example-radio-group-label" ><b>{{q.value.questionLabel}}</b></label>
+                     </div> 
+                 </div>
+                 <ol>
+                     <div class="col-lg-6 col-md-2 col-sm-2 example-check-group">
+                         <mat-checkbox class="custom-frame col-lg-12" *ngFor="let a of Responses(i).value"  value="{{a}}" (change)="CheckResponse($event,i)" >
+                              <li class="col-lg-1"> {{a}}   </li>
+                         </mat-checkbox>
+                     </div>
+                 </ol>
+             </mat-card>
+         </div>
+    </div>
+    <div class="leftpanel-action" style="float:right;">
+        <button  class="second-btn" mat-dialog-close  >Close</button>
+        <button  *ngIf="Form.valid " class="main-btn"  (click)="AddAppPrehiring();" >Done</button>
+        <button  matTooltip="please complete the needed fields" *ngIf="!Form.valid " class="invalid-btn" (click)="validateAllFormFields(Form)" matTooltip="please complete the needed fields">Done</button>
+      </div>
+   </div>
+  </app-slide>
+</div>
+

@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div style="height: 60%; width:70%; margin: 5%;">
+<section id="course-part" class="pt-50 pb-50">
+    <div class="container">
+      <div class="row" style="margin-bottom: -20px">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+            <h2 style="font-size: 30px">My Learning Space</h2>
+
+          
+            
+          </div>
+          <!-- section title -->
+        </div>
+      </div>
+      <!-- row -->
+      <br />
+      <div class="container">
+        <div class="row" style="margin-left: -90px; margin-right: -99px">
+          <div class="col-lg-3 col-sm-6" *ngFor="let course of courses">
+            <div class="card hovercard">
+              <div class="cardheader">
+                <div class="sd">
+                
+                </div>
+              </div>
+
+              <br />
+
+              <a
+                    routerLink="/trainer/classworktrainer"
+                    
+                  >
+                    <h1 class="sousTitre">{{course.title}}</h1></a
+                  >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- course slied -->
+    </div>
+    <!-- container -->
+  </section>
+
+</div>
+
+  <app-footer></app-footer>

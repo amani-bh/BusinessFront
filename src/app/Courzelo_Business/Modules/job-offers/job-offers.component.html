@@ -1,0 +1,148 @@
+
+<div id="preloader" class="table-responsive">
+ 
+
+  
+    <div class="section-title mt-50">
+     <h3>Job offers</h3>
+    </div> <!-- section title -->  
+
+    
+      <div  class=" row">
+      <div class="search-bar col-lg-8 col-md-6 col-sm-4 col-xs-1">
+         <mat-form-field >
+            <input matInput  (keyup)="doFilter($any($event.target).value)" type="text" placeholder="Search">
+            <mat-icon matSuffix>search</mat-icon>
+         </mat-form-field>
+    </div>
+
+    <div class="add"> 
+        <button  class="add-btn" (click)="AddJobDialog()">
+            Post job offer
+        </button>
+    </div> 
+
+    
+      
+        <mat-card  [class.mat-elevation-z8]="true" class="left-search col-lg-3 col-md-3 col-sm-3">
+         <div class="descrip-title"> <h4>Status</h4></div>
+         <section class="example-section" [formGroup]="status" >
+          <h4></h4>
+          <p><mat-checkbox formControlName="open" (change)="check()">Open</mat-checkbox></p>
+          <p><mat-checkbox formControlName="close" (change)="check()">Close</mat-checkbox></p>
+        </section>
+         
+
+          <div class="descrip-title">  <h4>Date Created</h4></div>
+          
+        <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>From - To </mat-label>
+          <mat-date-range-input  
+            [formGroup]="datePicker"   
+            [rangePicker]="campaignOnePicker"
+            [comparisonStart]="datePicker.value.start"
+            [comparisonEnd]="datePicker.value.end">
+            <input matStartDate placeholder="Start date" formControlName="start" (dateChange)="filterPeriod()" >
+            <input matEndDate placeholder="End date" formControlName="end" (dateChange)="filterPeriod()" >
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+          <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+        </mat-form-field>
+        </mat-card>
+        
+      <div class="col-lg-8">
+    <table id="preloader" mat-table [dataSource]="dataSource"  matSort (matSortChange)="SortChange($event)" class="mat-elevation-z9"  >
+    
+        <ng-container matColumnDef="title" >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Title </th>
+          <td mat-cell *matCellDef="let jobOffers"> 
+            <span *ngIf="jobOffers.title!=null"> {{jobOffers.title}}</span>
+            <span *ngIf="jobOffers.title===null || jobOffers.title=='' ">----</span>  
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="creationDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Creation Date </th>
+          <td mat-cell *matCellDef="let jobOffers" > 
+            <span *ngIf="jobOffers.creationDate!=null">{{jobOffers.creationDate | date:'MM-dd-yyyy'}} </span>
+            <span *ngIf="jobOffers.creationDate===null ">----</span>
+        </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="locationType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Location type </th>
+          <td mat-cell *matCellDef="let jobOffers"> 
+            <span *ngIf="jobOffers.location!=null">{{jobOffers.locationType}} </span>
+            <span *ngIf="jobOffers.location===null ">----</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+          <td mat-cell *matCellDef="let jobOffers"> 
+            <span *ngIf="jobOffers.location!=null">{{jobOffers.location}} </span>
+            <span *ngIf="jobOffers.location===null || jobOffers.location=='' ">----</span>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="totalApplications">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Applications </th>
+          <td mat-cell *matCellDef="let jobOffers"> 
+            <span >{{jobOffers.totalApp}} </span>
+            
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="newApplications">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> New Applications </th>
+          <td mat-cell *matCellDef="let jobOffers"> 
+            <span> {{jobOffers.newApp}}</span>
+            
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="requirement">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Requirement </th>
+          <td mat-cell *matCellDef="let jobOffers"> 
+            <span *ngIf="jobOffers.requirement!=null">{{jobOffers.requirement}} </span>
+            <span *ngIf="jobOffers.requirement===null || jobOffers.requirement==[] ">----</span>
+         </td>
+        </ng-container>
+        <ng-container matColumnDef="action" class="action-btn">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let jobOffers ; " class="action-link"> 
+            <mat-slide-toggle (click)="$event.stopPropagation()" [checked]="verify(jobOffers)" (change)="toggle($event,jobOffers.idJob)" name="enableJob"></mat-slide-toggle>
+            <button class="upd-btn" mat-icon-button  (click)="UpdJob(jobOffers);$event.stopPropagation()"><mat-icon >edit</mat-icon></button>
+            <button class="del-btn" mat-icon-button (click)="DeleteJob(jobOffers.idJob);$event.stopPropagation()" ><mat-icon>delete_forever</mat-icon></button>
+            
+          </td>
+        </ng-container>
+
+          
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr class="example-element-row" mat-row *matRowDef="let row; columns: displayedColumns;let jobOffers"  (click)=" JobDash(jobOffers.idJob)"></tr>
+      </table>
+   
+
+
+    <mat-paginator   [pageSize]="5" [pageSizeOptions]="[3,10,25,50]"></mat-paginator>
+    </div>
+  </div>
+
+    
+
+    
+
+    
+  
+  
+    
+</div>
+
+
+
+    
+
+

@@ -1,0 +1,501 @@
+<app-header></app-header>
+<!--header-->
+<section
+  class="pt-105 pb-40 bg_cover"
+  data-overlay="8"
+  style="
+    background-image: url(../../../../assets/images_courses_per_categorie/page-banner-2.jpg);
+    height: 130px;
+  "
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12" style="margin-top: -50px">
+        <div class="page-banner-cont">
+          <h2>Web Development courses</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--end header-->
+<!--Most popular-->
+<section id="course-part" class="pt-50 pb-50">
+  <div class="container">
+    <div class="row" style="margin-bottom: -20px">
+      <div class="col-lg-6">
+        <div class="section-title pb-45">
+          <h2 style="font-size: 30px">Most popular</h2>
+        </div>
+      </div>
+    </div>
+    <carousel
+      [lightDOM]="true"
+      class="carousel--slider-alignement container"
+      [transitionDuration]="900"
+      [autoplayInterval]="700"
+      [autoplay]="true"
+      [transitionTimingFunction]="'ease-out'"
+      [cellWidth]="300"
+      [arrowsOutside]="false"
+      [pauseOnHover]="true"
+      [margin]="70"
+    >
+      <div
+        class="carousel-cell"
+        *ngFor="let item of coursesList; let index = index"
+      >
+        <div class="singel-course-2">
+          <div class="thum">
+            <div class="image">
+              <img
+                src="../../../../assets/images_courses_per_categorie/cu-1.jpg"
+                alt="Course"
+              />
+            </div>
+            <div class="course-teacher">
+              <div class="thum">
+                <a href="/singleCourseDetail/{{ item.id }}">
+                  <img
+                    src="../../../../assets/images_courses_per_categorie/teacher/t-1.jpg"
+                    alt="teacher"
+                  />
+                </a>
+              </div>
+              <div class="name">
+                <a href="/singleCourseDetail/{{ item.id }}"
+                  ><h6>{{ item.title }}</h6></a
+                >
+              </div>
+              <div class="review">
+                <ul>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+              </div>
+              <div style="margin-left: 75%; color: #ffc600">
+                <span
+                  ><b>{{ item.price }}DT</b></span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </carousel>
+  </div>
+</section>
+<!--end Most popular-->
+<!--trending-->
+<section id="course-part" class="pt-50 pb-50">
+  <div class="container">
+    <div class="row" style="margin-bottom: -20px">
+      <div class="col-lg-6">
+        <div class="section-title pb-45">
+          <h2 style="font-size: 30px">Trending</h2>
+        </div>
+      </div>
+    </div>
+    <carousel
+      [lightDOM]="true"
+      class="carousel--slider-alignement container"
+      [transitionDuration]="1000"
+      [autoplayInterval]="300"
+      [autoplay]="true"
+      [transitionTimingFunction]="'ease-out'"
+      [cellWidth]="300"
+      [arrowsOutside]="false"
+      [pauseOnHover]="true"
+      [margin]="60"
+    >
+      <div
+        class="carousel-cell"
+        *ngFor="let item of coursesList; let index = index"
+      >
+        <div class="singel-course-2">
+          <div class="thum">
+            <div class="image">
+              <img
+                src="../../../../assets/images_courses_per_categorie/cu-2.jpg"
+                alt="Course"
+              />
+            </div>
+            <div class="course-teacher">
+              <div class="thum">
+                <a routerLink="/singleCourseDetail/{{ item.id }}">
+                  <img
+                    src="../../../../assets/images_courses_per_categorie/teacher/t-2.jpg"
+                    alt="teacher"
+                  />
+                </a>
+              </div>
+              <div class="name">
+                <a routerLink="/singleCourseDetail/{{ item.id }}"
+                  ><h6>{{ item.instructorInfo }}</h6></a
+                >
+              </div>
+              <div class="review">
+                <ul>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+              </div>
+              <div style="margin-left: 75%; color: #ffc600">
+                <span
+                  ><b>{{ item.price }}DT</b></span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="cont">
+            <a routerLink="/singleCourseDetail/{{ item.id }}"
+              ><h4>{{ item.title }}</h4></a
+            >
+          </div>
+        </div>
+      </div>
+    </carousel>
+  </div>
+</section>
+<!--end trending-->
+<!--course-->
+<section id="course-part" class="pt-50 pb-50">
+  <div class="container">
+    <div class="row" style="margin-bottom: -20px">
+      <div class="col-lg-6">
+        <div class="section-title pb-45">
+          <h2 style="font-size: 30px">Popular topics</h2>
+        </div>
+      </div>
+      <carousel
+        [lightDOM]="true"
+        class="carousel--slider-alignement category-slied mt-40"
+        [transitionDuration]="900"
+        [autoplayInterval]="700"
+        [autoplay]="true"
+        [transitionTimingFunction]="'ease-out'"
+        [cellWidth]="300"
+        [arrowsOutside]="false"
+        [pauseOnHover]="true"
+        [margin]="50"
+        [height]="100"
+      >
+        <div class="carousel-cell">
+          <a href="#">
+            <span
+              class="singel-category text-center color-1"
+              style="background-color: #07294d"
+            >
+              <span class="cont">
+                <span>Language</span>
+              </span>
+            </span>
+          </a>
+        </div>
+        <div class="carousel-cell">
+          <a href="#">
+            <span
+              class="singel-category text-center color-2"
+              style="background-color: #07294d"
+            >
+              <span class="cont">
+                <span>Business</span>
+              </span>
+            </span>
+          </a>
+        </div>
+        <div class="carousel-cell">
+          <a href="#">
+            <span
+              class="singel-category text-center color-2"
+              style="background-color: #07294d"
+            >
+              <span class="cont">
+                <span>Literature</span>
+              </span>
+            </span>
+            <!-- singel category -->
+          </a>
+        </div>
+        <div class="carousel-cell">
+          <a href="#">
+            <span
+              class="singel-category text-center color-2"
+              style="background-color: #07294d"
+            >
+              <span class="cont">
+                <span>Language</span>
+              </span>
+            </span>
+          </a>
+        </div>
+        <div class="carousel-cell">
+          <a href="#">
+            <span
+              class="singel-category text-center color-2"
+              style="background-color: #07294d"
+            >
+              <span class="cont">
+                <span>Business</span>
+              </span>
+            </span>
+          </a>
+        </div>
+        <div class="carousel-cell">
+          <a href="#">
+            <span
+              class="singel-category text-center color-2"
+              style="background-color: #07294d"
+            >
+              <span class="cont">
+                <span>Literature</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </carousel>
+    </div>
+  </div>
+</section>
+<section id="course-part" class="pt-50 pb-50">
+  <div class="container">
+    <div class="row" style="margin-bottom: -20px">
+      <div class="col-lg-6">
+        <div class="section-title pb-45">
+          <h2 style="font-size: 30px">All Development courses</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--end course-->
+<!--filter-->
+<div class="" style="margin-top: -150px">
+  <div class="ttr-wrapper" style="margin-top: -60px">
+    <div class="container-fluid col-lg-10">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="example-action-buttons">
+            <button
+              mat-button
+              (click)="toggle()"
+              style="width: 50%; margin-left: 25%; background-color: #07294d"
+            >
+              <mat-icon style="float: left; color: white" matListIcon
+                >filter_list
+              </mat-icon>
+              <p style="color: white">Filter</p>
+            </button>
+          </div>
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Type </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-checkbox class="example-margin" color="primary"
+                >All Courses</mat-checkbox
+              ><br />
+              <mat-checkbox class="example-margin" color="primary"
+                >Class Courses</mat-checkbox
+              ><br />
+              <mat-checkbox class="example-margin" color="primary"
+                >Not Class Courses</mat-checkbox
+              >
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Rating </mat-panel-title>
+              </mat-expansion-panel-header>
+              <section class="example-section">
+                <mat-checkbox class="example-margin" color="primary">
+                  <ul class="cours-star">
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                  </ul> </mat-checkbox
+                ><br />
+                <mat-checkbox class="example-margin" color="primary">
+                  <ul class="cours-star">
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul> </mat-checkbox
+                ><br />
+                <mat-checkbox class="example-margin" color="primary">
+                  <ul class="cours-star">
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul> </mat-checkbox
+                ><br />
+                <mat-checkbox class="example-margin" color="primary">
+                  <ul class="cours-star">
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul> </mat-checkbox
+                ><br />
+                <mat-checkbox class="example-margin" color="primary">
+                  <ul class="cours-star">
+                    <li class="active">
+                      <i class="fa fa-star" style="color: #ffc600"></i>
+                    </li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                </mat-checkbox>
+              </section>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title> Price </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-checkbox class="example-margin" color="primary"
+                >Free</mat-checkbox
+              ><br />
+              <mat-checkbox class="example-margin" color="primary"
+                >payable</mat-checkbox
+              >
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!--Filter Ends-->
+        </div>
+        <div class="col-lg-9 m-b30">
+          <div class="widget-box">
+            <div class="widget-inner">
+              <div
+                class="card-courses-list admin-courses"
+                *ngFor="let item of coursesList; let index = index"
+              >
+                <div class="card-courses-media">
+                  <img
+                    src="../../../../assets/images_courses_per_categorie/pic3.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="card-courses-full-dec">
+                  <div class="card-courses-title">
+                    <h4>Become a {{ item.title }} Master and Make Money</h4>
+                  </div>
+                  <div class="card-courses-list-bx">
+                    <ul class="card-courses-view">
+                      <li class="card-courses-user">
+                        <div class="card-courses-user-pic">
+                          <img
+                            src="../../../../assets/images_courses_per_categorie/pic2.jpg"
+                            alt=""
+                          />
+                        </div>
+                        <div class="card-courses-user-info">
+                          <h5>Teacher</h5>
+                          <h4>{{ item.instructorInfo }}</h4>
+                        </div>
+                      </li>
+                      <li class="card-courses-categories">
+                        <h5>3 Categories</h5>
+                        <h4>Backend</h4>
+                      </li>
+                      <li class="card-courses-review">
+                        <h5>3 Review</h5>
+                        <ul class="cours-star">
+                          <li class="active">
+                            <i class="fa fa-star" style="color: #ffc600"></i>
+                          </li>
+                          <li class="active">
+                            <i class="fa fa-star" style="color: #ffc600"></i>
+                          </li>
+                          <li class="active">
+                            <i class="fa fa-star" style="color: #ffc600"></i>
+                          </li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </li>
+                      <li class="card-courses-price">
+                        <del>$190</del>
+                        <h5 style="color: #ffc600">${{ item.price }}</h5>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="row card-courses-dec">
+                    <div class="col-md-12">
+                      <h6 class="m-b10">Course Description</h6>
+                      <p>{{ item.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end filter-->
+<!--pagination-->
+<div style="margin-bottom: 30px">
+  <nav class="courses-pagination mt-50">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a href="#" aria-label="Previous">
+          <i class="fa fa-angle-left"></i>
+        </a>
+      </li>
+      <li class="page-item"><a class="active" href="#">1</a></li>
+      <li class="page-item"><a href="#">2</a></li>
+      <li class="page-item"><a href="#">3</a></li>
+      <li class="page-item">
+        <a href="#" aria-label="Next">
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<!--end pagination-->
+<app-footer></app-footer>

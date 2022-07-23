@@ -1,0 +1,252 @@
+<div class="main-divstep">
+  <mat-stepper class="progress-bar" [orientation]="(stepperOrientation | async)!">
+  
+    <mat-step label="Introduction" state="phone">
+      <div class="main-div">
+        <mat-card >
+        
+          <p style="text-align: center;">{{quiz.title}}</p>
+        
+          <div class="text-wrap">
+            <p style="text-align: center;">{{quiz.description}}</p>
+          </div>
+        
+          <hr>
+          <div class="row">
+            <div class="col-sm-1">
+              <button mat-mini-fab class="num">1</button>
+              
+            </div>
+  
+            <div class="col-sm-8">
+              <div class="text-wrap">
+                <p> you have to pass the quiz in {{quiz.countperquiz}} Seconds</p>
+              </div>
+            </div>
+           
+          </div>
+          <br>
+         
+          <div class="row">
+            <div class="col-sm-1">
+              <button mat-mini-fab class="num">2</button>
+  
+            </div>
+  
+            <div class="col-sm-8">
+              <div class="text-wrap">
+                <p> you have  {{this.quiz.questionsList.length}} questions</p>
+              </div>
+            </div>
+         
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-1">
+              <button mat-mini-fab class="num">3</button>
+            </div>
+  
+            <div class="col-sm-8">
+              <div class="text-wrap">
+                <p>you can send your response before time is over</p>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">
+  
+  
+              <button mat-button matStepperNext class="post" (click)="starttimer()">Start</button>
+  
+            </div>
+            <div class="col-sm-4">
+            </div>
+          </div>
+        </mat-card>
+      </div>
+  
+  
+    </mat-step>
+    <mat-step label="Get started" >
+     
+      <div class="fix">
+      
+        <h4 [ngStyle]="{ color:timeLeft>5  ? 'black' : 'red' } ">{{timeLeft}}</h4>
+      </div>
+  
+     <!--<div class="main-div">
+        <mat-card class="quizcard">
+  
+  
+  
+  
+          <div class="row">
+            <div class="col-sm-9">
+              <p>{{ quiz.title }}</p>
+            </div>
+          
+          </div>
+  
+          <div class="text-wrap">
+            <p>{{quiz.description}}</p>
+          </div>
+          
+            <p>Score {{ score }}</p>
+          
+          <br>
+  
+  
+  
+        </mat-card>
+      </div>-->
+      <!-- rediger la partie de send-->
+  
+      <div *ngIf="quiz.type != 'Open_questions'">
+        <!-- <div *ngIf="stateaffich">
+          <div *ngFor="let questionlist of score">
+            
+              <h4>{{questionlist.question | json}}/{{ questionlist.points }}</h4>
+           
+          </div>
+        </div>-->
+        <div *ngFor="let questionlist of quiz.questionsList;let index=index">
+  
+          <div class="main-div">
+            <mat-card class="quizcard">
+              <div class="text-wrap">
+                <p>{{index+1}} . {{ questionlist.question }}</p>
+              </div>
+  
+  
+              <div *ngIf="quiz.type == 'MCQ'" style="width: 10%;">
+  
+  
+  
+                <div *ngFor="let wrong of questionlist.wronganswer;let j=index">
+  
+                
+                    <!--  <div class="p-2"><h4>wrong anwer</h4></div>-->
+  
+  
+                 
+  
+                      <mat-checkbox (change)="onDatacheckChange($event,wrong,questionlist)" value="{{wrong}}"
+                        [disabled]="state">
+                        <p style="position:relative;top:5px"
+                          [ngClass]="{ textred: wrong==quiztmp.questionsList[index].correctanswer[j] && state==true , textgrenn: wrong!=quiztmp.questionsList[index].correctanswer[j] && state==true}">
+                          {{ wrong }}</p>
+                      </mat-checkbox>
+  
+  
+                </div>
+  
+  
+              </div>
+  
+              <div *ngIf="quiz.type == 'SCQ' || quiz.type == 'Y/N'" style="width: 10%;">
+  
+  
+                <mat-radio-group (change)="onDataChange($event,questionlist)">
+  
+                  <div *ngFor="let wrong of questionlist.wronganswer" style="width: 10%;">
+  
+                    <div *ngIf="state==true">
+  
+                      <mat-radio-button disabled value="{{wrong}}" >
+                        <p style="position:relative;top:5px"
+                          [ngStyle]="{ color: wrong==quiztmp.questionsList[index].correctanswer[0] && state==true ? 'green' : 'red' } ">
+                          {{ wrong}}</p>
+                      </mat-radio-button><br />
+  
+                    </div>
+                    <div *ngIf="state!=true">
+  
+                      <mat-radio-button value="{{wrong}}">
+                        <p style="position:relative;top:5px">{{ wrong}}</p>
+                      </mat-radio-button><br />
+  
+                    </div>
+                  </div>
+  
+  
+                </mat-radio-group>
+  
+  
+  
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="quiz.type == 'Open_questions'">
+  
+  
+  
+  
+        <!--form control array-->
+  
+        <form [formGroup]="questionformO_Q">
+          <div formArrayName="Open_Questions">
+  
+            <div *ngFor="let open of Open_Questions().controls; let openindex=index">
+              <div class="main-div">
+                <mat-card>
+                  <div [formGroupName]="openindex">
+  
+  
+  
+  
+  
+                    <p>{{openindex+1}} . {{Open_Questions().at(openindex).value.question }}</p>
+  
+                    <mat-form-field >
+  
+                      <input matInput type="text "  formControlName="correctanswer"
+                        placeholder="type your answer" style="color: black;">
+                    </mat-form-field>
+  
+                   
+           
+  
+  
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+  
+        </form>
+  
+      </div>
+      <!-- obtenir quiz de la base comparer local-->
+      <div class="main-div">
+  
+        <div class="row">
+          <div class="col-sm-1">
+          </div>
+          <div class="col-sm-10">
+            <div class="d-flex flex-column">
+  
+              <div class="p-2"> <button class="post" (click)='sendreponse(quiz.type)' [disabled]="state">send</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-1">
+          </div>
+        </div>
+  
+      </div>
+  
+      <br>
+      <br>
+  
+  
+    </mat-step>
+  
+  
+  
+  </mat-stepper>
+  </div>

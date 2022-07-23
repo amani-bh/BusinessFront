@@ -1,0 +1,31 @@
+<mat-sidenav-container class="example-container mat-typography" autosize>
+  <mat-sidenav
+    #sidenav="matSidenav"
+    [@openClose]="isExpanded ? 'open' : 'closed'"
+  >
+    <mat-nav-list>
+      <mat-list-item routerLink="/trainerSpace/courseHome">
+        <mat-icon matListIcon class="iconSidnav">home</mat-icon>
+        <h4 matLine *ngIf="isExpanded" class="textSidnav">Home</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="/trainerSpace/becomeInstructor">
+        <mat-icon matListIcon class="iconSidnav">school</mat-icon>
+        <h4 matLine *ngIf="isExpanded" class="textSidnav">Become Instructor</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="/trainerSpace/addCourse">
+        <mat-icon matListIcon class="iconSidnav">library_add</mat-icon>
+        <h4 matLine *ngIf="isExpanded" class="textSidnav">Add Course</h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="/trainerSpace/takenCourses">
+        <mat-icon matListIcon class="iconSidnav">import_contacts</mat-icon>
+        <h4 matLine *ngIf="isExpanded" class="textSidnav">Courses</h4>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

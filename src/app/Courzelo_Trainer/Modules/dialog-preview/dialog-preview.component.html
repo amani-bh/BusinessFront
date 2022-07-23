@@ -1,0 +1,337 @@
+<h1 mat-dialog-title id="coursePreview">Course Preview</h1>
+
+<mat-dialog-content class="mat-typography">
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <p><span class="titles">Course Title :</span> {{ data.title }}</p>
+
+  <p><span class="titles">Description : </span>{{ data.description }}</p>
+
+  <div class="row">
+    <div class="col-8">
+      <div class="row rating">
+        <div class="col-6">
+          <span class="titles">Created by : </span>
+
+          <span
+            style="font-family: 'Permanent Marker', cursive; font-size: large"
+            >{{ data.instructorInfo }}</span
+          >
+        </div>
+        <div class="col-6">
+          <div class="stars">
+            <li class="titles">Rating :</li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i></li>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <img
+            class="img-fluid courseImage"
+            src="{{ data.courseImage }}"
+            alt="course image"
+          />
+        </div>
+        <div class="col-6">
+          <img
+            class="img-fluid"
+            src="../../../../assets/images_trainer/coursePreview.jpg"
+            alt="course image"
+          />
+          <img
+            class="img-fluid"
+            style="margin-left: 10%; margin-top: -50%"
+            src="../../../../assets/images_trainer/tutorial.png"
+            alt="course image"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 priceCourse">
+      <div class="row">
+        <div class="buttonPay col-6">
+          <button
+            mat-stroked-button
+            matTooltip="put your course into your pannel"
+            style="
+              color: rgb(245, 190, 0);
+              background-color: #212529;
+              width: 100%;
+              margin: 10%;
+            "
+          >
+            Add to Cart
+          </button>
+          <button
+            mat-stroked-button
+            matTooltip="buy your course"
+            style="
+              color: rgb(9 7 1);
+              background-color: #d7b028;
+              width: 100%;
+              margin: 10%;
+            "
+          >
+            Buy Now
+          </button>
+        </div>
+        <div class="col-6">
+          <p style="margin-top: 50%">
+            <span class="titles">Price:</span>
+            {{ data.price }} $
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <!--tabs-->
+  <div>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Course Details">
+        <div>
+          <p class="boxItem text-justify">{{ data.details }}</p>
+        </div>
+      </mat-tab>
+      <mat-tab label="Curriculum">
+        <ng-container *ngIf="modelChoosen" class="boxItem">
+          <p class="boxItem">Introduction</p>
+          <div>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header style="background-color: #34aaea">
+                <mat-panel-title>
+                  Name : {{ introductionName }}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Numbers of phases:4</mat-panel-description
+                >
+              </mat-expansion-panel-header>
+              <div *ngFor="let item of introductionPhases; let index = index">
+                <p>Phase {{ index + 1 }} : {{ item.name }}</p>
+              </div>
+            </mat-expansion-panel>
+          </div>
+          <!-- *ngIf="sectionsLength > 0" -->
+          <ng-container>
+            <p class="boxItem">Sections</p>
+            <div *ngFor="let item of data.sections; let index = index">
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header style="background-color: #34aaea">
+                  <mat-panel-title> Name : {{ item.name }} </mat-panel-title>
+                  <mat-panel-description
+                    >Numbers of phases: {{ item.phases.length }}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div *ngFor="let phase of item.phases; let i = index">
+                  <p>Phase {{ i + 1 }} : {{ phase.name }}</p>
+                </div>
+              </mat-expansion-panel>
+            </div>
+          </ng-container>
+          <p class="boxItem">Conclusion</p>
+          <div>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header style="background-color: #34aaea">
+                <mat-panel-title> Name : {{ conclusionName }} </mat-panel-title>
+                <mat-panel-description>
+                  Numbers of phases:4</mat-panel-description
+                >
+              </mat-expansion-panel-header>
+              <div *ngFor="let item of conclusionPhases; let index = index">
+                <p>Phase {{ index + 1 }} : {{ item.name }}</p>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </ng-container>
+        <ng-container
+          *ngIf="customChoosen && customersectionslength > 0"
+          class="boxItem"
+        >
+          <p>Sections</p>
+          <div *ngFor="let item of data.customerSections; let index = index">
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header style="background-color: #34aaea">
+                <mat-panel-title>
+                  {{ item.name }}
+                </mat-panel-title>
+                <mat-panel-description>
+                  Numbers of phases:
+                  {{ item.phases.length }}</mat-panel-description
+                >
+              </mat-expansion-panel-header>
+              <div *ngFor="let phase of item.phases; let i = index">
+                <p>Phase {{ i + 1 }} : {{ phase.name }}</p>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </ng-container>
+      </mat-tab>
+      <mat-tab label="About the instructor">
+        <div style="margin-left: 40%; padding-top: 7%">
+          <img
+            style="width: 25%"
+            src="../../../../assets/images_trainer/user.png"
+          />
+          <h3>Instructor name :</h3>
+          <p
+            style="font-family: 'Permanent Marker', cursive; font-size: x-large"
+          >
+            {{ data.instructorInfo }}
+          </p>
+        </div>
+      </mat-tab>
+      <mat-tab label="Reviews"></mat-tab>
+    </mat-tab-group>
+  </div>
+  <!--end tabs-->
+  <!--What will you learn part-->
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <p class="titles">What will you learn?</p>
+  <div class="row boxItem">
+    <div class="col-6" *ngFor="let item of data.outcomes; let index = index">
+      -
+      {{ item }}
+    </div>
+  </div>
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <!--end of What will you learn part-->
+  <!--Skills required-->
+  <p class="titles">Skills required</p>
+  <div class="row boxItem">
+    <div
+      class="col-4"
+      *ngFor="let item of data.skillsRequired; let index = index"
+    >
+      <mat-icon style="color: #b69805">star</mat-icon>
+      {{ item }}
+    </div>
+  </div>
+  <!--end Skills required-->
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <!--Course pre-requisites-->
+  <p class="titles">Course pre-requisites</p>
+  <div class="row boxItem">
+    <div
+      class="col-6"
+      *ngFor="let item of data.preRequisites; let index = index"
+    >
+      <mat-icon style="color: black">done</mat-icon>
+      {{ item }}
+    </div>
+  </div>
+
+  <!--end Course pre-requisites-->
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <!--Course description-->
+  <div>
+    <p class="titles">Course description</p>
+    <p class="boxItem text-justify">{{ data.details }}</p>
+  </div>
+  <!--end Course description-->
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <!--Course curriculum-->
+  <p class="titles">Course curriculum</p>
+  <ng-container *ngIf="modelChoosen" class="boxItem">
+    <p class="boxItem">Introduction</p>
+    <div>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Name : {{ introductionName }} </mat-panel-title>
+          <mat-panel-description> Numbers of phases:4</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngFor="let item of introductionPhases; let index = index">
+          <p>Phase {{ index + 1 }} : {{ item.name }}</p>
+        </div>
+      </mat-expansion-panel>
+    </div>
+
+    <p class="boxItem">Sections</p>
+    <div *ngFor="let item of data.sections; let index = index">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Name : {{ item.name }} </mat-panel-title>
+          <mat-panel-description
+            >Numbers of phases: {{ item.phases.length }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngFor="let phase of item.phases; let i = index">
+          <p>Phase {{ i + 1 }} : {{ phase.name }}</p>
+        </div>
+      </mat-expansion-panel>
+    </div>
+
+    <p class="boxItem">Conclusion</p>
+    <div>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Name : {{ conclusionName }} </mat-panel-title>
+          <mat-panel-description> Numbers of phases:4</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngFor="let item of conclusionPhases; let index = index">
+          <p>Phase {{ index + 1 }} : {{ item.name }}</p>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </ng-container>
+  <ng-container
+    *ngIf="customChoosen && customersectionslength > 0"
+    class="boxItem"
+  >
+    <p>Sections</p>
+    <div *ngFor="let item of data.customerSections; let index = index">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ item.name }}
+          </mat-panel-title>
+          <mat-panel-description>
+            Numbers of phases:
+            {{ item.phases.length }}</mat-panel-description
+          >
+        </mat-expansion-panel-header>
+        <div *ngFor="let phase of item.phases; let i = index">
+          <p>Phase {{ i + 1 }} : {{ phase.name }}</p>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </ng-container>
+  <!--end Course curriculum-->
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <!--About instructor-->
+  <p class="titles">About the instructor</p>
+  <div class="row">
+    <div class="col-6">
+      <img
+        style="width: 35%"
+        src="../../../../assets/images_trainer/user.png"
+      />
+    </div>
+    <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+    <div class="col-6">
+      <h3>Instructor name :</h3>
+      <p style="font-family: 'Permanent Marker', cursive; font-size: x-large">
+        {{ data.instructorInfo }}
+      </p>
+    </div>
+  </div>
+  <!--end About instructor-->
+  <mat-divider style="margin-top: 2%; margin-bottom: 2%"></mat-divider>
+  <!--Reviews-->
+  <p class="titles">Reviews :</p>
+  <div class="Reviews boxItem">
+    <li><i class="fa fa-star"></i></li>
+    <li><i class="fa fa-star"></i></li>
+    <li><i class="fa fa-star"></i></li>
+    <li><i class="fa fa-star"></i></li>
+    <li><i class="fa fa-star"></i></li>
+  </div>
+  <!--end Reviews-->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

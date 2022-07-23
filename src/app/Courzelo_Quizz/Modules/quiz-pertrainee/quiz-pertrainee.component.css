@@ -1,0 +1,268 @@
+h3
+ {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+  font-size: 28px;
+}
+h4 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #1d2025;
+	margin: 0px;
+  font-size: 50px;
+}
+p{
+  text-align: justify;
+  color: #1d2025;
+}
+
+
+.section-title{}
+.section-title h2{
+    color: #07294d;
+    position: relative;
+    padding-bottom: 12px;
+}
+.section-title h2::before{
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background-color: #ffc600;
+    bottom: 0;
+    left: 0;
+}
+
+mat-card{
+    margin: 0px 100px 5px 100px;
+    height: 55%;
+    width: 60%;
+    padding-bottom: 0%;
+  }
+
+  ::ng-deep.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #ffc600 !important;
+    
+    
+
+  }
+
+ ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+  border-color:#ffc600; 
+}
+::ng-deep.mat-radio-button.mat-accent .mat-radio-inner-circle{
+  color:#ffc600;
+  background-color:#ffc600 ;
+}
+
+::ng-deep.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color:#ffc600;
+}
+
+.questioncard{
+  height: 10%;
+  background-color: #07294d;
+ 
+}
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+
+::ng-deep .mat-form-field {
+  width: 100%;
+
+  border: 1px solid #a1a1a1;
+  border-radius: 5px;
+  color: black;
+  margin-bottom: 2%;
+  font-size: 15px;
+
+}
+
+::ng-deep .mat-form-field .mat-form-field-label {
+  color: black;
+  left: 4%;
+}
+
+.post {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #07294d;
+ margin-bottom: 5px;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 50px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+ 
+  overflow: hidden;
+  z-index: 5;
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  background-color: #07294d;
+
+}
+
+.post:hover {
+  color: #ffc600;
+  border-color: #07294d;
+  background-color: #07294d;
+}
+button:disabled,
+button:disabled:hover {
+  background-color: #0a3869;
+  color: #bca44e;
+  border-color: #0a3869;
+  
+}
+::ng-deep mat-card.buttonaction {
+
+ width: 20%;
+
+}
+
+.left {
+  width: 100%;
+  /*background-color: lightblue;*/
+  overflow: auto;
+  scroll-behavior: smooth;
+  padding-left: 1%;
+
+}
+
+.sidebar-item {
+  display: block;
+  height: 500px;
+ /* background-color: lightseagreen;*/
+  margin: 5px;
+}
+.header {
+  display: block;
+  height: 25%;
+  flex:none;
+/*  background-color: aqua;*/
+}
+.content {
+  flex:1;
+  background-color: brown;
+  display: flex;
+  overflow: auto;
+}
+.scrolling-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrolling-container::-webkit-scrollbar-track {
+  background: black;
+  border-radius: 4px;
+}
+
+.scrolling-container::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 4px;
+}
+.text-wrap {
+  word-wrap: break-word; 
+}
+
+.textgrenn{
+  color: green;
+}
+.textblack{
+  color: black;
+}
+.textred{
+  color: red;
+}
+
+.fix{
+  
+  padding-top: 3%;
+  position: fixed;
+left: 80%;
+
+  
+}
+.fix p{
+  
+
+font-size: large;
+
+  
+}
+
+.main-div {
+  padding-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mat-card {
+  box-shadow: 0px 0px 10px 0px #9b9b9b,
+      0 1px 1px 0 #9b9b9b,
+      0 1px 3px 0 #9b9b9b;
+}
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+
+
+  .progress-bar{
+    margin-left: 5%;
+    background-color: transparent;  
+}
+
+::ng-deep.mat-stepper-horizontal-line {
+    width: 200px !important;
+    border-top-width: 3px !important;
+    border-top-color: #07294d;
+  }
+
+  .progress-bar{
+    margin-left: 10%;
+    background-color: transparent;  
+    margin-right: 10%;
+    margin-top: -1%;
+}
+
+::ng-deep.mat-stepper-horizontal-line {
+    width: 200px !important;
+    border-top-width: 3px !important;
+    border-top-color: #07294d;
+  }
+ ::ng-deep .mat-step-header .mat-step-icon {
+    background-color:#ffc600; 
+    color: #07294d;
+    font-size: 14px;
+    font-weight: 150px;
+ }
+
+  ::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color:#07294d; 
+    color:#ffc600;
+    font-size: 14px;
+    font-weight: 150px;
+ }
+
+ .num{
+   background-color: #07294d;
+ }
+ .main-divstep {
+  padding-top: 3%;
+   
+}
+

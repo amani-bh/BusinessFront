@@ -1,0 +1,26 @@
+.section-title{}
+.section-title h5{
+    color: #07294d;
+    position: relative;
+    padding-bottom: 12px;
+}
+.section-title h5::before{
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 2px;
+    background-color: #ffc600;
+    bottom: -50%;
+    left: 0;
+}
+
+.hardskills-card {
+    margin: 0px 15px 15px 15px;
+  }
+
+  .text-style{
+      color: #ffc600;
+     
+     
+  }
+ 

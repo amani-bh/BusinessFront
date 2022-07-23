@@ -1,0 +1,264 @@
+<div class="section-title mt-50">
+    <h3>Candidate applications</h3>
+   </div> <!-- section title -->  
+
+
+
+   <app-slide [activePane]="isLeftVisible ? 'left' : 'right'">
+    <div leftPane>
+
+   <div class="search-bar col-lg-8 col-md-6 col-sm-4 col-xs-1">
+    <mat-form-field >
+       <input matInput  (keyup)="doFilter($any($event.target).value)" type="text" placeholder="Search">
+       <button mat-icon-button matSuffix><mat-icon>search</mat-icon></button>
+    </mat-form-field>
+</div>
+
+
+
+<table id="preloader" mat-table [dataSource]="dataSource"  matSort (matSortChange)="SortChange($event)" class="mat-elevation-z9"  >
+    
+    <ng-container matColumnDef="applicationDate" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Date </th>
+      <td mat-cell *matCellDef="let candidateApps"> 
+        <span *ngIf="candidateApps.applicationDate!=null"> {{candidateApps.applicationDate | date:'yyyy-MM-dd' }}</span>
+        <span *ngIf="candidateApps.applicationDate==null">----</span>  
+      </td>
+    </ng-container>
+
+
+    <ng-container  matColumnDef="candidateState" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Current State </th>
+      <td mat-cell *matCellDef="let candidateApps"> 
+        <span *ngIf="candidateApps.currentState!=null" > {{candidateApps.currentState.label}}</span>
+        <span *ngIf="candidateApps.currentState===null || candidateApps.currentState==[]||candidateApps.currentState===undefined" > ---</span>
+      </td>
+    </ng-container>
+
+
+    <ng-container  matColumnDef="Job" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Job  </th>
+      <td mat-cell *matCellDef="let candidateApps"  > 
+        <span *ngIf="candidateApps.job!=null" matTooltip="Check job details" (click)="$event.stopPropagation();Details(candidateApps.job.idJob);isLeftVisible = !isLeftVisible" class="link" > {{candidateApps.job.title}}</span>
+        <span *ngIf="candidateApps.job===null ||candidateApps.job===undefined" > ---</span>
+         </td>
+    </ng-container>
+
+    <ng-container  matColumnDef="interview" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header >  </th>
+      <td mat-cell *matCellDef="let candidateApps"  > 
+        <div *ngIf="candidateApps.currentState">
+          <span *ngIf="candidateApps.currentState.label=='interview'" >
+             <b>Upcoming interview :</b> {{candidateApps.currentState.interviewDate | date:'short'}} 
+             <b>Link : </b><a class="link" matTooltip="Click to enter the meet"  (click)="$event.stopPropagation();OpenMeet(candidateApps.currentState.linkMeet)">{{candidateApps.currentState.linkMeet}} </a>
+          </span>
+          <div  *ngIf="candidateApps.currentState.label=='Job offer' " >
+           <a class="link" matTooltip="Click to view the offer in pdf" (click)="$event.stopPropagation();LoadPdf(candidateApps.currentState)">View official job offer</a>
+           <button matTooltip="Accept official offer" class="accept-btn" mat-icon-button (click)="$event.stopPropagation();AcceptOffer(candidateApps)">
+            <mat-icon>check_circle</mat-icon>
+          </button>
+          <button matTooltip="refuse official offer" class="refuse-btn" mat-icon-button (click)="$event.stopPropagation();RefuseOffer(candidateApps)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+
+           </div> 
+
+           <div *ngIf="candidateApps.currentState.label=='pre-selected' ">
+
+            <a class="link" matTooltip="Click to view the job request" (click)="$event.stopPropagation();Details(candidateApps.idJob); isLeftVisible = !isLeftVisible" >View job request details</a>
+            <button matTooltip="Accept job request" class="accept-btn" mat-icon-button (click)="$event.stopPropagation();AcceptRequest(candidateApps)">
+             <mat-icon>check_circle</mat-icon>
+           </button>
+           <button matTooltip="refuse job request" class="refuse-btn" mat-icon-button (click)="$event.stopPropagation();RefuseRequest(candidateApps)">
+             <mat-icon>cancel</mat-icon>
+           </button>
+
+           </div>
+        </div>
+        
+
+         </td>
+    </ng-container>
+
+   
+
+      
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let candidateApps" (click)=" GetCandidate(candidateApps.idCandidateApp);isLeftVisible = !isLeftVisible" ></tr>
+
+</table>
+
+<mat-paginator   [pageSize]="5" [pageSizeOptions]="[3,10,25,50]"></mat-paginator>
+
+
+</div>
+<div rightPane> 
+
+  <div>
+    <button class="details-btn" (click)="isLeftVisible = !isLeftVisible">back  </button>
+</div>
+
+<div *ngIf="viewType=='job'">
+<div *ngIf="currentJob && currentJob.business" class="row" >
+  <div class="col-lg-7 col-md-6 col-sm-12">
+    <div class="job-singel-left mt-30">
+        <div class="title">
+            <h3>{{currentJob.title}}</h3>
+        </div> <!-- title -->
+        <div class="job-terms">
+            <ul>
+                <li>
+                    <div class="company-name">
+                        <div class="thum">
+                            <img src="../../../../assets/CourzeloBusiness/images/a.jpg" alt="logo">
+                        </div>
+                        <div class="name">
+                            <span>Business</span>
+                            <h6>{{currentJob.business.companyName}}</h6>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="details-section">
+                        <span>Responsable</span>
+                        <h6>{{currentJob.business.firstName}} {{currentJob.business.lastName}} </h6>
+                    </div>
+                </li>
+                <li>
+                    <div class="details-section">
+                        <span>Posted on</span>
+                        <h6>{{currentJob.creationDate | date:'yyyy-MM-dd'}} </h6>
+                    </div>
+                </li>
+            </ul>
+        </div> <!-- course terms -->
+        <div class="descrip-title">
+            <h4>Description </h4> {{currentJob.description}}
+        </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5  col-md-6  col-sm-12 ">
+    <div class="row job-singel-right">
+        <div class="col-lg-12 col-md-12 col-sm-12 ">
+            <div class="job-features mt-30">
+               <h4>Job offer Features </h4>
+                <ul>
+                    <li><i class="fa fa-industry"></i>Industry : <span>{{currentJob.industry}}</span></li>
+                    <li><i class="fa fa-clone"></i>Job Type : <span>{{currentJob.jobType}}</span></li>
+                    <li><i class="fa fa-calendar-o"></i>Schedule type :  <span>{{currentJob.ScheduleType}}</span></li>
+                    <li ><i class="fa fa-compass"></i>LocationType :  <span>{{currentJob.locationType}}</span></li>
+                    <li *ngIf="currentJob.locationType!='remote'"><i class="fa fa-map-marker"></i>Location :  <span>{{currentJob.location}}</span></li>
+                </ul>
+            </div> <!-- course features -->
+        </div>
+        <div class="apply-btn">
+          
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+
+<div *ngIf="viewType=='candidate'">
+<div class="row center-side" *ngIf="currentApp && currentApp.currentState">
+  <div class="col-lg-1 col-md-2 avatar">
+    <img src="../../../../assets/CourzeloBusiness/images/avatar.png" width="80" height="90">
+  </div>
+  <div class="col-lg-4 col-md-5 info-personel">
+    <h6  *ngIf="currentApp.user">{{currentApp.user.displayName}}</h6>
+    #id | {{currentApp.idCandidateApp}}<br>
+    <span *ngIf='currentApp.currentState' ><b>Status :</b> {{currentApp.currentState.label}}</span>
+    <br>
+    <span><b>Submitted on  :</b> {{currentApp.applicationDate | date:'yyyy-MM-dd' }}</span>
+    <br>
+    <span><b>Job Offer  :</b> {{currentApp.job.title }}</span>
+
+  </div>
+
+  <div class="col-lg-5 col-md-5 info-personel">
+    <mat-card><b>Status</b></mat-card>
+    <span *ngIf='currentApp.currentState' ><b>Status :</b> {{currentApp.currentState.label}}</span>
+    <br>
+    <span *ngIf='currentApp.currentState' ><b>Date :</b> {{currentApp.currentState.stateDate | date:'yyyy-MM-dd' }}</span>
+    <br>
+    <span *ngIf='currentApp.currentState.label=="pending" && currentApp.job.idPrehiringTest!=""' ><b>Prehiring test score:</b> {{currentApp.currentState.score}} %</span>
+    <br>
+    <span *ngIf='currentApp.currentState.label=="interview"' ><b>Link meet :</b> <a class="link"  (click)='OpenMeet(currentApp.currentState.linkMeet)' >{{currentApp.currentState.linkMeet}}</a></span>
+    <br>
+    <span *ngIf='currentApp.currentState.label=="interview"' ><b>Date meet :</b> {{currentApp.currentState.interviewDate | date:'yyyy-MM-dd'}}</span>
+    <br>
+
+    <span class="msg" *ngIf="currentApp.currentState.label=='Job rquest refused'"> Waiting for candidate to receive you job request</span>
+    <span class="msg" *ngIf="currentApp.currentState.label=='pre-selected'"> The job request has been declined by the candidate that you have selected</span>
+  </div>
+
+  <div class="tabs">
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Profile overview"> 
+        <div class="profile-info">
+        <span><b>First Name : </b></span> Asma 
+        <br>
+        <span><b>Last Name : </b></span> Chebbi
+        <br>
+        <span><b>Email address : </b></span> asma@gmail.com
+        <br>
+        <span><b>Residential address : </b></span> asma@gmail.com
+        <br>
+        <span><b>Zip code : </b></span> asma@gmail.com
+      </div>
+
+
+        <div class="radar">
+          <canvas baseChart
+                [datasets]="radarChartData"
+                [options]="radarChartOptions"
+                [labels]="radarChartLabels"
+                [type]="radarChartType">
+          </canvas>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Resume"> 
+        <div *ngIf="currentApp.cv">
+          <ngx-doc-viewer [url]="currentApp.cv" viewer="url" style="width: full; height: 500px;overflow-x: hidden;">
+          </ngx-doc-viewer>
+        </div> 
+        
+
+        
+
+
+        <div class="not-found" *ngIf="!currentApp.cv">
+          <span>No cv is found for this candidate</span>
+          
+        </div>
+        
+      </mat-tab>
+      <mat-tab label="Application History"> 
+    
+        <mat-stepper orientation="vertical"  #stepper class="steps">
+          <div *ngFor="let state of currentApp.candidateState" >
+          <mat-step label="Step{{state.step}}"  >
+              <span  ><b>Status :</b> {{state.label}}</span>
+              <br>
+              <span ><b>Date :</b> {{state.stateDate | date:'yyyy-MM-dd' }}</span>
+              <br>
+              <span *ngIf="state.label=='interview'" ><b>interview date :</b> {{state.interviewDate| date:'yyyy-MM-dd' }}</span>
+              <br>
+          </mat-step>
+        </div>
+        </mat-stepper>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+</app-slide>
+

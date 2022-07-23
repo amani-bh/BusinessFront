@@ -1,0 +1,68 @@
+<section id="slider-part" class="slider-active">
+    <div class="single-slider bg_cover pt-150" data-overlay="4">
+        <div class="container">
+                    <div class="slider-cont">
+                        <h1  >Welcome to courzelo for business</h1>
+                        <p >Hire the right people at the right place , we help through out the recrutement process </p>
+                    </div>
+        </div> <!-- container -->
+    </div> <!-- single slider -->
+</section>
+
+
+
+<section id="event-page" class="pt-90 pb-120 gray-bg">
+    <div class="container">
+        <div class="row">
+         <div class="col-lg-12 descrip pt-40">
+            <p>Check out this interesting profiles and select the ones you want to hire</p>
+            <p>You can also search by criteria or get matched profiles depending on you job offer requirements </p>
+         </div>
+         <mat-stepper  class="progress-bar">
+            <mat-step  label="Search"></mat-step>
+            <mat-step  label="Select"></mat-step>
+            <mat-step  label="Interview"></mat-step>
+            <mat-step  label="Recrute"></mat-step>
+        </mat-stepper>
+        <div class="row search-bar">
+        <div class=" col-lg-8">
+            <form id="search-form" #f="ngForm" [formGroup]="Form" autocomplete="on" >
+             <mat-form-field class="col-lg-7">
+                <input matInput formControlName="search"  placeholder="Search">
+                <mat-icon matSuffix>search</mat-icon>
+             </mat-form-field>
+
+             <mat-form-field class="col-lg-3">
+                <mat-label>Select the job to match with</mat-label>
+                <mat-select formControlName="job"  >
+                  <mat-option *ngFor="let job of jobOffers"  value="{{job.idJob}}">{{job.title}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+        </div>
+        <button class="col-lg-2" mat-button class="main-btn" ><span>Match</span></button>
+        <button class="col-lg-2" mat-button class="main-btn"  ><span>Filter</span></button>
+        
+        </div>
+         <div class="col-lg-6" *ngFor="let user of users | slice:((paginator.pageIndex)*paginator.pageSize):((paginator.pageIndex+1)*paginator.pageSize) ">
+               <div class="singel-event-list mt-30">
+                   <div class="event-thum">
+                       <img src="../../../../assets/CourzeloBusiness/images/a.jpg" alt="">
+                   </div>
+                   <div class="event-cont">
+                       <span> {{user.email}}</span>
+                        <a ><h4>{{user.displayName}}</h4></a>
+                        <span> --</span>
+                        <span> Tunis</span>
+                        <p><B>Competence :</B> </p>
+                   </div>
+                   <div>
+                       <button (click)="AddApp('1')" class="main-btn select-btn">Select</button>
+                   </div>
+               </div>
+         </div>
+        </div> 
+        <mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[2,5, 10, 25, 100]" (page)="pageEvent = $event">
+        </mat-paginator>
+    </div>      
+</section>

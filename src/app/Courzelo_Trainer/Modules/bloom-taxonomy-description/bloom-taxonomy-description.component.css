@@ -1,0 +1,14 @@
+.title {
+  font-family: cursive;
+  font-size: xx-large;
+  color: #0f2e50;
+}
+.subtitle {
+  font-family: monospace;
+  font-size: xx-large;
+  color: #3b9192;
+}
+.phase {
+  font-family: monospace;
+  font-size: xx-large;
+}

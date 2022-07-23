@@ -1,0 +1,43 @@
+::ng-deep mat-dialog-container {
+    background-color: #edf0f2 !important;
+}
+
+
+/*input*/
+.title-card mat-form-field {
+    width:90%;
+    padding: 0 20px;
+    border: 1px solid #07294d;
+    border-radius: 5px;
+    color: #07294d;
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-left: 5%;  
+    margin-top: 0%;
+  }
+
+/*card*/
+.title-card{
+    margin-bottom: 3%;
+    
+    
+}
+/*carousel*/
+
+.carousel-part{
+    width:90%;
+    background-color: white;
+    margin-top: 5%;
+    margin-left: 5%;
+    background-color: #edf0f2 !important;
+
+}
+
+span{
+    padding-top: 50%;
+}
+
+::ng-deep .carousel-container .carousel-cells{
+    margin-top: 0px;
+    position: relative;
+}

@@ -1,0 +1,35 @@
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+.rating .stars  li {
+  display: inline-block;
+}
+.Reviews li{
+  display: inline-block;
+}
+.courseImage{
+  margin-top: 20%;
+}
+.boxItem{
+  margin: 3%;
+}
+.priceCourse{
+  padding: 10px;
+  border: 1px solid rgb(19, 2, 2);
+  box-sizing: border-box;
+  height: 50%;
+}
+.priceCourse .buttonPay button{
+  display: block;
+  margin: 1%;
+}
+#coursePreview{
+  font-family: cursive;
+    font-weight: revert;
+    font-size: revert;
+    margin-left: 35%;
+}
+.titles{
+    font-family: cursive;
+    font-size: large;
+}

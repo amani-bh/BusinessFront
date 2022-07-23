@@ -1,0 +1,13 @@
+
+ @media (min-width: 768px) 
+  {
+    .mat-list-icon {
+    color: rgba(0, 0, 0, 0.54);
+  }
+  .participants{
+    margin-left: 378px;
+  }
+  .style-div{
+    font-size: 20px;
+    color: #07294d;;
+  }}

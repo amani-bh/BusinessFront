@@ -1,0 +1,60 @@
+
+ <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+<div class="sidebar">
+    <div class="logo-details">
+      <i class='icon'></i>
+        <div class="logo_name">Job Dashboard</div>
+        <i #btn class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a routerLink="jobOverview" routerLinkActive="active-link">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Job overview</span>
+        </a>
+         <span class="tooltip">Job overview</span>
+      </li>
+      <li>
+       <a routerLink="candidateApp"   routerLinkActive="active-link">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">Candidate Applications</span>
+       </a>
+       <span class="tooltip">Candidate Applications</span>
+     </li>
+     <li>
+       <a routerLink="CompareCandidate"  routerLinkActive="active-link">
+         <i class='bx bxs-file-find' ></i>
+         <span class="links_name">Compare candidate</span>
+       </a>
+       <span class="tooltip">Compare candidate</span>
+     </li>
+     <li>
+       <a routerLink="Quizmanagement"  routerLinkActive="active-link">
+         <i class='bx bx-spreadsheet' ></i>
+         <span class="links_name">Technical tests</span>
+       </a>
+       <span class="tooltip">Technical tests</span>
+     </li>
+     <li>
+       <a  routerLink="PrehiringTest"  routerLinkActive="active-link">
+         <i class='bx bx-folder' ></i>
+         <span class="links_name">Prehiring tests</span>
+       </a>
+       <span class="tooltip">Prehiring tests</span>
+     </li>
+     <li>
+        <a  routerLink="/jobOffers">
+          <i class='bx bx-log-out-circle' ></i>
+          <span class="links_name">Back</span>
+        </a>
+        <span class="tooltip">Back</span>
+      </li>
+     
+     
+     
+    </ul>
+  </div>
+  <section class="home-section">
+    <router-outlet></router-outlet>
+  </section>
