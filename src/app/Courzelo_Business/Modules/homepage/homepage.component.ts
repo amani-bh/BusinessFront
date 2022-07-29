@@ -52,7 +52,7 @@ export class HomepageComponent implements OnInit {
 
   Getjobs(){
     
-    this.JobsService.GetJobsByBusinessAndState(this.currentBusiness.idBusiness,'Active').subscribe(data=>{
+    this.JobsService.GetJobsByBusinessAndState(this.currentBusiness.companyName,'Active').subscribe(data=>{
       this.jobOffers=data;
       
        },err=>{

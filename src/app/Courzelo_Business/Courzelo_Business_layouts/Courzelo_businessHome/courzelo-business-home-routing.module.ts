@@ -31,6 +31,7 @@ import { SideNavComponent } from '../../Shared/side-nav/side-nav.component';
 import { BusinessForgotPassComponent } from '../../Modules/business-forgot-pass/business-forgot-pass.component';
 import { BusinessResetPassComponent } from '../../Modules/business-reset-pass/business-reset-pass.component';
 import { BusinessProfileComponent } from '../../Modules/business-profile/business-profile.component';
+import { SubAccountsComponent } from '../../Modules/sub-accounts/sub-accounts.component';
 
 const routes: Routes = [
   { path:'', component: CourzeloBusinessHomeComponent,
@@ -72,7 +73,9 @@ const routes: Routes = [
     { path: 'Tests/AddTechTest', component: AddQuizComponent ,pathMatch: 'full',canActivate: [AuthGuard] },
     { path: 'Tests/AddTechTest/AddQuestions/:id', component: AddQuestionsComponent ,pathMatch: 'full' ,canActivate: [AuthGuard]  },
     { path:'BusinessLogin', component: BusinessLoginComponent},
+    { path:'SubAccounts', component: SubAccountsComponent,canActivate: [AuthGuard] },
     { path:'PassTest/:id', component: QuizPertraineeComponent,canActivate: [CoreAuthGuard]}
+    
   ]},
  
 ];

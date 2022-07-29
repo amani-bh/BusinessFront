@@ -79,6 +79,7 @@ export class TestsComponent implements OnInit,AfterViewInit  {
     
     this.testsService.GetTestsByBusiness(this.currentBusiness.idBusiness).subscribe(data=>{this.tests=data;
      this.dataSource.data = this.tests as PrehiringTests[];
+     console.log("***********",this.dataSource.data)
        },err=>{
       console.log(err);
     })}

@@ -1,0 +1,87 @@
+<div class="section-title mt-50">
+  <h3>Sub account</h3>
+</div>
+<div class="">
+  <div class="search-bar col-lg-8 col-md-6 col-sm-4 col-xs-1">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Search"
+      />
+      <button mat-icon-button matSuffix><mat-icon>search</mat-icon></button>
+    </mat-form-field>
+  </div>
+
+  <div class="add"> 
+    <button  class="add-btn" (click)="AddJobDialog()">
+        Add account
+    </button>
+</div>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+  <ng-container matColumnDef="firstName">
+    <th mat-header-cell *matHeaderCellDef>First Name</th>
+    <td mat-cell *matCellDef="let subAccounts"> {{subAccounts.firstName }}
+      <span *ngIf="subAccounts.firstName!=null"> {{subAccounts.firstName }}</span>
+      <span *ngIf="subAccounts.firstName==null">----</span>  
+    </td>
+  </ng-container>
+
+  
+  <ng-container matColumnDef="lastName" >
+    <th mat-header-cell *matHeaderCellDef  > Last Name </th>
+    <td mat-cell *matCellDef="let subAccounts"> 
+      <span *ngIf="subAccounts.lastName!=null"> {{subAccounts.lastName }}</span>
+      <span *ngIf="subAccounts.lastName==null">----</span>  
+    </td>
+  </ng-container>
+  
+
+  <ng-container matColumnDef="email" >
+    <th mat-header-cell *matHeaderCellDef  > Email </th>
+    <td mat-cell *matCellDef="let subAccounts"> 
+      <span *ngIf="subAccounts.email!=null"> {{subAccounts.email }}</span>
+      <span *ngIf="subAccounts.email==null">----</span>  
+    </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let subAccounts">
+      <span *ngIf="subAccounts.phone!=null"> {{subAccounts.phone }}</span>
+      <span *ngIf="subAccounts.phone==null">----</span>  
+  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="active">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let subAccounts">
+    <span *ngIf="subAccounts.active==true"> Activated</span>
+    <span *ngIf="subAccounts.creationDate==false">Disabled</span>  
+  </td>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate" >
+    <th mat-header-cell *matHeaderCellDef  > Date </th>
+    <td mat-cell *matCellDef="let subAccounts"> 
+      <span *ngIf="subAccounts.creationDate!=null"> {{subAccounts.creationDate | date:'yyyy-MM-dd' }}</span>
+      <span *ngIf="subAccounts.creationDate==null">----</span>  
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let tests ; " class="action-link"> 
+      <button class="upd-btn" mat-icon-button  ><mat-icon >edit</mat-icon></button>
+      <button class="del-btn" mat-icon-button  ><mat-icon>delete_forever</mat-icon></button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+</table>
+
+

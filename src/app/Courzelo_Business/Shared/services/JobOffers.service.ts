@@ -13,7 +13,8 @@ export class JobOffersService {
   
   constructor(private http: HttpClient) {
 
-    this.baseUrl='https://springgateway.herokuapp.com/joboffers-application/JobOffers';
+    // this.baseUrl='https://springgateway.herokuapp.com/joboffers-application/JobOffers';
+    this.baseUrl='http://localhost:8095/JobOffers';
   }
   public GetAlldJobs():Observable<JobOffers[]> {
     return this.http.get<[JobOffers]>(this.baseUrl)

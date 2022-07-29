@@ -77,7 +77,25 @@ IsAdmin(){
     var roles= this.currentBusiness.roles as Array<String>
     return roles.includes("ROLE_ADMIN",0);
 }
+IsUser(){
+  var roles= this.currentBusiness.roles as Array<String>
+  return roles.includes("ROLE_USER",0);
+}
 
+hasOfferManagement(){
+  var roles= this.currentBusiness.roles as Array<String>
+  return roles.includes("ROLE_OFFER_MANAGEMENT",0);
+}
+
+hasApplicationManagement(){
+  var roles= this.currentBusiness.roles as Array<String>
+  return roles.includes("ROLE_APPLICATION_MANAGEMENT",0);
+}
+
+hasTestManagement(){
+  var roles= this.currentBusiness.roles as Array<String>
+  return roles.includes("ROLE_TEST_MANAGMENT",0);
+}
 
 show(){
   

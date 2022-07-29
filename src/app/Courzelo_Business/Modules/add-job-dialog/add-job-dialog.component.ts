@@ -81,7 +81,7 @@ export class AddJobDialogComponent implements OnInit {
 
 
   Getjobs() {
-    this.JobsService.GetJobsByBusiness(this.currentBusiness.idBusiness).subscribe(data => {
+    this.JobsService.GetJobsByBusiness(this.currentBusiness.companyName).subscribe(data => {
       this.jobOffers = data;
       this.dataSource.data = this.jobOffers as JobOffers[];
     }, err => {

@@ -119,7 +119,7 @@ export class JobOffersComponent implements OnInit, AfterViewInit {
   }
 
   GetJobsByState(state: String) {
-    this.JobsService.GetJobsByBusinessAndState(this.currentBusiness.idBusiness, state).subscribe(data => {
+    this.JobsService.GetJobsByBusinessAndState(this.currentBusiness.companyName, state).subscribe(data => {
 
       this.jobOffers = data;
       this.dataSource.data = this.jobOffers as JobOffers[];
@@ -135,7 +135,7 @@ export class JobOffersComponent implements OnInit, AfterViewInit {
 
   Getjobs() {
 
-    this.JobsService.GetJobsByBusiness(this.currentBusiness.idBusiness).subscribe(data => {
+    this.JobsService.GetJobsByBusiness(this.currentBusiness.companyName).subscribe(data => {
       this.jobOffers = data;
       this.dataSource.data = this.jobOffers as JobOffers[];
       this.jobOffers.forEach(job => {

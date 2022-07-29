@@ -75,6 +75,9 @@ import { BusinessResetPassComponent } from '../../Modules/business-reset-pass/bu
 import {MatBadgeModule} from '@angular/material/badge';
 import { WebSocketService } from '../../Shared/services/websocket.service';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { SubAccountsComponent } from '../../Modules/sub-accounts/sub-accounts.component';
+import { AddSubAccountDialogComponent } from '../../Modules/add-sub-account-dialog/add-sub-account-dialog.component';
+
 @NgModule({
   declarations: [
     CourzeloBusinessHomeComponent,
@@ -110,6 +113,8 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     BusinessForgotPassComponent,
     BusinessResetPassComponent,
     TrackBoardComponent,
+    SubAccountsComponent,
+    AddSubAccountDialogComponent
     
     
   ],
