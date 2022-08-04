@@ -36,7 +36,7 @@ import { BusinessProfileComponent } from './Courzelo_Business/Modules/business-p
   declarations: [
     AppComponent,
     ConfirmEmailComponent,
-    BusinessProfileComponent,
+    BusinessProfileComponent
     
 
    

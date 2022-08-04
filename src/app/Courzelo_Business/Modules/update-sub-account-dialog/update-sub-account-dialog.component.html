@@ -1,0 +1,118 @@
+<div class="section-title mt-50">
+    <h3>Update Sub Account</h3>
+</div> <!-- section title -->
+
+
+<div class="close-btn">
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>cancel</mat-icon>
+    </button>
+</div>
+
+<div class="diag-content">
+ 
+    <div class="main-form pt-45">
+      
+                <form id="first-form" #f="ngForm" [formGroup]="firstForm" autocomplete="off" novalidate>
+                    <div class="row mt-5">
+                       
+                        <div class="col-md-6 mb-5">
+                            <div class="singel-form ">
+                                <mat-form-field >
+                                    <input matInput formControlName="firstName"  placeholder="First Name" >
+                                   <mat-error > field is obligatory</mat-error> 
+                                  </mat-form-field>
+                            </div> <!-- singel form -->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="singel-form ">
+                                <mat-form-field >
+                                    <input matInput formControlName="lastName"  placeholder="Last Name" >
+                                  <mat-error> field is obligatory</mat-error> 
+                                 </mat-form-field>
+                            </div> <!-- singel form -->
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="singel-form ">
+                                <mat-form-field >
+                                    <input matInput formControlName="email" type="email" placeholder="Email address" (keyup)="ExistMail(this.firstForm.get('email')?.value)">
+                                  <mat-error >email field is obligatory</mat-error> 
+                                  <span class="email-error" *ngIf="verifMail==true" >email already exist</span> 
+                                 </mat-form-field>
+                             
+                            </div> <!-- singel form -->
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="singel-form">
+                                 <mat-form-field >
+                                  <input matInput  formControlName="phone" type="text" placeholder="phone"   > 
+                                  </mat-form-field>
+                            </div> <!-- singel form -->
+                        </div>
+
+                        <div class="col-md-6 mt-5">
+                            <div class="singel-form ">
+                                <mat-form-field>
+                                    <input matInput formControlName="password" type="password" placeholder="password"  >
+                                   
+                                    
+                                            <span class="span-error" *ngIf="match()===false;">Password should be atleast 8 characters long
+                                              and should contain one number,one character and one special
+                                              character
+                                            </span>
+                                        
+                                    </mat-form-field>
+                             
+                            </div> <!-- singel form -->
+                        </div>
+                        <div class="col-md-6 mt-5 mb-5 ">
+                            <div class="singel-form ">
+                                <mat-form-field >
+                                    <input matInput formControlName="confirmPassword" type="password" placeholder="confirm password" [errorStateMatcher]="matcher" >
+                                  <mat-error  *ngIf="!firstForm.hasError( 'confirmPassword') && firstForm.hasError('notSame')" >password is not matching</mat-error> 
+                                
+                                 </mat-form-field>
+                            
+                            </div> <!-- singel form -->
+                        </div>
+                        
+
+                        <div class="col-md-12 mt-5">
+                            <div class="singel-form ">
+                                <mat-checkbox class="example-margin" formControlName="offerChk">Job offer management</mat-checkbox>
+                            </div> <!-- singel form -->
+                        </div>
+                        <div class="col-md-12">
+                            <div class="singel-form ">
+                                <mat-checkbox class="example-margin" formControlName="applicationChk">Application management</mat-checkbox>
+                            </div> <!-- singel form -->
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="singel-form ">
+                                <mat-checkbox class="example-margin" formControlName="testChk">Test management</mat-checkbox>
+                            </div> <!-- singel form -->
+                        </div>
+                        <div class="col-md-12">
+                            <div class="singel-form ">
+                                <mat-checkbox class="example-margin" formControlName="profileChk">Profile management</mat-checkbox>
+                            </div> <!-- singel form -->
+                        </div>
+
+                       
+                    </div> <!-- row -->
+                </form>
+            
+        
+    </div> <!-- main form -->
+    <div mat-dialog-actions style="float:right;">
+        <button  class="second-btn" mat-dialog-close >Close</button>
+        <button  class="second-btn" (click)="Reset()">Reset</button>
+        <button  *ngIf="firstForm.valid " class="main-btn"  (click)="updateAccount()"  >Done</button>
+        <button  *ngIf="!firstForm.valid " class="invalid-btn"  (click)="validateAllFormFields(firstForm)" >Done</button>
+      </div>
+</div>
+
+

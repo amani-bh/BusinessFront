@@ -77,6 +77,8 @@ import { WebSocketService } from '../../Shared/services/websocket.service';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { SubAccountsComponent } from '../../Modules/sub-accounts/sub-accounts.component';
 import { AddSubAccountDialogComponent } from '../../Modules/add-sub-account-dialog/add-sub-account-dialog.component';
+import { UpdateSubAccountDialogComponent } from '../../Modules/update-sub-account-dialog/update-sub-account-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -114,7 +116,8 @@ import { AddSubAccountDialogComponent } from '../../Modules/add-sub-account-dial
     BusinessResetPassComponent,
     TrackBoardComponent,
     SubAccountsComponent,
-    AddSubAccountDialogComponent
+    AddSubAccountDialogComponent,
+    UpdateSubAccountDialogComponent
     
     
   ],

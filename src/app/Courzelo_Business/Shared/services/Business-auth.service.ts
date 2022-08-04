@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
+import { Business } from '../entities/Business';
 
 // const AUTH_API = 'https://springgateway.herokuapp.com/business-auth/api/auth/';
 const AUTH_API = 'http://localhost:8090/api/auth/';
@@ -94,5 +95,16 @@ export class BusinessAuthService {
 }
 public GetAllSubAccount(businessId:any):Observable<any> {
   return this.http.get<any>(AUTH_API+'getAllSubAccount/'+businessId )
+}
+public updateSubAccount(businessId:any ,email: string,firstName:String,lastName:String, password: string,
+  phone:String, roles:string[]):Observable<any> {
+  return this.http.post(AUTH_API + 'updateSubAccount/'+businessId,{ 
+    email,
+    password,
+    firstName,lastName,phone,roles
+  }, httpOptions);
+}
+public Delete(id:any) {
+  return this.http.delete(AUTH_API + "deleteSubAccount/"+id);
 }
 }

@@ -25,12 +25,11 @@ export class AddSubAccountDialogComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   listRol:string[]=[];
-  constructor(private uploadService:FileUploadService,private fb: FormBuilder,private businessAuthService: BusinessAuthService, private businesstokenStorage: BusinessTokenStorageService) { }
+  constructor(private fb: FormBuilder,private businessAuthService: BusinessAuthService, private businesstokenStorage: BusinessTokenStorageService) { }
 
   
   ngOnInit(): void {
     this.currentBusiness = this.businesstokenStorage.getUser()
-    // this.GetCountry();
     this.firstForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -91,6 +90,8 @@ export class AddSubAccountDialogComponent implements OnInit {
 
 
   Send(){
+    
+    console.log(this.firstForm)
     if(this.secondForm.get('offerChk')?.value==true)
     this.listRol.push("ROLE_OFFER_MANAGEMENT");
     if(this.secondForm.get('applicationChk')?.value==true)
@@ -105,7 +106,7 @@ export class AddSubAccountDialogComponent implements OnInit {
       this.firstForm.get('password')?.value,
       this.firstForm.get('firstName')?.value,
       this.firstForm.get('lastName')?.value,
-      this.secondForm.get('phone')?.value,
+      this.firstForm.get('phone')?.value,
       new Date(),
       this.currentBusiness.idBusiness,
       this.listRol
@@ -113,6 +114,7 @@ export class AddSubAccountDialogComponent implements OnInit {
         data => {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+          
         },
         err => {
           this.errorMessage = err.error.message;
@@ -141,7 +143,6 @@ checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null
   let confirmPass = group.get('confirmPassword')?.value
   return pass === confirmPass ? null : { notSame: true }
 }
-
 
 
 
