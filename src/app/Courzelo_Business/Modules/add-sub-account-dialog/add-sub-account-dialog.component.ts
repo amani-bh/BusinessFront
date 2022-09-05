@@ -34,7 +34,7 @@ export class AddSubAccountDialogComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required],
+      password: [''],
       confirmPassword: ['', Validators.required],
       phone: [''],
      

@@ -1,0 +1,30 @@
+<div class="section-title mt-50 ">
+    <h3>Share Course</h3>
+</div> <!-- section title -->
+
+
+<div class="close-btn">
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>cancel</mat-icon>
+    </button>
+</div>
+
+<div class="diag-content mt-5">
+ 
+    <div class="main-form pt-45 mb-5 mt-5">
+       
+       
+            <div *ngFor="let item of subAccounts" >
+            <p><mat-checkbox (change)="onChange($event.checked, item)"
+               >{{item.firstName}} {{item.lastName}}</mat-checkbox></p>
+            <mat-divider class="mb-3"></mat-divider>
+            </div>
+           
+    </div> <!-- main form -->
+    <div mat-dialog-actions style="float:right;">
+        <button  *ngIf="selectedAccounts.length ==0 " class="invalid-btn"  >Done</button>
+        <button  *ngIf="selectedAccounts.length >0 " class="main-btn"  (click)="send()" >Done</button>
+      </div>
+</div>
+
+

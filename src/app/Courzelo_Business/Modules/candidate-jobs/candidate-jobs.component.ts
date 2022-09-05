@@ -26,7 +26,7 @@ export class CandidateJobsComponent implements OnInit {
   candidateApp!: CandidateApp[];
   business:any;
   public dataSource2= new  MatTableDataSource<CandidateApp>();
-  state= new AppState(null,new Date(),"pending",1,0,'',"",'',null,false,"");
+  state= new AppState(null,new Date(),"pending",1,0,'',"",'',null,false,"","",0);
   job!:JobOffers
   app=new CandidateApp(null,new Date(),[],"",[],this.state,this.job,null) ;
   dataSource: MatTableDataSource<JobOffers> = new MatTableDataSource<JobOffers>(this.jobOffers);

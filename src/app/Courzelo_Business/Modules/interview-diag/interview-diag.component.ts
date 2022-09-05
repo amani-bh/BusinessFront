@@ -31,7 +31,7 @@ export class InterviewDiagComponent implements OnInit {
   AddState(){
     this.CreateMeet(this.Form.get("roomName")?.value,this.currentBusiness.firstName+this.currentBusiness.lastName)
     console.log(this.data.message)
-    var  state= new AppState(null,new Date(),"interview",this.data.message.currentState.step+1,0,'',"","meet.jit.si/"+this.Form.get("roomName")?.value,this.Form.get('interviewDate')?.value,false,"");
+    var  state= new AppState(null,new Date(),"interview",this.data.message.currentState.step+1,0,'',"","meet.jit.si/"+this.Form.get("roomName")?.value,this.Form.get('interviewDate')?.value,false,"","",0);
     this.AppService.AddState(state,this.data.message.idCandidateApp).subscribe(res=>{
       this.SendNotif(this.data.message.user.id,"Your application ( "+ this.data.message.idCandidateApp+" )for the job "+this.data.message.job.title+" has been changed ! An interview has been set by the recruteur")
       

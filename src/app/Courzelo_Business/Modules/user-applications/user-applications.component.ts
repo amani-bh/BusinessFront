@@ -105,7 +105,7 @@ export class UserApplicationsComponent implements OnInit {
 
 
   AcceptOffer(app:CandidateApp){
-    let state= new AppState(null,new Date(),"official offer accepted",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc);
+    let state= new AppState(null,new Date(),"official offer accepted",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc,"",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
       this.GetApps();
       this.SendNotif(app.job.business.idBusiness,"Candidate ( "+ app.idCandidateApp+" )has accepted your offer for the job "+app.job.title)
@@ -119,7 +119,7 @@ export class UserApplicationsComponent implements OnInit {
   }
 
   RefuseOffer(app:CandidateApp){
-    let state= new AppState(null,new Date(),"official offer refused",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc);
+    let state= new AppState(null,new Date(),"official offer refused",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc,"",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
       this.GetApps();
       this.SendNotif(app.job.business.idBusiness,"Candidate ( "+ app.idCandidateApp+" )has rejected your offer for the job "+app.job.title)
@@ -136,7 +136,7 @@ export class UserApplicationsComponent implements OnInit {
 
 
   AcceptRequest(app:CandidateApp){
-    let state= new AppState(null,new Date(),"pending",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc);
+    let state= new AppState(null,new Date(),"pending",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc,"",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
       this.GetApps();
       Swal.fire({
@@ -151,7 +151,7 @@ export class UserApplicationsComponent implements OnInit {
   }
 
   RefuseRequest(app:CandidateApp){
-    let state= new AppState(null,new Date(),"Job rquest refused",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc);
+    let state= new AppState(null,new Date(),"Job rquest refused",app.currentState.step+1,0,'',"",'',null,false,app.currentState.offerDoc,"",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
       this.GetApps();
 

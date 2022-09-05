@@ -59,9 +59,11 @@ export class JobOffersComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log("********job")
+
     this.currentBusiness = this.businesstokenStorage.getUser()
     //console.log(this.currentBusiness.idBusiness)
-    //this.Getjobs();
+    this.Getjobs();
     this.check()
   }
 

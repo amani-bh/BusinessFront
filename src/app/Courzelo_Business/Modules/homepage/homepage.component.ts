@@ -21,7 +21,7 @@ export class HomepageComponent implements OnInit {
   currentBusiness:any
   jobOffers!:JobOffers[]
   job!:JobOffers
-  state= new AppState(null,new Date(),"pre-selected",1,0,'',"",'',null,false,"");
+  state= new AppState(null,new Date(),"pre-selected",1,0,'',"",'',null,false,"","",0);
   app=new CandidateApp(null,new Date(),[],"",[],this.state,this.job,null) ;
   users:any[]
   skills=[] as any[]

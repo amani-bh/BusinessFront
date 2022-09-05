@@ -58,9 +58,6 @@
                             <div class="singel-form ">
                                 <mat-form-field>
                                     <input matInput formControlName="password" type="password" placeholder="password"  >
-                                    <mat-error *ngIf="firstForm.hasError('required', 'password') "> field password is obligatory</mat-error> 
-                                   
-                                    
                                             <span class="span-error" *ngIf="match()===false;">Password should be atleast 8 characters long
                                               and should contain one number,one character and one special
                                               character
@@ -74,8 +71,8 @@
                             <div class="singel-form ">
                                 <mat-form-field >
                                     <input matInput formControlName="confirmPassword" type="password" placeholder="confirm password" [errorStateMatcher]="matcher" >
-                                  <mat-error  *ngIf="!firstForm.hasError('required', 'confirmPassword') && firstForm.hasError('notSame')" >password is not matching</mat-error> 
-                                  <mat-error  *ngIf="firstForm.hasError('required', 'confirmPassword')" >Field is empty</mat-error> 
+                                  <mat-error  *ngIf="!firstForm.hasError( 'confirmPassword') && firstForm.hasError('notSame')" >password is not matching</mat-error> 
+                                 
                                  </mat-form-field>
                             
                             </div> <!-- singel form -->

@@ -116,6 +116,7 @@ export class JobAppComponent implements OnInit {
 
    GetAppsByJob(idJob:any){
           this.AppService.GetApplicationByJob(idJob).subscribe(res=>{
+            console.log("res*",res)
           this.candidateApps=res as CandidateApp[]
           this.GetApps(this.candidateApps)
           this.candidateApps.forEach(app=>{
@@ -134,7 +135,7 @@ export class JobAppComponent implements OnInit {
 
   updState(app:CandidateApp){
     
-    var  state= new AppState(null,new Date(),"screening",app.currentState.step+1,0,'',"",'',null,false,"");
+    var  state= new AppState(null,new Date(),"screening",app.currentState.step+1,0,'',"",'',null,false,"","",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>
       {
         console.log(res);
@@ -180,7 +181,7 @@ export class JobAppComponent implements OnInit {
     
     if(e.value=="Hired"){
       
-      var  state= new AppState(null,new Date(),"hired",app.currentState.step+1,0,'',"",'',null,false,"");
+      var  state= new AppState(null,new Date(),"hired",app.currentState.step+1,0,'',"",'',null,false,"","",0);
       this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
         console.log(res)
         this.GetAppsByJob(this.idJob)
@@ -256,7 +257,7 @@ export class JobAppComponent implements OnInit {
 
   Reject(app:any){
     
-    var  state= new AppState(null,new Date(),"rejected",app.currentState.step+1,0,'',"",'',new Date(),false,"");
+    var  state= new AppState(null,new Date(),"rejected",app.currentState.step+1,0,'',"",'',new Date(),false,"","",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
       this.GetAppsByJob(this.idJob)
       this.SendNotif(app.user.id,"Your application ( "+ app.idCandidateApp+" )for the job "+app.job.title+" has been rejected ")

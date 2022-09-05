@@ -68,6 +68,8 @@ export class BusinessAuthService {
     }, httpOptions);
   }
 
+  
+
   forgetPassword(e: any){
     return this.http.post(AUTH_API + 'forgotPassword?email=' +e,null,{ responseType: 'text'})
   }
@@ -107,4 +109,26 @@ public updateSubAccount(businessId:any ,email: string,firstName:String,lastName:
 public Delete(id:any) {
   return this.http.delete(AUTH_API + "deleteSubAccount/"+id);
 }
+public VerifySubAccount(code:any):Observable<any> {
+  return this.http.get<any>(AUTH_API+"verifySubAccount/"+code )
 }
+
+update(businessId:any ,companyName: string, email: string, password: string,website:String,nbEmployee:String,
+  firstName:String,lastName:String,recrutementRole:String,phone:String,
+  industry:String,country:String,address:String,
+  description:String): Observable<any> {
+  return this.http.post(AUTH_API + 'updateAccount/'+businessId, {
+    companyName,
+    email,
+    password,
+    website,
+    nbEmployee,
+    firstName,lastName,recrutementRole,phone,industry,country,address,description
+  }, httpOptions);
+}
+public AddCourseToBusinessUser(businessId:any,courseId:any):Observable<any> {
+  return this.http.get<any>(AUTH_API+'addCourseToBusinessUser/'+businessId+'/'+courseId )
+}
+}
+
+

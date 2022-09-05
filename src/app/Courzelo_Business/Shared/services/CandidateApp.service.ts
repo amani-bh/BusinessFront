@@ -14,7 +14,8 @@ export class CandidateAppService {
   
   constructor(private http: HttpClient) {
 
-    this.baseUrl='https://springgateway.herokuapp.com/candidateapp-application/CandidateApp';
+    //this.baseUrl='https://springgateway.herokuapp.com/candidateapp-application/CandidateApp';
+    this.baseUrl='http://localhost:8086/CandidateApp';
   }
  
 
@@ -44,6 +45,9 @@ export class CandidateAppService {
 
   public GetApplicationByBusiness(idBusiness:any ) {
     return this.http.get<[CandidateApp]>(this.baseUrl+"/business/"+idBusiness); 
+  }
+  public GetApplicationByBusinessCompanyName(companyName:any ) {
+    return this.http.get<[CandidateApp]>(this.baseUrl+"/businessCompanyName/"+companyName); 
   }
 
 

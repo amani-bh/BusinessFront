@@ -36,11 +36,13 @@ export class AppState{
     step:number;
     score:number;
     idPrehiringTest:string;
+    idOtherTest:string;
     idTest:string;
     linkMeet:string;
     interviewDate:any;
     testState:boolean;
-    offerDoc:string
+    offerDoc:string;
+    otherTestScore:number;
     
 
 
@@ -53,8 +55,10 @@ export class AppState{
         idTest:string,
         linkMeet:string,
         interviewDate:any,
-       
-        testState:boolean,offerDoc:string
+        testState:boolean,offerDoc:string,
+        idOtherTest:string,
+        otherTestScore:number,
+
         
         ){
             this.idCandidateState = idCandidateState;
@@ -68,6 +72,8 @@ export class AppState{
             this.linkMeet=linkMeet;
             this.interviewDate=interviewDate;
             this.offerDoc=offerDoc;
+            this.idOtherTest=idOtherTest;
+            this.otherTestScore= otherTestScore;
             
         }
 

@@ -81,7 +81,16 @@ export class JobOffersService {
   public VerifExistPrehiringTest(idTest:any):Observable<boolean> {
     return this.http.get<boolean>(this.baseUrl +"/existPrehiring/"+idTest);
   }
+  public VerifExistOtherTest(idTest:any):Observable<boolean> {
+    return this.http.get<boolean>(this.baseUrl +"/existOther/"+idTest);
+  }
 
+  public AssignOtherTest(idTest:any,idJob:any ):Observable<JobOffers> {
+    return this.http.put<JobOffers>(this.baseUrl +"/AssignOtherTest/"+idJob+"/"+idTest, null);
+  }
 
+  public UnAssignOtherTest(idJob:any ):Observable<JobOffers> {
+    return this.http.put<JobOffers>(this.baseUrl +"/UnAssignOtherTest/"+idJob, null);
+  }
 
 }

@@ -36,10 +36,14 @@ export class SubAccountsComponent implements OnInit {
     private diag: MatDialog,
     private businessAuthService: BusinessAuthService,
     private businesstokenStorage: BusinessTokenStorageService
-  ) {}
+  ) {
+   
+    this.getAllSubAccount();
+
+  }
 
   ngOnInit(): void {
-    this.getAllSubAccount();
+
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

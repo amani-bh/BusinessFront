@@ -42,7 +42,7 @@ export class SendTestComponent implements OnInit {
   AddState(){
   
     console.log(this.data.message)
-    var  state= new AppState(null,new Date(),"test",this.data.message.currentState.step+1,0,'',this.Form.get("test")?.value,"","",false,"");
+    var  state= new AppState(null,new Date(),"test",this.data.message.currentState.step+1,0,'',this.Form.get("test")?.value,"","",false,"","",0);
     this.AppService.AddState(state,this.data.message.idCandidateApp).subscribe(res=>{
       this.closeDialog()
       this.SendNotif(this.data.message.user.id,"Your application ( "+ this.data.message.idCandidateApp+" )for the job "+this.data.message.job.title+" has been changed ! You have a test to pass as soon as possible ")

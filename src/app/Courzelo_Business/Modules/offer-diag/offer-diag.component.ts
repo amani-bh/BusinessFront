@@ -39,7 +39,7 @@ export class OfferDiagComponent implements OnInit {
   AddState(){
     console.log(this.data.message)
     
-    var  state= new AppState(null,new Date(),"Job offer",this.data.message.currentState.step+1,0,'',"","",null,false,this.FileUrl.url);
+    var  state= new AppState(null,new Date(),"Job offer",this.data.message.currentState.step+1,0,'',"","",null,false,this.FileUrl.url,"",0);
     this.AppService.AddState(state,this.data.message.idCandidateApp).subscribe(res=>{
         
             

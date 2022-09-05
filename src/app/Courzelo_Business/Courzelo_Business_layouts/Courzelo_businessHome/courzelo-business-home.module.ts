@@ -78,6 +78,14 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { SubAccountsComponent } from '../../Modules/sub-accounts/sub-accounts.component';
 import { AddSubAccountDialogComponent } from '../../Modules/add-sub-account-dialog/add-sub-account-dialog.component';
 import { UpdateSubAccountDialogComponent } from '../../Modules/update-sub-account-dialog/update-sub-account-dialog.component';
+import { VerifySubAccountComponent } from '../../Modules/verify-sub-account/verify-sub-account.component';
+import { BusinessProfileComponent } from '../../Modules/business-profile/business-profile.component';
+import { BusinessCoursesComponent } from '../../Modules/business-courses/business-courses.component';
+import { ShareBusinessCourseDialogComponent } from '../../Modules/share-business-course-dialog/share-business-course-dialog.component';
+import { AddOtherTestDialogComponent } from '../../Modules/add-other-test-dialog/add-other-test-dialog.component';
+import { UpdateOtherTestComponent } from '../../Modules/update-other-test/update-other-test.component';
+import { OtherTestsComponent } from '../../Modules/other-tests/other-tests.component';
+
 
 
 @NgModule({
@@ -117,7 +125,14 @@ import { UpdateSubAccountDialogComponent } from '../../Modules/update-sub-accoun
     TrackBoardComponent,
     SubAccountsComponent,
     AddSubAccountDialogComponent,
-    UpdateSubAccountDialogComponent
+    UpdateSubAccountDialogComponent,
+    VerifySubAccountComponent,
+    BusinessProfileComponent,
+    BusinessCoursesComponent,
+    ShareBusinessCourseDialogComponent,
+    AddOtherTestDialogComponent,
+    UpdateOtherTestComponent,
+    OtherTestsComponent
     
     
   ],

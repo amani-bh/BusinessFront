@@ -132,7 +132,8 @@
                                     <a  (click)="$event.preventDefault()" class="bi-person-circle" ></a>
                                         <ul class="sub-menu">
                                             <li><a routerLink="BusinessProfile">Profile</a></li>
-                                            <li><a routerLink="SubAccounts" *ngIf=" IsUser()">Sub-accounts</a></li>
+                                            <li><a routerLink="SubAccounts" *ngIf=" IsUser()">Collaborators</a></li>
+                                            <li><a routerLink="businessCourses" >Courses</a></li>
                                             <li *ngIf="IsAdmin()"><a routerLink="AdminUser">Admin Space</a></li>
                                             <li><a (click)="logout()">LogOut</a></li>
                                             <li><a routerLink="">Core</a></li>

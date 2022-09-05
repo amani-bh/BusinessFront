@@ -52,7 +52,8 @@ export class CandidateAppComponent implements OnInit  {
   ngOnInit(): void {
     this.currentBusiness = this.businesstokenStorage.getUser()
     //this.GetApps();
-    this.GetAppsByBusiness(this.currentBusiness.idBusiness)
+   // this.GetAppsByBusiness(this.currentBusiness.idBusiness)
+    this.GetAppsByCompanyName(this.currentBusiness.companyName)
      //this.dataSource.data=this.candidateApps as CandidateApp[]
     this.Form = this.fb.group({
       state : []
@@ -122,10 +123,20 @@ export class CandidateAppComponent implements OnInit  {
       this.GetApps(this.candidateApps)
     })
   }
+
+  GetAppsByCompanyName(companyName:any){
+     
+    this.AppService.GetApplicationByBusinessCompanyName(companyName).subscribe(res=>{
+      this.candidateApps=res as CandidateApp[]
+      this.dataSource.data=this.candidateApps
+
+      this.GetApps(this.candidateApps)
+    })
+  }
   
 
   updState(app:CandidateApp){
-    var  state= new AppState(null,new Date(),"screening",app.currentState.step+1,0,'',"",'',new Date(),false,"");
+    var  state= new AppState(null,new Date(),"screening",app.currentState.step+1,0,'',"",'',new Date(),false,"","",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>
       {
         console.log(res);
@@ -155,7 +166,7 @@ export class CandidateAppComponent implements OnInit  {
     console.log(e.value)
     if(e.value=="Hired"){
       
-      var  state= new AppState(null,new Date(),"hired",app.currentState.step+1,0,'',"",'',new Date(),false,"");
+      var  state= new AppState(null,new Date(),"hired",app.currentState.step+1,0,'',"",'',new Date(),false,"","",0);
       this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
         console.log(res)
         this.GetApps(this.candidateApps)
@@ -227,7 +238,7 @@ export class CandidateAppComponent implements OnInit  {
   }
 
   Reject(app:any){
-    var  state= new AppState(null,new Date(),"rejected",app.currentState.step+1,0,'',"",'',new Date(),false,"");
+    var  state= new AppState(null,new Date(),"rejected",app.currentState.step+1,0,'',"",'',new Date(),false,"","",0);
     this.AppService.AddState(state,app.idCandidateApp).subscribe(res=>{
       this.GetApps(this.candidateApps)
       this.SendNotif(app.user.id,"Your application ( "+ app.idCandidateApp+" )for the job "+app.job.title+" has been rejected ")

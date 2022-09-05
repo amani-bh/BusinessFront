@@ -1,0 +1,215 @@
+
+
+<section id="course-part" class="pt-115 pb-120 gray-bg" *ngIf="currentUser?.company==null">
+    <div class="container">
+      <div class="row" style="margin-bottom: -20px">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+              <h2 style="font-size: 30px">Business courses</h2>
+          </div>
+        </div>
+      </div>
+      <carousel
+        [lightDOM]="true"
+        class="carousel--slider-alignement container"
+        [transitionDuration]="900"
+        [autoplayInterval]="700"
+        [autoplay]="true"
+        [transitionTimingFunction]="'ease-out'"
+        [cellWidth]="300"
+        [arrowsOutside]="false"
+        [pauseOnHover]="true"
+        [margin]="70"
+      >
+        <div
+          class="carousel-cell"
+          *ngFor="let item of businessCoursesList; let index = index"
+        >
+          <div class="singel-course-2">
+            <div class="thum">
+              <div class="image">
+                <img
+                  src="../../../../assets/images_courses_per_categorie/cu-1.jpg"
+                  alt="Course"
+                />
+              </div>
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="/singleCourseDetail/{{ item.id }}">
+                    <img
+                      src="../../../../assets/images_courses_per_categorie/teacher/t-1.jpg"
+                      alt="teacher"
+                    />
+                  </a>
+                </div>
+                <div class="name">
+                  <a href="/singleCourseDetail/{{ item.id }}"
+                    ><h6>{{ item.title }}</h6></a
+                  >
+                </div>
+                <div class="review">
+                  <ul>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                </div>
+                <div style="margin-left: 75%; color: #ffc600">
+                  <span
+                    ><b>{{ item.price }}DT</b></span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </carousel>
+      <div class="row mt-5">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+            <h5>Your courses</h5>
+          </div>
+          <!-- section title -->
+        </div>
+      </div>
+      <!-- row -->
+      <div class="row course-slied mt-30 mb-5">
+        <div class="col-lg-4 mb-5" *ngFor="let course of coursesList">
+          <div class="singel-course">
+            <div class="thum">
+              
+              <div class="image" *ngIf="course.courseImage!=null">
+                <img src={{course.courseImage}} alt="Course" />
+              </div>
+              <div class="image" *ngIf="course.courseImage==null">
+                <img src="assets/images/course/cu-1.jpg" alt="Course" />
+              </div>
+              <div class="price">
+                <span (click)="ShareCourseDialog(course)"><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+              </div>
+            </div>
+            <div class="cont">
+              <ul>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <span>(20 Reviws)</span>
+              <a href="courses-singel.html"
+                ><h4>{{course.title}}</h4></a
+              >
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="#"
+                    ><img
+                      src="assets/images/course/teacher/t-1.jpg"
+                      alt="teacher"
+                  /></a>
+                </div>
+                <div class="name" *ngIf="course.instructorInfo!=''">
+                  <a href="#"><h6>{{course.instructorInfo}}</h6></a>
+                </div>
+                <div class="name" *ngIf="course.instructorInfo==''">
+                  <a href="#"><h6>instructor Info</h6></a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-user"></i><span>31</span></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i><span>10</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- singel course -->
+        </div>
+       
+      </div>
+      <!-- course slied -->
+    </div>
+    <!-- container -->
+  </section>
+
+
+  <section id="course-part" class="pt-115 pb-120 gray-bg" *ngIf="currentUser?.company!=null">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+            <h5>Your courses</h5>
+            <h2>Business courses</h2>
+          </div>
+          <!-- section title -->
+        </div>
+      </div>
+      <!-- row -->
+      <div class="row course-slied mt-30 mb-5">
+        <div class="col-lg-4 mb-5" *ngFor="let course of coursesList">
+          <div class="singel-course">
+            <div class="thum">
+              
+              <div class="image" *ngIf="course.courseImage!=null">
+                <img src={{course.courseImage}} alt="Course" />
+              </div>
+              <div class="image" *ngIf="course.courseImage==null">
+                <img src="assets/images/course/cu-1.jpg" alt="Course" />
+              </div>
+              
+            </div>
+            <div class="cont">
+              <ul>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <span>(20 Reviws)</span>
+              <a href="courses-singel.html"
+                ><h4>{{course.title}}</h4></a
+              >
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="#"
+                    ><img
+                      src="assets/images/course/teacher/t-1.jpg"
+                      alt="teacher"
+                  /></a>
+                </div>
+                <div class="name" *ngIf="course.instructorInfo!=''">
+                  <a href="#"><h6>{{course.instructorInfo}}</h6></a>
+                </div>
+                <div class="name" *ngIf="course.instructorInfo==''">
+                  <a href="#"><h6>instructor Info</h6></a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li>
+                      <a href="#"><i class="fa fa-user"></i><span>31</span></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i><span>10</span></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- singel course -->
+        </div>
+      </div>
+    <ng-container *ngIf="coursesList?.length==0">
+      You dont have courses
+</ng-container>
+      <!-- course slied -->
+    </div>
+    <!-- container -->
+  </section>

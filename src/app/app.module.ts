@@ -24,8 +24,6 @@ import { TrackBoardComponent } from './Courzelo_Business/Modules/track-board/tra
 import { CompareCandidateComponent } from './Courzelo_Business/Modules/compare-candidate/compare-candidate.component';
 import { BusinessForgotPassComponent } from './Courzelo_Business/Modules/business-forgot-pass/business-forgot-pass.component';
 import { BusinessResetPassComponent } from './Courzelo_Business/Modules/business-reset-pass/business-reset-pass.component';
-import { BusinessProfileComponent } from './Courzelo_Business/Modules/business-profile/business-profile.component';
-
 
 
 
@@ -36,7 +34,6 @@ import { BusinessProfileComponent } from './Courzelo_Business/Modules/business-p
   declarations: [
     AppComponent,
     ConfirmEmailComponent,
-    BusinessProfileComponent
     
 
    

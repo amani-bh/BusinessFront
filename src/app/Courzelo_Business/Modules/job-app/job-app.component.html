@@ -52,6 +52,9 @@
         <span *ngIf='currentApp.currentState' ><b>Date :</b> {{currentApp.currentState.stateDate | date:'yyyy-MM-dd' }}</span>
         <br>
         <span *ngIf='currentApp.currentState.label=="pending" && currentApp.job.idPrehiringTest!=""' ><b>Prehiring test score:</b> {{currentApp.currentState.score}} %</span>
+        <br>
+        <span *ngIf='currentApp.currentState.label=="pending" && currentApp.job.idOtherTest!=""' ><b>Other test score:</b> {{currentApp.currentState.otherTestScore}} %</span>
+
         <span *ngIf='currentApp.currentState.label=="interview"' ><b>Link meet :</b> <a (click)='OpenMeet(currentApp.currentState.linkMeet)' class="link" >{{currentApp.currentState.linkMeet}}</a></span>
 
         <span *ngIf='currentApp.currentState.label=="interview"' ><b>Date  :</b> {{currentApp.currentState.interviewDate | date:'yyyy-MM-dd'}}</span>

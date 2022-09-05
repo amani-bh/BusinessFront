@@ -32,6 +32,11 @@ import { BusinessForgotPassComponent } from '../../Modules/business-forgot-pass/
 import { BusinessResetPassComponent } from '../../Modules/business-reset-pass/business-reset-pass.component';
 import { BusinessProfileComponent } from '../../Modules/business-profile/business-profile.component';
 import { SubAccountsComponent } from '../../Modules/sub-accounts/sub-accounts.component';
+import { VerifySubAccountComponent } from '../../Modules/verify-sub-account/verify-sub-account.component';
+import { BusinessCoursesComponent } from '../../Modules/business-courses/business-courses.component';
+import { AddOtherTestDialogComponent } from '../../Modules/add-other-test-dialog/add-other-test-dialog.component';
+import { UpdateOtherTestComponent } from '../../Modules/update-other-test/update-other-test.component';
+import { OtherTestsComponent } from '../../Modules/other-tests/other-tests.component';
 
 const routes: Routes = [
   { path:'', component: CourzeloBusinessHomeComponent,
@@ -53,8 +58,11 @@ const routes: Routes = [
       { path: 'CompareCandidate', component: CompareCandidateComponent ,canActivate: [AuthGuard] },
       { path: 'TechTests', component: JobOverviewComponent ,canActivate: [AuthGuard] },
       { path: 'PrehiringTest', component: JobTestsComponent,canActivate: [AuthGuard] },
+      { path: 'OtherTest', component: OtherTestsComponent,canActivate: [AuthGuard] },
       { path: 'PrehiringTest/AddTests', component: AddTestDialogComponent,canActivate: [AuthGuard] },
+      { path: 'OtherTest/AddOtherTests', component: AddOtherTestDialogComponent,canActivate: [AuthGuard] },
       { path: 'PrehiringTest/UpdTest/:id', component: UpdateTestComponent,canActivate: [AuthGuard] },
+      { path: 'OtherTest/UpdOtherTest/:id', component: UpdateOtherTestComponent,canActivate: [AuthGuard] },
       { path: 'Quizmanagement', component: TechTestComponent,canActivate: [AuthGuard] },
       { path: 'Quizmanagement/AddTest', component: AddQuizComponent,canActivate: [AuthGuard] },
       { path: 'Quizmanagement/AddTest/AddQuestions/:id', component: AddQuestionsComponent ,canActivate: [AuthGuard] },
@@ -68,13 +76,17 @@ const routes: Routes = [
     { path: 'UserApplications', component: UserApplicationsComponent },
     { path: 'Tests', component: TestsComponent ,canActivate: [AuthGuard] },
     { path: 'Tests/AddTests', component: AddTestDialogComponent,pathMatch: 'full'   ,canActivate: [AuthGuard] },
+    { path: 'Tests/AddOtherTests', component: AddOtherTestDialogComponent,pathMatch: 'full'   ,canActivate: [AuthGuard] },
     { path: 'Tests/UpdTest/:id', component: UpdateTestComponent  ,pathMatch: 'full' ,canActivate: [AuthGuard]  },
+    { path: 'Tests/UpdOtherTest/:id', component: UpdateOtherTestComponent,pathMatch: 'full' ,canActivate: [AuthGuard]  },
     { path: 'AdminUser', component: AdminUserComponent   },
     { path: 'Tests/AddTechTest', component: AddQuizComponent ,pathMatch: 'full',canActivate: [AuthGuard] },
     { path: 'Tests/AddTechTest/AddQuestions/:id', component: AddQuestionsComponent ,pathMatch: 'full' ,canActivate: [AuthGuard]  },
     { path:'BusinessLogin', component: BusinessLoginComponent},
     { path:'SubAccounts', component: SubAccountsComponent,canActivate: [AuthGuard] },
-    { path:'PassTest/:id', component: QuizPertraineeComponent,canActivate: [CoreAuthGuard]}
+    { path:'businessCourses', component: BusinessCoursesComponent,canActivate: [AuthGuard] },
+    { path:'PassTest/:id', component: QuizPertraineeComponent,canActivate: [CoreAuthGuard]},
+    { path: 'verify/:code', component: VerifySubAccountComponent },
     
   ]},
  

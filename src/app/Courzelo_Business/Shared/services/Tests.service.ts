@@ -12,7 +12,8 @@ export class TestsService {
   
   constructor(private http: HttpClient) {
 
-    this.baseUrl='https://springgateway.herokuapp.com/prehiring-tests-application/PrehiringTests';
+    // this.baseUrl='https://springgateway.herokuapp.com/prehiring-tests-application/PrehiringTests';
+    this.baseUrl='http://localhost:8087/PrehiringTests';
   }
   public GetAlldTests():Observable<PrehiringTests[]> {
     return this.http.get<[PrehiringTests]>(this.baseUrl)
@@ -20,6 +21,10 @@ export class TestsService {
 
   public GetTestsByBusiness(idBusiness:any):Observable<PrehiringTests[]> {
     return this.http.get<[PrehiringTests]>(this.baseUrl+"/business/"+idBusiness)
+  }
+
+  public GetTestsByCompanyName(companyName:any):Observable<PrehiringTests[]> {
+    return this.http.get<[PrehiringTests]>(this.baseUrl+"/businessCompanyName/"+companyName)
   }
 
   public GetTestById(idTest:any):Observable<PrehiringTests> {

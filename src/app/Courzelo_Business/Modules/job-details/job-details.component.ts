@@ -15,7 +15,7 @@ import { CandidateAppService } from '../../Shared/services/CandidateApp.service'
 })
 export class JobDetailsComponent implements OnInit {
  
-  state= new AppState(null,new Date(),"waiting",1,0,'',"",'',null,false,"");
+  state= new AppState(null,new Date(),"waiting",1,0,'',"",'',null,false,"","",0);
   job!:JobOffers
   app=new CandidateApp(null,new Date(),[],"",[],this.state,this.job,null)  ;
 

@@ -12,6 +12,8 @@ import { TechTestService } from '../../Shared/services/TechTest.service';
 import { Quiz } from 'src/app/Courzelo_Quizz/Shared/entities/Quiz';
 import { JobOffersService } from '../../Shared/services/JobOffers.service';
 import { QuizService } from 'src/app/Courzelo_Quizz/Shared/services/quiz.service';
+import { OtherTestService } from '../../Shared/services/other-test.service';
+import { OtherTest } from '../../Shared/entities/OtherTest';
 
 
 @Component({
@@ -23,11 +25,15 @@ export class TestsComponent implements OnInit,AfterViewInit  {
 
   currentBusiness:any;
   tests!: PrehiringTests[];
+  otherTests!: OtherTest[];
   TechTest=[] as Quiz[];
   public dataSource= new  MatTableDataSource<PrehiringTests>();
   public dataSource2= new  MatTableDataSource<Quiz>();
+  public dataSource3= new  MatTableDataSource<OtherTest>();
+
   displayedColumns = ['title', 'creationDate', 'type','action'];
   displayedColumns2 = ['title', 'creationDate', 'evaluationmodel'];
+  displayedColumns3 = ['title', 'creationDate','category', 'type','action'];
 
   @ViewChild("paginator1") paginator!: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort!: MatSort;
@@ -35,18 +41,27 @@ export class TestsComponent implements OnInit,AfterViewInit  {
   @ViewChild('paginator2') paginator2!: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort2!: MatSort;
   
-  constructor(private _liveAnnouncer: LiveAnnouncer,private quizservice : QuizService,private jobServices:JobOffersService,private techTestService:TechTestService,private testsService:TestsService,private businessAuthService: BusinessAuthService, private businesstokenStorage: BusinessTokenStorageService) { }
+  @ViewChild('paginator3') paginator3!: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort3!: MatSort;
+
+  constructor(private _liveAnnouncer: LiveAnnouncer,private quizservice : QuizService,private jobServices:JobOffersService,private techTestService:TechTestService,private testsService:TestsService,private otherTestService:OtherTestService,private businessAuthService: BusinessAuthService, private businesstokenStorage: BusinessTokenStorageService) { }
 
 
   ngOnInit(): void {
     this.currentBusiness = this.businesstokenStorage.getUser()
-    this.GetTests();
-    this.GetTechTestBusiness()
+    //this.GetTests();
+    this.GetTestsByCompany()
+    //this.GetTechTestBusiness()
+    this.GetTechTestBusinessCompanyName()
+    this.GetOtherTestsByCompany()
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource3.paginator = this.paginator3;
+    this.dataSource3.sort = this.sort3;
 
     this.dataSource2 = new  MatTableDataSource<Quiz>(this.TechTest);
     this.dataSource2.paginator = this.paginator2;
@@ -72,18 +87,41 @@ export class TestsComponent implements OnInit,AfterViewInit  {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
 
   }
+  public doFilter3 = (value: string) => {
+   
+    this.dataSource3.filter = value.trim().toLocaleLowerCase();
+
+  }
     
 
      
-  GetTests(){
+  // GetTests(){
     
-    this.testsService.GetTestsByBusiness(this.currentBusiness.idBusiness).subscribe(data=>{this.tests=data;
-     this.dataSource.data = this.tests as PrehiringTests[];
-     console.log("***********",this.dataSource.data)
-       },err=>{
-      console.log(err);
-    })}
+  //   this.testsService.GetTestsByBusiness(this.currentBusiness.idBusiness).subscribe(data=>{this.tests=data;
+  //    this.dataSource.data = this.tests as PrehiringTests[];
+  //    console.log("***********",this.dataSource.data)
+  //      },err=>{
+  //     console.log(err);
+  //   })}
 
+    GetTestsByCompany(){
+      this.testsService.GetTestsByCompanyName(this.currentBusiness.companyName).subscribe(data=>{this.tests=data;
+       
+
+       this.dataSource.data = this.tests as PrehiringTests[];
+         },err=>{
+        console.log(err);
+      })}
+
+      GetOtherTestsByCompany(){
+        this.otherTestService.GetTestsByCompanyName(this.currentBusiness.companyName).subscribe(data=>
+          {
+            this.otherTests=data;
+  
+         this.dataSource3.data = this.otherTests as OtherTest[];
+           },err=>{
+          console.log(err);
+        })}
   
    
 
@@ -94,6 +132,25 @@ export class TestsComponent implements OnInit,AfterViewInit  {
         {
           if(res==false){
             this.DeleteTest(idPrehiringTest)
+          }
+          else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: "can't delete this test ! it has been assigned to many jobs " ,
+              
+            })
+          }
+        })
+    }
+
+    VerifExistOther(idOtherTest:any){
+  
+  
+      this.jobServices.VerifExistOtherTest(idOtherTest).subscribe(res=>
+        {
+          if(res==false){
+            this.DeleteOtherTest(idOtherTest)
           }
           else{
             Swal.fire({
@@ -119,7 +176,9 @@ export class TestsComponent implements OnInit,AfterViewInit  {
         confirmButtonText: 'Sure',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.testsService.DeleteTest(idPrehiringTest).subscribe(result => {  this.GetTests(); 
+          this.testsService.DeleteTest(idPrehiringTest).subscribe(result => {  this.GetTestsByCompany();
+    
+
             Swal.fire({
               title: 'Test deleted successufly',
               icon:'success',
@@ -144,10 +203,76 @@ export class TestsComponent implements OnInit,AfterViewInit  {
     }
 
 
-    GetTechTestBusiness(){
+    DeleteOtherTest(idOtherTest:any){
+    
+      Swal.fire({
+        title: 'Are u sure ?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        confirmButtonColor: '#07294d',
+        cancelButtonColor: '#d33',
+        showCancelButton: true,
+        confirmButtonText: 'Sure',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.otherTestService.DeleteTest(idOtherTest).subscribe(result => {  
+    this.GetOtherTestsByCompany();
+
+            Swal.fire({
+              title: 'Test deleted successufly',
+              icon:'success',
+              confirmButtonColor: '#07294d'
+               })
+           },
+           err=>
+           { console.log(err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong! ' + err,
+              
+            })
+           });
+          
+        }
+      })
+
+      
+
+    }
+
+
+    // GetTechTestBusiness(){
+    //   var i=0
+      
+    //   this.techTestService.GetAlldtechTestByBusiness(this.currentBusiness.idBusiness).subscribe((res)=>{
+    //     this.TechTest=[] as Quiz[]
+        
+    //     res.forEach(e=>{
+    //       this.quizservice.getquizbyid(e.idQuiz).subscribe(r=>{
+    //         this.TechTest.push(r)
+    //          i++;
+    //          if(i==res.length){
+    //           console.log(this.TechTest)
+    //           this.dataSource2 = new  MatTableDataSource<Quiz>(this.TechTest);
+    //           this.dataSource2.paginator=this.paginator2
+              
+    //          }
+
+    //     })
+    //   })
+    // })
+        
+        
+        
+    // }
+
+
+    GetTechTestBusinessCompanyName(){
       var i=0
       
-      this.techTestService.GetAlldtechTestByBusiness(this.currentBusiness.idBusiness).subscribe((res)=>{
+      this.techTestService.GetAlldtechTestByCompanyName(this.currentBusiness.companyName).subscribe((res)=>{
+        
         this.TechTest=[] as Quiz[]
         
         res.forEach(e=>{
@@ -155,7 +280,6 @@ export class TestsComponent implements OnInit,AfterViewInit  {
             this.TechTest.push(r)
              i++;
              if(i==res.length){
-              console.log(this.TechTest)
               this.dataSource2 = new  MatTableDataSource<Quiz>(this.TechTest);
               this.dataSource2.paginator=this.paginator2
               
@@ -168,7 +292,5 @@ export class TestsComponent implements OnInit,AfterViewInit  {
         
         
     }
-
-
   }
 
